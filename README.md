@@ -10,3 +10,11 @@ The PC program can monitor Current and Voltage and Temprature of the voltage reg
 Minimum load must be 5mA.
 
 The project includes a buzzer that indicates that the fuse burned out and a flashing led to show that it is operating.
+
+### Project
+This is a university project for Microprocessors lesson which is taught from Mr. V.Tenentes.
+
+Team name : 5V
+
+Team : Kontotoli Voula,Ketoglou Theocharis
+
