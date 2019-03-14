@@ -16,5 +16,5 @@ This is a university project for Microprocessors lesson which is taught from mr.
 
 Team name : 5V
 
-Team : Kontotoli Voula,Ketoglou Theocharis
+Team : Kontotoli Voula,Ketoglou Theocharis 
 
