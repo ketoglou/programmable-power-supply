@@ -12,7 +12,7 @@ Minimum load must be 5mA.
 The project includes a buzzer that indicates that the fuse burned out and a flashing led to show that it is operating.
 
 ### Project
-This is a university project for Microprocessors lesson which is taught from Mr. V.Tenentes.
+This is a university project for Microprocessors lesson which is taught from mr. V.Tenentes.
 
 Team name : 5V
 
