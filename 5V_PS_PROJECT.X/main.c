@@ -102,6 +102,9 @@ void main(void) {
     I2C_Init();
     timer0_init();
     
+    //Buzzer
+    TRISAbits.RA1 = 0;
+    
     //Enable interrupts
     RCONbits.IPEN = 1; //set priority in interrupts
     INTCONbits.GIE = 1; //IPEN=1,enable high and low priority interrupts
@@ -109,7 +112,12 @@ void main(void) {
 
     while(1){
         //main code goes here
-        
+        LATAbits.LA0 = 1;
+        LATAbits.LA1 = 1;
+        __delay_ms(700);
+        LATAbits.LA0 = 0;
+        LATAbits.LA1 = 0;
+        __delay_ms(700);
     }
     return;
 }
