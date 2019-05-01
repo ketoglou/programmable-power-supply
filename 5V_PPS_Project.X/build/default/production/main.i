@@ -7,14 +7,7 @@
 # 1 "/opt/microchip/xc8/v2.05/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-
-
-
-
-
-
-
-
+# 28 "main.c"
 # 1 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -25536,7 +25529,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
-# 10 "main.c" 2
+# 29 "main.c" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 1 3
 # 24 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 3
 # 1 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 1 3
@@ -25673,7 +25666,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 11 "main.c" 2
+# 30 "main.c" 2
 # 1 "./config.h" 1
 
 
@@ -25729,12 +25722,7 @@ char *tempnam(const char *, const char *);
 
 
 #pragma config CP = OFF
-# 12 "main.c" 2
-# 1 "./ISR.h" 1
-
-
-void __attribute__((picinterrupt(("irq(31)")))) timer0_isr(void);
-# 13 "main.c" 2
+# 31 "main.c" 2
 # 1 "./USART1.h" 1
 
 
@@ -25747,21 +25735,57 @@ char rx_counter;
 char rx_buffer[32];
 char tx_buffer[32];
 char tx_byte;
+unsigned char COMMAND_WR;
+unsigned char COMMAND;
+int COMMAND_WRITE_NUMBER;
 
 
 void USART1_Init(unsigned char baud_rate);
 unsigned char USART1_SendByte(unsigned char byte);
 unsigned char USART1_SendString(char *str,int size);
 unsigned char USART1_ReceiveCommand(void);
-# 14 "main.c" 2
+# 32 "main.c" 2
+# 1 "./I2C.h" 1
+# 13 "./I2C.h"
+unsigned char I2C_TX_COUNTER;
+unsigned char I2C_RX_COUNTER;
+unsigned char I2C_TX_BUFFER[10];
+unsigned char I2C_RX_BUFFER[10];
+unsigned char I2C_STOP_DETECTED;
+
+
+unsigned char AD5272_VOLTAGE_ADDRESS = 0x5E;
+unsigned char AD5272_CURRENT_ADDRESS = 0x58;
+unsigned char AD5272_COMMANDS[2] = {0x00,0x00};
+
+
+void I2C_Init(void);
+
+
+
+
+
+unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsigned char address);
+
+
+unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address);
+
+
+
+
+unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_size);
+
+
+void I2C_handler(unsigned char ad5272_select,int value);
+# 33 "main.c" 2
 
 
 
 
 typedef enum _BOOL { FALSE = 0, TRUE = 1 } boolean;
-# 29 "main.c"
+# 48 "main.c"
 void timer0_init(void);
-void USART_handler(unsigned char command);
+void USART_handler(void);
 void ADC_Init(void);
 void ADC_Start(unsigned char pin);
 void ADC_GetResult(void);
@@ -25770,17 +25794,19 @@ void memset(char *st,char x,int size);
 
 
 unsigned char counter_timer0;
+unsigned char led_enable;
 float ADC_VOLTAGE_RESULT;
 
 
 
-void __attribute__((picinterrupt(("irq(31)")))) timer0_isr(void){
+void __attribute__((picinterrupt(("irq(31)")))) TIMER0_ISR(void){
     T0CON0bits.EN = 0;
     counter_timer0 ++;
     if(counter_timer0 == 2){
         LATAbits.LA0 = 0;
     }else if(counter_timer0 == 40){
-        LATAbits.LA0 = 1;
+        if(led_enable)
+            LATAbits.LA0 = 1;
         counter_timer0 = 0;
     }
     TMR0L = 0xB0;
@@ -25790,27 +25816,44 @@ void __attribute__((picinterrupt(("irq(31)")))) timer0_isr(void){
     T0CON0bits.EN = 1;
 }
 
-void __attribute__((picinterrupt(("irq(28)")))) uart1_tx_isr(void){
+void __attribute__((picinterrupt(("irq(28)")))) UART1_TX_ISR(void){
 
     U1TXB = tx_byte;
     PIE3bits.U1TXIE = 0;
 }
 
-void __attribute__((picinterrupt(("irq(27)")))) uart1_rx_isr(void){
+void __attribute__((picinterrupt(("irq(27)")))) UART1_RX_ISR(void){
     rx_buffer[rx_counter] = U1RXB;
     rx_counter ++;
 }
 
-void __attribute__((picinterrupt(("irq(10)")))) adc_isr(void){
+void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
     ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122;
     PIR1bits.ADIF = 0;
 }
 
-void __attribute__((picinterrupt(("irq(default)")))) default_isr(void){
+void __attribute__((picinterrupt(("irq(24)")))) I2C_TX_ISR(void){
+    I2C1TXB = I2C_TX_BUFFER[I2C_TX_COUNTER];
+    I2C_TX_COUNTER ++;
+}
+void __attribute__((picinterrupt(("irq(23)")))) I2C_RX_ISR(void){
+    I2C_RX_BUFFER[I2C_RX_COUNTER] = I2C1RXB;
+    I2C_RX_COUNTER ++;
+}
+
+void __attribute__((picinterrupt(("irq(25)")))) I2C_GENERAL_ISR(void){
+    if(I2C1PIRbits.PC1IF)
+        I2C_STOP_DETECTED = 1;
+    I2C1PIR = 0x00;
+}
+
+void __attribute__((picinterrupt(("irq(default)")))) DEFAULT_ISR(void){
 
 }
+
+
 
 void main(void) {
     OSCFRQ = 0x08;
@@ -25835,26 +25878,86 @@ void main(void) {
     timer0_init();
     USART1_Init(1);
     ADC_Init();
+    I2C_Init();
 
     INTCON0bits.GIEH = 1;
     INTCON0bits.GIEL = 1;
     INTCON0bits.IPEN = 1;
 
 
+    AD5272_COMMANDS[0] = 0x1C;
+    AD5272_COMMANDS[1] = 0x02;
+    I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
+    while(!I2C_STOP_DETECTED);
+    I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
+    while(!I2C_STOP_DETECTED);
+    AD5272_COMMANDS[0] = 0x04;
+
+
     TRISAbits.TRISA0 = 0;
     ANSELAbits.ANSELA0 = 1;
+    led_enable = 1;
 
     TRISAbits.TRISA1 = 0;
     ANSELAbits.ANSELA1 = 1;
     LATAbits.LA1 = 0;
 
-    unsigned char command = 0;
+    TRISBbits.TRISB2 = 0;
+    TRISBbits.TRISB3 = 0;
+    LATBbits.LB2 = 1;
+    LATBbits.LB3 = 1;
+
+    unsigned char receive_command;
 
     while(1){
-        command = USART1_ReceiveCommand();
-        USART_handler(command);
+        receive_command = USART1_ReceiveCommand();
+        if(receive_command)
+            USART_handler();
     }
 }
+
+
+
+void USART_handler(void){
+    memset(tx_buffer,0,32);
+    if(COMMAND_WR){
+        switch(COMMAND){
+            case 0:
+                sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
+                break;
+            case 1:
+                sprintf(tx_buffer,"Current:%f A",ADC_VOLTAGE_RESULT);
+                break;
+            default:
+                sprintf(tx_buffer,"Command not recognized!");
+                break;
+        }
+    }else{
+        switch(COMMAND){
+            case 0:
+                led_enable = !led_enable;
+                if(led_enable)
+                    sprintf(tx_buffer,"Blinking LED is ON!");
+                else
+                    sprintf(tx_buffer,"Blinking LED is OFF!");
+                break;
+            case 1:
+                I2C_handler(0,COMMAND_WRITE_NUMBER);
+                sprintf(tx_buffer,"Voltage seted!");
+                break;
+            case 2:
+                I2C_handler(1,COMMAND_WRITE_NUMBER);
+                sprintf(tx_buffer,"Current Limit seted!");
+                break;
+            default:
+                sprintf(tx_buffer,"Command not recognized!");
+                break;
+        }
+    }
+    USART1_SendString(tx_buffer,GetStringSize());
+}
+
+
 
 void timer0_init(void){
     T0CON0 = 0x10;
@@ -25867,26 +25970,6 @@ void timer0_init(void){
     PIE3bits.TMR0IE = 1;
     T0CON0bits.EN = 1;
 }
-
-void USART_handler(unsigned char command){
-
-    switch(command){
-        case 0:
-            break;
-        case 1:
-            memset(tx_buffer,0,32);
-            sprintf(tx_buffer,"Voltage:%f",ADC_VOLTAGE_RESULT);
-            USART1_SendString(tx_buffer,GetStringSize());
-            break;
-        case 2:
-            break;
-        default:
-            USART1_SendString("Command not recognized!",23);
-            break;
-    }
-    command = 0;
-}
-
 
 
 void ADC_Init(void){
@@ -25904,8 +25987,10 @@ void ADC_Init(void){
 
 
 void ADC_Start(unsigned char pin){
-    ADPCH = pin;
-    ADCON0bits.GO = 1;
+    if(!ADCON0bits.GO){
+        ADPCH = pin;
+        ADCON0bits.GO = 1;
+    }
 }
 
 
@@ -25914,7 +25999,7 @@ void ADC_Start(unsigned char pin){
 int GetStringSize(void){
     int i;
     for(i=0;i<32;i++){
-        if(tx_buffer[i] == '\0'){
+        if(tx_buffer[i] == 0){
             break;
         }
     }

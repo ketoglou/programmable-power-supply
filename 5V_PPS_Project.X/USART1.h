@@ -9,6 +9,9 @@ char rx_counter;
 char rx_buffer[RECEIVE_BUFFER_SIZE];
 char tx_buffer[TRANSMIT_BUFFER_SIZE];
 char tx_byte;
+unsigned char COMMAND_WR; //Determines if command is write(0) or read(1)
+unsigned char COMMAND; //Determines type of command
+int COMMAND_WRITE_NUMBER; //Determines the number for write commands
 
 
 void USART1_Init(unsigned char baud_rate);

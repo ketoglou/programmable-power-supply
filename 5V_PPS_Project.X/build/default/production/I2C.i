@@ -1,4 +1,4 @@
-# 1 "USART1.c"
+# 1 "I2C.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,30 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "USART1.c" 2
-
-# 1 "./USART1.h" 1
-
-
-
-
-
-
-
-char rx_counter;
-char rx_buffer[32];
-char tx_buffer[32];
-char tx_byte;
-unsigned char COMMAND_WR;
-unsigned char COMMAND;
-int COMMAND_WRITE_NUMBER;
-
-
-void USART1_Init(unsigned char baud_rate);
-unsigned char USART1_SendByte(unsigned char byte);
-unsigned char USART1_SendString(char *str,int size);
-unsigned char USART1_ReceiveCommand(void);
-# 3 "USART1.c" 2
+# 1 "I2C.c" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -25551,124 +25528,133 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
-# 4 "USART1.c" 2
-
-void USART1_Init(unsigned char baud_rate){
-
-    TRISCbits.TRISC6 = 1;
-    TRISCbits.TRISC7 = 0;
-    ANSELCbits.ANSELC6 = 0;
-    ANSELCbits.ANSELC7 = 0;
-    U1RXPPS = 0x16;
-    RC7PPS = 0x13;
+# 2 "I2C.c" 2
+# 1 "./I2C.h" 1
+# 13 "./I2C.h"
+unsigned char I2C_TX_COUNTER;
+unsigned char I2C_RX_COUNTER;
+unsigned char I2C_TX_BUFFER[10];
+unsigned char I2C_RX_BUFFER[10];
+unsigned char I2C_STOP_DETECTED;
 
 
-    switch(baud_rate){
-        case 1:
-            U1BRGH = 0x03;
-            U1BRGL = 0x40;
-            break;
-        case 2:
-            U1BRGH = 0x01;
-            U1BRGL = 0x14;
-            break;
-        case 3:
-            U1BRGH = 0x00;
-            U1BRGL = 0x89;
-            break;
-        default:
-            U1BRGH = 0x00;
-            U1BRGL = 0x89;
-            break;
-    }
+unsigned char AD5272_VOLTAGE_ADDRESS = 0x5E;
+unsigned char AD5272_CURRENT_ADDRESS = 0x58;
+unsigned char AD5272_COMMANDS[2] = {0x00,0x00};
 
-    rx_counter = 0;
 
-    U1CON0 = 0xB0;
-    U1CON1 = 0x00;
-    U2CON2 = 0x80;
-    U1ERRIE = 0x00;
-    U1UIR = 0x00;
-    PIE3bits.U1RXIE = 1;
-    PIE3bits.U1TXIE =1;
-    IPR3bits.U1RXIP = 1;
-    IPR3bits.U1TXIP = 1;
-    PIR3 = 0x00;
-    U1CON1bits.ON = 1;
+void I2C_Init(void);
+
+
+
+
+
+unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsigned char address);
+
+
+unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address);
+
+
+
+
+unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_size);
+
+
+void I2C_handler(unsigned char ad5272_select,int value);
+# 3 "I2C.c" 2
+
+void I2C_Init(void){
+
+    TRISBbits.TRISB1 = 0;
+    TRISBbits.TRISB0 = 0;
+    LATBbits.LATB1 = 0;
+    LATBbits.LATB0 = 0;
+    ANSELBbits.ANSELB1 = 0;
+    ANSELBbits.ANSELB0 = 0;
+    ODCONBbits.ODCB1 = 1;
+    ODCONBbits.ODCB0 = 1;
+    RB1I2C = 0x01;
+    SLRCONBbits.SLRB1 = 0;
+    SLRCONBbits.SLRB0 = 0;
+    I2C1SCLPPS = 0x09;
+    I2C1SDAPPS = 0x08;
+    RB1PPS = 0x21;
+    RB0PPS = 0x22;
+
+    I2C1CON0 = 0x04;
+    I2C1CON1 = 0x80;
+    I2C1CON2 = 0x24;
+    I2C1CLK = 0x03;
+
+    I2C1PIR = 0x00;
+    I2C1ERR = 0x00;
+
+    I2C_STOP_DETECTED = 1;
+
+    IPR3bits.I2C1TXIP = 0;
+    IPR2bits.I2C1RXIP = 0;
+    PIR3bits.I2C1TXIF = 0;
+    PIR2bits.I2C1RXIF = 0;
+    PIE3bits.I2C1TXIE = 1;
+    PIE2bits.I2C1RXIE = 1;
+
+
+    I2C1PIRbits.PC1IF = 0;
+    I2C1PIEbits.PC1IE = 1;
+    IPR3bits.I2C1IP = 0;
+    PIR3bits.I2C1IF = 0;
+    PIE3bits.I2C1IE = 1;
+
+    I2C1CON0bits.EN = 1;
 }
 
-unsigned char USART1_SendByte(unsigned char byte){
-    if(!PIE3bits.U1TXIE){
-        tx_byte = byte;
-        PIE3bits.U1TXIE = 1;
+unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsigned char address){
+    if(I2C_STOP_DETECTED && I2C1STAT0bits.BFRE && I2C1CNT == 0){
+        I2C_STOP_DETECTED = 0;
+        for(unsigned char i=0;i<(buffer_size-1);i++){
+            I2C_TX_BUFFER[i] = buffer[i+1];
+        }
+        I2C1ADB1 = address;
+        I2C1CNT = buffer_size;
+        I2C1TXB = buffer[0];
+        I2C_TX_COUNTER = 0;
+        I2C1CON0bits.S = 1;
         return 1;
     }
     return 0;
 }
 
-unsigned char USART1_SendString(char *str,int size){
-    unsigned int attempts = 65000,i;
-    for(i=0;i<size;i++){
-        if(!USART1_SendByte(*(str + i))){
-            attempts --;
-            i --;
-        }
-        if(!attempts)
-            return 0;
-        attempts = 65000;
-    }
-    attempts =65000;
-    while(!USART1_SendByte('\r') && (attempts --));
-    while(!USART1_SendByte('\n') && (attempts --));
-    return 1;
-}
-# 84 "USART1.c"
-unsigned char USART1_ReceiveCommand(void){;
-    if(rx_counter == 0)
-        return 0;
-    if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R'){
-        rx_counter = 0;
-        return 0;
-    }
-    if(rx_buffer[0] == 'R') {
-        if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
-            rx_counter = 0;
-        }else if(rx_counter == 3 && rx_buffer[2] != '\r'){
-            rx_counter = 0;
-        }else if(rx_counter == 4){
-            if(rx_buffer[0] != 'R' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || rx_buffer[2] != '\r' || rx_buffer[3] != '\n'){
-                rx_counter = 0;
-                return 0;
-            }
-            COMMAND_WR = 1;
-            COMMAND = rx_buffer[1]-48;
-            rx_counter = 0;
-            return 1;
-        }
-    }else{
-        if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
-            rx_counter = 0;
-        }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){
-            rx_counter = 0;
-        }else if(rx_counter == 4 && ((rx_buffer[3] < 48) || (rx_buffer[3] > 57))){
-            rx_counter = 0;
-        }else if(rx_counter == 5 && ((rx_buffer[4] < 48) || (rx_buffer[4] > 57))){
-            rx_counter = 0;
-        }else if(rx_counter == 6 && ((rx_buffer[5] < 48) || (rx_buffer[5] > 57))){
-            rx_counter = 0;
-        }else if(rx_counter == 7 && rx_buffer[6] != '\r'){
-            rx_counter = 0;
-        }else if(rx_counter == 8){
-            if(rx_buffer[0] != 'W' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || (rx_buffer[2] < 48) || (rx_buffer[2] > 57) || (rx_buffer[3] < 48) || (rx_buffer[3] > 57) || (rx_buffer[4] < 48) || (rx_buffer[4] > 57) || (rx_buffer[5] < 48) || (rx_buffer[5] > 57) || rx_buffer[6] != '\r' || rx_buffer[7] != '\n'){
-                rx_counter = 0;
-                return 0;
-            }
-            COMMAND_WR = 0;
-            COMMAND = rx_buffer[1]-48;
-            COMMAND_WRITE_NUMBER = ((rx_buffer[2]-48) * 1000) + ((rx_buffer[3]-48) * 100) + ((rx_buffer[4]-48) * 10) + (rx_buffer[5]-48);
-            rx_counter = 0;
-            return 1;
-        }
+unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address){
+
+    if(I2C_STOP_DETECTED && I2C1STAT0bits.BFRE){
+        I2C_STOP_DETECTED = 0;
+        I2C1ADB1 = (address |0x01);
+        I2C1CNT = buffer_size;
+        I2C_RX_COUNTER = 0;
+        I2C1CON0bits.S = 1;
+        return 1;
     }
     return 0;
+}
+
+unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_size){
+    if(results_size == I2C_RX_COUNTER){
+        for(unsigned char i=0;i<I2C_RX_COUNTER;i++){
+            results[i] = I2C_RX_BUFFER[i];
+        }
+        I2C_RX_COUNTER = 0;
+        return 0xFF;
+    }
+    return I2C_RX_COUNTER;
+}
+
+void I2C_handler(unsigned char ad5272_select,int value){
+    AD5272_COMMANDS[0] = (unsigned char)(AD5272_COMMANDS[0] | (value >> 8));
+    AD5272_COMMANDS[1] = (unsigned char)(value & 0x00);
+    if(ad5272_select == 0){
+        I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
+    }else{
+        I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
+    }
+    while(!I2C_STOP_DETECTED);
 }

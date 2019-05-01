@@ -64,35 +64,49 @@
 [v _strncmp strncmp `(i  1 e 2 0 ]
 "4 /opt/microchip/xc8/v2.05/pic/sources/c99/common/tolower.c
 [v _tolower tolower `(i  1 e 2 0 ]
+"15 /opt/microchip/xc8/v2.05/pic/sources/c99/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
 "15 /opt/microchip/xc8/v2.05/pic/sources/c99/common/Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 /opt/microchip/xc8/v2.05/pic/sources/c99/common/Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
 "10 /opt/microchip/xc8/v2.05/pic/sources/c99/common/xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
-"43 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
-[v _timer0_isr timer0_isr `IIH(v  1 e 1 0 ]
-"59
-[v _uart1_tx_isr uart1_tx_isr `IIH(v  1 e 1 0 ]
-"65
-[v _uart1_rx_isr uart1_rx_isr `IIH(v  1 e 1 0 ]
-"70
-[v _adc_isr adc_isr `IIH(v  1 e 1 0 ]
-"77
-[v _default_isr default_isr `IIH(v  1 e 1 0 ]
-"81
+"4 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/I2C.c
+[v _I2C_Init I2C_Init `(v  1 e 1 0 ]
+"49
+[v _I2C_Transmit I2C_Transmit `(uc  1 e 1 0 ]
+"89
+[v _I2C_handler I2C_handler `(v  1 e 1 0 ]
+"63 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
+[v _TIMER0_ISR TIMER0_ISR `IIH(v  1 e 1 0 ]
+"80
+[v _UART1_TX_ISR UART1_TX_ISR `IIH(v  1 e 1 0 ]
+"86
+[v _UART1_RX_ISR UART1_RX_ISR `IIH(v  1 e 1 0 ]
+"91
+[v _ADC_ISR ADC_ISR `IIH(v  1 e 1 0 ]
+"98
+[v _I2C_TX_ISR I2C_TX_ISR `IIH(v  1 e 1 0 ]
+"102
+[v _I2C_RX_ISR I2C_RX_ISR `IIH(v  1 e 1 0 ]
+"107
+[v _I2C_GENERAL_ISR I2C_GENERAL_ISR `IIH(v  1 e 1 0 ]
+"113
+[v _DEFAULT_ISR DEFAULT_ISR `IIH(v  1 e 1 0 ]
+"119
 [v _main main `(v  1 e 1 0 ]
-"125
-[v _timer0_init timer0_init `(v  1 e 1 0 ]
-"137
+"182
 [v _USART_handler USART_handler `(v  1 e 1 0 ]
-"158
+"223
+[v _timer0_init timer0_init `(v  1 e 1 0 ]
+"236
 [v _ADC_Init ADC_Init `(v  1 e 1 0 ]
-"172
+"250
 [v _ADC_Start ADC_Start `(v  1 e 1 0 ]
-"180
+"260
 [v _GetStringSize GetStringSize `(i  1 e 2 0 ]
-"190
+"270
 [v _memset memset `(v  1 e 1 0 ]
 "5 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/USART1.c
 [v _USART1_Init USART1_Init `(v  1 e 1 0 ]
@@ -100,8 +114,20 @@
 [v _USART1_SendByte USART1_SendByte `(uc  1 e 1 0 ]
 "58
 [v _USART1_SendString USART1_SendString `(uc  1 e 1 0 ]
-"76
+"84
 [v _USART1_ReceiveCommand USART1_ReceiveCommand `(uc  1 e 1 0 ]
+"13 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/I2C.h
+[v _I2C_TX_COUNTER I2C_TX_COUNTER `uc  1 e 1 0 ]
+"14
+[v _I2C_RX_COUNTER I2C_RX_COUNTER `uc  1 e 1 0 ]
+"15
+[v _I2C_TX_BUFFER I2C_TX_BUFFER `[10]uc  1 e 10 0 ]
+"16
+[v _I2C_RX_BUFFER I2C_RX_BUFFER `[10]uc  1 e 10 0 ]
+"17
+[v _I2C_STOP_DETECTED I2C_STOP_DETECTED `uc  1 e 1 0 ]
+"22
+[v _AD5272_COMMANDS AD5272_COMMANDS `[2]uc  1 e 2 0 ]
 "8 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/USART1.h
 [v _rx_counter rx_counter `uc  1 e 1 0 ]
 "9
@@ -110,11 +136,17 @@
 [v _tx_buffer tx_buffer `[32]uc  1 e 32 0 ]
 "11
 [v _tx_byte tx_byte `uc  1 e 1 0 ]
+"12
+[v _COMMAND_WR COMMAND_WR `uc  1 e 1 0 ]
+"13
+[v _COMMAND COMMAND `uc  1 e 1 0 ]
+"14
+[v _COMMAND_WRITE_NUMBER COMMAND_WRITE_NUMBER `i  1 e 2 0 ]
 "788 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
 [v _WDTCON0 WDTCON0 `VEuc  1 e 1 @14683 ]
 "863
 [v _WDTCON1 WDTCON1 `VEuc  1 e 1 @14684 ]
-[s S635 . 1 `uc 1 INT0IP 1 0 :1:0 
+[s S736 . 1 `uc 1 INT0IP 1 0 :1:0 
 `uc 1 ZCDIP 1 0 :1:1 
 `uc 1 ADIP 1 0 :1:2 
 `uc 1 ADTIP 1 0 :1:3 
@@ -124,14 +156,29 @@
 `uc 1 SMT1PWAIP 1 0 :1:7 
 ]
 "2851
-[s S644 . 1 `uc 1 . 1 0 :4:0 
+[s S745 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IP 1 0 :1:4 
 `uc 1 RC1IP 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIP 1 0 :1:7 
 ]
-[u S650 . 1 `S635 1 . 1 0 `S644 1 . 1 0 ]
-[v _IPR1bits IPR1bits `VES650  1 e 1 @14721 ]
+[u S751 . 1 `S736 1 . 1 0 `S745 1 . 1 0 ]
+[v _IPR1bits IPR1bits `VES751  1 e 1 @14721 ]
+[s S1201 . 1 `uc 1 DMA1SCNTIP 1 0 :1:0 
+`uc 1 DMA1DCNTIP 1 0 :1:1 
+`uc 1 DMA1ORIP 1 0 :1:2 
+`uc 1 DMA1AIP 1 0 :1:3 
+`uc 1 SPI1RXIP 1 0 :1:4 
+`uc 1 SPI1TXIP 1 0 :1:5 
+`uc 1 SPI1IP 1 0 :1:6 
+`uc 1 I2C1RXIP 1 0 :1:7 
+]
+"2932
+[s S1210 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CMIP 1 0 :1:6 
+]
+[u S1213 . 1 `S1201 1 . 1 0 `S1210 1 . 1 0 ]
+[v _IPR2bits IPR2bits `VES1213  1 e 1 @14722 ]
 [s S120 . 1 `uc 1 I2C1TXIP 1 0 :1:0 
 `uc 1 I2C1IP 1 0 :1:1 
 `uc 1 I2C1EIP 1 0 :1:2 
@@ -149,7 +196,7 @@
 ]
 [u S134 . 1 `S120 1 . 1 0 `S129 1 . 1 0 ]
 [v _IPR3bits IPR3bits `VES134  1 e 1 @14723 ]
-[s S669 . 1 `uc 1 INT0IE 1 0 :1:0 
+[s S770 . 1 `uc 1 INT0IE 1 0 :1:0 
 `uc 1 ZCDIE 1 0 :1:1 
 `uc 1 ADIE 1 0 :1:2 
 `uc 1 ADTIE 1 0 :1:3 
@@ -159,17 +206,32 @@
 `uc 1 SMT1PWAIE 1 0 :1:7 
 ]
 "3502
-[s S678 . 1 `uc 1 . 1 0 :4:0 
+[s S779 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IE 1 0 :1:4 
 `uc 1 RC1IE 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIE 1 0 :1:7 
 ]
-[s S684 . 1 `uc 1 . 1 0 :4:0 
+[s S785 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TXIE 1 0 :1:4 
 ]
-[u S687 . 1 `S669 1 . 1 0 `S678 1 . 1 0 `S684 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES687  1 e 1 @14737 ]
+[u S788 . 1 `S770 1 . 1 0 `S779 1 . 1 0 `S785 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES788  1 e 1 @14737 ]
+[s S1300 . 1 `uc 1 DMA1SCNTIE 1 0 :1:0 
+`uc 1 DMA1DCNTIE 1 0 :1:1 
+`uc 1 DMA1ORIE 1 0 :1:2 
+`uc 1 DMA1AIE 1 0 :1:3 
+`uc 1 SPI1RXIE 1 0 :1:4 
+`uc 1 SPI1TXIE 1 0 :1:5 
+`uc 1 SPI1IE 1 0 :1:6 
+`uc 1 I2C1RXIE 1 0 :1:7 
+]
+"3588
+[s S1309 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CMIE 1 0 :1:6 
+]
+[u S1312 . 1 `S1300 1 . 1 0 `S1309 1 . 1 0 ]
+[v _PIE2bits PIE2bits `VES1312  1 e 1 @14738 ]
 [s S75 . 1 `uc 1 I2C1TXIE 1 0 :1:0 
 `uc 1 I2C1IE 1 0 :1:1 
 `uc 1 I2C1EIE 1 0 :1:2 
@@ -193,7 +255,7 @@
 ]
 [u S95 . 1 `S75 1 . 1 0 `S84 1 . 1 0 `S90 1 . 1 0 ]
 [v _PIE3bits PIE3bits `VES95  1 e 1 @14739 ]
-[s S393 . 1 `uc 1 INT0IF 1 0 :1:0 
+[s S395 . 1 `uc 1 INT0IF 1 0 :1:0 
 `uc 1 ZCDIF 1 0 :1:1 
 `uc 1 ADIF 1 0 :1:2 
 `uc 1 ADTIF 1 0 :1:3 
@@ -203,20 +265,35 @@
 `uc 1 SMT1PWAIF 1 0 :1:7 
 ]
 "4155
-[s S402 . 1 `uc 1 . 1 0 :4:0 
+[s S404 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIF 1 0 :1:7 
 ]
-[s S408 . 1 `uc 1 . 1 0 :4:0 
+[s S410 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TXIF 1 0 :1:4 
 ]
-[u S411 . 1 `S393 1 . 1 0 `S402 1 . 1 0 `S408 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES411  1 e 1 @14753 ]
+[u S413 . 1 `S395 1 . 1 0 `S404 1 . 1 0 `S410 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES413  1 e 1 @14753 ]
+[s S1247 . 1 `uc 1 DMA1SCNTIF 1 0 :1:0 
+`uc 1 DMA1DCNTIF 1 0 :1:1 
+`uc 1 DMA1ORIF 1 0 :1:2 
+`uc 1 DMA1AIF 1 0 :1:3 
+`uc 1 SPI1RXIF 1 0 :1:4 
+`uc 1 SPI1TXIF 1 0 :1:5 
+`uc 1 SPI1IF 1 0 :1:6 
+`uc 1 I2C1RXIF 1 0 :1:7 
+]
+"4241
+[s S1256 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CMIF 1 0 :1:6 
+]
+[u S1259 . 1 `S1247 1 . 1 0 `S1256 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES1259  1 e 1 @14754 ]
 "4291
 [v _PIR3 PIR3 `VEuc  1 e 1 @14755 ]
-[s S332 . 1 `uc 1 I2C1TXIF 1 0 :1:0 
+[s S334 . 1 `uc 1 I2C1TXIF 1 0 :1:0 
 `uc 1 I2C1IF 1 0 :1:1 
 `uc 1 I2C1EIF 1 0 :1:2 
 `uc 1 U1RXIF 1 0 :1:3 
@@ -226,14 +303,14 @@
 `uc 1 TMR0IF 1 0 :1:7 
 ]
 "4314
-[s S341 . 1 `uc 1 . 1 0 :1:0 
+[s S343 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RXBNIF 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 TXBNIF 1 0 :1:4 
 ]
-[u S346 . 1 `S332 1 . 1 0 `S341 1 . 1 0 ]
-[v _PIR3bits PIR3bits `VES346  1 e 1 @14755 ]
-[s S437 . 1 `uc 1 PLLR 1 0 :1:0 
+[u S348 . 1 `S334 1 . 1 0 `S343 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES348  1 e 1 @14755 ]
+[s S482 . 1 `uc 1 PLLR 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADOR 1 0 :1:2 
 `uc 1 SOR 1 0 :1:3 
@@ -243,17 +320,21 @@
 `uc 1 EXTOR 1 0 :1:7 
 ]
 "5409
-[u S446 . 1 `S437 1 . 1 0 ]
-[v _OSCSTATbits OSCSTATbits `VES446  1 e 1 @14812 ]
+[u S491 . 1 `S482 1 . 1 0 ]
+[v _OSCSTATbits OSCSTATbits `VES491  1 e 1 @14812 ]
 "5499
 [v _OSCEN OSCEN `VEuc  1 e 1 @14813 ]
 "5550
 [v _OSCTUNE OSCTUNE `VEuc  1 e 1 @14814 ]
 "5654
 [v _OSCFRQ OSCFRQ `VEuc  1 e 1 @14815 ]
+"6916
+[v _RB0PPS RB0PPS `VEuc  1 e 1 @14856 ]
+"6966
+[v _RB1PPS RB1PPS `VEuc  1 e 1 @14857 ]
 "7666
 [v _RC7PPS RC7PPS `VEuc  1 e 1 @14871 ]
-[s S524 . 1 `uc 1 ANSELA0 1 0 :1:0 
+[s S580 . 1 `uc 1 ANSELA0 1 0 :1:0 
 `uc 1 ANSELA1 1 0 :1:1 
 `uc 1 ANSELA2 1 0 :1:2 
 `uc 1 ANSELA3 1 0 :1:3 
@@ -263,9 +344,9 @@
 `uc 1 ANSELA7 1 0 :1:7 
 ]
 "7733
-[u S533 . 1 `S524 1 . 1 0 ]
-[v _ANSELAbits ANSELAbits `VES533  1 e 1 @14912 ]
-[s S610 . 1 `uc 1 ANSELB0 1 0 :1:0 
+[u S589 . 1 `S580 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES589  1 e 1 @14912 ]
+[s S711 . 1 `uc 1 ANSELB0 1 0 :1:0 
 `uc 1 ANSELB1 1 0 :1:1 
 `uc 1 ANSELB2 1 0 :1:2 
 `uc 1 ANSELB3 1 0 :1:3 
@@ -275,8 +356,34 @@
 `uc 1 ANSELB7 1 0 :1:7 
 ]
 "8229
-[u S619 . 1 `S610 1 . 1 0 ]
-[v _ANSELBbits ANSELBbits `VES619  1 e 1 @14928 ]
+[u S720 . 1 `S711 1 . 1 0 ]
+[v _ANSELBbits ANSELBbits `VES720  1 e 1 @14928 ]
+[s S1130 . 1 `uc 1 ODCB0 1 0 :1:0 
+`uc 1 ODCB1 1 0 :1:1 
+`uc 1 ODCB2 1 0 :1:2 
+`uc 1 ODCB3 1 0 :1:3 
+`uc 1 ODCB4 1 0 :1:4 
+`uc 1 ODCB5 1 0 :1:5 
+`uc 1 ODCB6 1 0 :1:6 
+`uc 1 ODCB7 1 0 :1:7 
+]
+"8353
+[u S1139 . 1 `S1130 1 . 1 0 ]
+[v _ODCONBbits ODCONBbits `VES1139  1 e 1 @14930 ]
+[s S1152 . 1 `uc 1 SLRB0 1 0 :1:0 
+`uc 1 SLRB1 1 0 :1:1 
+`uc 1 SLRB2 1 0 :1:2 
+`uc 1 SLRB3 1 0 :1:3 
+`uc 1 SLRB4 1 0 :1:4 
+`uc 1 SLRB5 1 0 :1:5 
+`uc 1 SLRB6 1 0 :1:6 
+`uc 1 SLRB7 1 0 :1:7 
+]
+"8415
+[u S1161 . 1 `S1152 1 . 1 0 ]
+[v _SLRCONBbits SLRCONBbits `VES1161  1 e 1 @14931 ]
+"8708
+[v _RB1I2C RB1I2C `VEuc  1 e 1 @14938 ]
 [s S45 . 1 `uc 1 ANSELC0 1 0 :1:0 
 `uc 1 ANSELC1 1 0 :1:1 
 `uc 1 ANSELC2 1 0 :1:2 
@@ -289,13 +396,117 @@
 "8941
 [u S54 . 1 `S45 1 . 1 0 ]
 [v _ANSELCbits ANSELCbits `VES54  1 e 1 @14944 ]
-[s S461 . 1 `uc 1 PPSLOCKED 1 0 :1:0 
+[s S506 . 1 `uc 1 PPSLOCKED 1 0 :1:0 
 ]
 "9751
-[u S463 . 1 `S461 1 . 1 0 ]
-[v _PPSLOCKbits PPSLOCKbits `VES463  1 e 1 @15039 ]
+[u S508 . 1 `S506 1 . 1 0 ]
+[v _PPSLOCKbits PPSLOCKbits `VES508  1 e 1 @15039 ]
+"10421
+[v _I2C1SCLPPS I2C1SCLPPS `VEuc  1 e 1 @15073 ]
+"10441
+[v _I2C1SDAPPS I2C1SDAPPS `VEuc  1 e 1 @15074 ]
 "10501
 [v _U1RXPPS U1RXPPS `VEuc  1 e 1 @15077 ]
+"22973
+[v _I2C1RXB I2C1RXB `VEuc  1 e 1 @15722 ]
+"22993
+[v _I2C1TXB I2C1TXB `VEuc  1 e 1 @15723 ]
+"23013
+[v _I2C1CNT I2C1CNT `VEuc  1 e 1 @15724 ]
+"23103
+[v _I2C1ADB1 I2C1ADB1 `VEuc  1 e 1 @15726 ]
+"23205
+[v _I2C1CON0 I2C1CON0 `VEuc  1 e 1 @15731 ]
+[s S1390 . 1 `uc 1 MODE 1 0 :3:0 
+`uc 1 MDR 1 0 :1:3 
+`uc 1 CSTR 1 0 :1:4 
+`uc 1 S 1 0 :1:5 
+`uc 1 RSEN 1 0 :1:6 
+`uc 1 EN 1 0 :1:7 
+]
+"23227
+[s S1397 . 1 `uc 1 MODE0 1 0 :1:0 
+`uc 1 MODE1 1 0 :1:1 
+`uc 1 MODE2 1 0 :1:2 
+`uc 1 . 1 0 :4:3 
+`uc 1 I2CEN 1 0 :1:7 
+]
+[u S1403 . 1 `S1390 1 . 1 0 `S1397 1 . 1 0 ]
+[v _I2C1CON0bits I2C1CON0bits `VES1403  1 e 1 @15731 ]
+"23282
+[v _I2C1CON1 I2C1CON1 `VEuc  1 e 1 @15732 ]
+"23339
+[v _I2C1CON2 I2C1CON2 `VEuc  1 e 1 @15733 ]
+"23415
+[v _I2C1ERR I2C1ERR `VEuc  1 e 1 @15734 ]
+[s S1420 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 D 1 0 :1:3 
+`uc 1 R 1 0 :1:4 
+`uc 1 MMA 1 0 :1:5 
+`uc 1 SMA 1 0 :1:6 
+`uc 1 BFRE 1 0 :1:7 
+]
+"23535
+[s S1427 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 DATA 1 0 :1:3 
+`uc 1 READ 1 0 :1:4 
+]
+[s S1431 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_ADDRESS 1 0 :1:3 
+`uc 1 NOT_WRITE 1 0 :1:4 
+]
+[s S1435 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_A 1 0 :1:3 
+`uc 1 NOT_W 1 0 :1:4 
+]
+[u S1439 . 1 `S1420 1 . 1 0 `S1427 1 . 1 0 `S1431 1 . 1 0 `S1435 1 . 1 0 ]
+[v _I2C1STAT0bits I2C1STAT0bits `VES1439  1 e 1 @15735 ]
+"23642
+[v _I2C1PIR I2C1PIR `VEuc  1 e 1 @15737 ]
+[s S438 . 1 `uc 1 SCIF 1 0 :1:0 
+`uc 1 RSCIF 1 0 :1:1 
+`uc 1 PCIF 1 0 :1:2 
+`uc 1 ADRIF 1 0 :1:3 
+`uc 1 WRIF 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 ACKTIF 1 0 :1:6 
+`uc 1 CNTIF 1 0 :1:7 
+]
+"23669
+[s S447 . 1 `uc 1 SC1IF 1 0 :1:0 
+`uc 1 RSC1IF 1 0 :1:1 
+`uc 1 PC1IF 1 0 :1:2 
+`uc 1 ADR1IF 1 0 :1:3 
+`uc 1 WR1IF 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 ACKT1IF 1 0 :1:6 
+`uc 1 CNT1IF 1 0 :1:7 
+]
+[u S456 . 1 `S438 1 . 1 0 `S447 1 . 1 0 ]
+[v _I2C1PIRbits I2C1PIRbits `VES456  1 e 1 @15737 ]
+[s S1350 . 1 `uc 1 SCIE 1 0 :1:0 
+`uc 1 RSCIE 1 0 :1:1 
+`uc 1 PCIE 1 0 :1:2 
+`uc 1 ADRIE 1 0 :1:3 
+`uc 1 WRIE 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 ACKTIE 1 0 :1:6 
+`uc 1 CNTIE 1 0 :1:7 
+]
+"23771
+[s S1359 . 1 `uc 1 SC1IE 1 0 :1:0 
+`uc 1 RSC1IE 1 0 :1:1 
+`uc 1 PC1IE 1 0 :1:2 
+`uc 1 ADR1IE 1 0 :1:3 
+`uc 1 WR1IE 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 ACKT1IE 1 0 :1:6 
+`uc 1 CNT1IE 1 0 :1:7 
+]
+[u S1368 . 1 `S1350 1 . 1 0 `S1359 1 . 1 0 ]
+[v _I2C1PIEbits I2C1PIEbits `VES1368  1 e 1 @15738 ]
+"23846
+[v _I2C1CLK I2C1CLK `VEuc  1 e 1 @15739 ]
 "24347
 [v _U2CON2 U2CON2 `VEuc  1 e 1 @15836 ]
 "24936
@@ -341,7 +552,7 @@
 [v _ADPCH ADPCH `VEuc  1 e 1 @16113 ]
 "30073
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @16120 ]
-[s S711 . 1 `uc 1 GO 1 0 :1:0 
+[s S811 . 1 `uc 1 GO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 FM 1 0 :2:2 
 `uc 1 CS 1 0 :1:4 
@@ -350,7 +561,7 @@
 `uc 1 ON 1 0 :1:7 
 ]
 "30115
-[s S719 . 1 `uc 1 ADGO 1 0 :1:0 
+[s S819 . 1 `uc 1 ADGO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM 1 0 :2:2 
 `uc 1 ADCS 1 0 :1:4 
@@ -358,21 +569,21 @@
 `uc 1 ADCONT 1 0 :1:6 
 `uc 1 ADON 1 0 :1:7 
 ]
-[s S727 . 1 `uc 1 DONE 1 0 :1:0 
+[s S827 . 1 `uc 1 DONE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 FM0 1 0 :1:2 
 ]
-[s S731 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
+[s S831 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
 ]
-[s S733 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+[s S833 . 1 `uc 1 GO_nDONE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM0 1 0 :1:2 
 ]
-[s S737 . 1 `uc 1 . 1 0 :7:0 
+[s S837 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 ADCAL 1 0 :1:7 
 ]
-[u S740 . 1 `S711 1 . 1 0 `S719 1 . 1 0 `S727 1 . 1 0 `S731 1 . 1 0 `S733 1 . 1 0 `S737 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES740  1 e 1 @16120 ]
+[u S840 . 1 `S811 1 . 1 0 `S819 1 . 1 0 `S827 1 . 1 0 `S831 1 . 1 0 `S833 1 . 1 0 `S837 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES840  1 e 1 @16120 ]
 "30200
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @16121 ]
 "30275
@@ -385,34 +596,34 @@
 [v _TMR0H TMR0H `VEuc  1 e 1 @16311 ]
 "43578
 [v _T0CON0 T0CON0 `VEuc  1 e 1 @16312 ]
-[s S244 . 1 `uc 1 OUTPS 1 0 :4:0 
+[s S246 . 1 `uc 1 OUTPS 1 0 :4:0 
 `uc 1 MD16 1 0 :1:4 
 `uc 1 OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 EN 1 0 :1:7 
 ]
 "43606
-[s S250 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S252 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T0MD16 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
 "43606
-[s S256 . 1 `uc 1 OUTPS0 1 0 :1:0 
+[s S258 . 1 `uc 1 OUTPS0 1 0 :1:0 
 `uc 1 OUTPS1 1 0 :1:1 
 `uc 1 OUTPS2 1 0 :1:2 
 `uc 1 OUTPS3 1 0 :1:3 
 `uc 1 T016BIT 1 0 :1:4 
 ]
 "43606
-[u S262 . 1 `S244 1 . 1 0 `S250 1 . 1 0 `S256 1 . 1 0 ]
+[u S264 . 1 `S246 1 . 1 0 `S252 1 . 1 0 `S258 1 . 1 0 ]
 "43606
 "43606
-[v _T0CON0bits T0CON0bits `VES262  1 e 1 @16312 ]
+[v _T0CON0bits T0CON0bits `VES264  1 e 1 @16312 ]
 "43676
 [v _T0CON1 T0CON1 `VEuc  1 e 1 @16313 ]
-[s S285 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S287 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -422,7 +633,7 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "43845
-[s S294 . 1 `uc 1 LA0 1 0 :1:0 
+[s S296 . 1 `uc 1 LA0 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 `uc 1 LA2 1 0 :1:2 
 `uc 1 LA3 1 0 :1:3 
@@ -432,11 +643,35 @@
 `uc 1 LA7 1 0 :1:7 
 ]
 "43845
-[u S303 . 1 `S285 1 . 1 0 `S294 1 . 1 0 ]
+[u S305 . 1 `S287 1 . 1 0 `S296 1 . 1 0 ]
 "43845
 "43845
-[v _LATAbits LATAbits `VES303  1 e 1 @16314 ]
-[s S503 . 1 `uc 1 TRISA0 1 0 :1:0 
+[v _LATAbits LATAbits `VES305  1 e 1 @16314 ]
+[s S622 . 1 `uc 1 LATB0 1 0 :1:0 
+`uc 1 LATB1 1 0 :1:1 
+`uc 1 LATB2 1 0 :1:2 
+`uc 1 LATB3 1 0 :1:3 
+`uc 1 LATB4 1 0 :1:4 
+`uc 1 LATB5 1 0 :1:5 
+`uc 1 LATB6 1 0 :1:6 
+`uc 1 LATB7 1 0 :1:7 
+]
+"43957
+[s S631 . 1 `uc 1 LB0 1 0 :1:0 
+`uc 1 LB1 1 0 :1:1 
+`uc 1 LB2 1 0 :1:2 
+`uc 1 LB3 1 0 :1:3 
+`uc 1 LB4 1 0 :1:4 
+`uc 1 LB5 1 0 :1:5 
+`uc 1 LB6 1 0 :1:6 
+`uc 1 LB7 1 0 :1:7 
+]
+"43957
+[u S640 . 1 `S622 1 . 1 0 `S631 1 . 1 0 ]
+"43957
+"43957
+[v _LATBbits LATBbits `VES640  1 e 1 @16315 ]
+[s S559 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -446,11 +681,11 @@
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "44171
-[u S512 . 1 `S503 1 . 1 0 ]
+[u S568 . 1 `S559 1 . 1 0 ]
 "44171
 "44171
-[v _TRISAbits TRISAbits `VES512  1 e 1 @16322 ]
-[s S589 . 1 `uc 1 TRISB0 1 0 :1:0 
+[v _TRISAbits TRISAbits `VES568  1 e 1 @16322 ]
+[s S601 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -460,10 +695,10 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "44233
-[u S598 . 1 `S589 1 . 1 0 ]
+[u S610 . 1 `S601 1 . 1 0 ]
 "44233
 "44233
-[v _TRISBbits TRISBbits `VES598  1 e 1 @16323 ]
+[v _TRISBbits TRISBbits `VES610  1 e 1 @16323 ]
 [s S24 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
@@ -478,7 +713,7 @@
 "44295
 "44295
 [v _TRISCbits TRISCbits `VES33  1 e 1 @16324 ]
-[s S477 . 1 `uc 1 INT0EDG 1 0 :1:0 
+[s S526 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -487,14 +722,14 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "44640
-[s S485 . 1 `uc 1 . 1 0 :7:0 
+[s S534 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "44640
-[u S488 . 1 `S477 1 . 1 0 `S485 1 . 1 0 ]
+[u S537 . 1 `S526 1 . 1 0 `S534 1 . 1 0 ]
 "44640
 "44640
-[v _INTCON0bits INTCON0bits `VES488  1 e 1 @16338 ]
+[v _INTCON0bits INTCON0bits `VES537  1 e 1 @16338 ]
 "44716
 [v _IVTLOCK IVTLOCK `VEuc  1 e 1 @16340 ]
 "55 /opt/microchip/xc8/v2.05/pic/sources/c99/common/doprnt.c
@@ -505,38 +740,37 @@
 [v _dbuf dbuf `[80]uc  1 s 80 dbuf ]
 "69
 [v _nout nout `i  1 s 2 nout ]
-"38 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
+"57 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
 [v _counter_timer0 counter_timer0 `uc  1 e 1 0 ]
-"39
+"58
+[v _led_enable led_enable `uc  1 e 1 0 ]
+"59
 [v _ADC_VOLTAGE_RESULT ADC_VOLTAGE_RESULT `f  1 e 4 0 ]
-"81
+"119
 [v _main main `(v  1 e 1 0 ]
 {
-"117
-[v main@command command `uc  1 a 1 2 ]
-"123
+"171
+[v main@receive_command receive_command `uc  1 a 1 151 ]
+"178
 } 0
-"125
+"223
 [v _timer0_init timer0_init `(v  1 e 1 0 ]
 {
-"135
+"233
 } 0
-"137
+"182
 [v _USART_handler USART_handler `(v  1 e 1 0 ]
 {
-[v USART_handler@command command `uc  1 a 1 wreg ]
-[v USART_handler@command command `uc  1 a 1 wreg ]
-[v USART_handler@command command `uc  1 a 1 159 ]
-"154
+"219
 } 0
 "9 /opt/microchip/xc8/v2.05/pic/sources/c99/common/nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[s S1536 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[s S2160 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
 "13
-[v sprintf@f f `S1536  1 a 6 153 ]
+[v sprintf@f f `S2160  1 a 6 4 ]
 "12
-[v sprintf@ap ap `[1]*.39v  1 a 2 151 ]
+[v sprintf@ap ap `[1]*.39v  1 a 2 2 ]
 "9
 [v sprintf@s s `*.39uc  1 p 2 141 ]
 [v sprintf@fmt fmt `*.32Cuc  1 p 2 143 ]
@@ -547,9 +781,9 @@
 {
 "1371
 [v vfprintf@cfmt cfmt `*.32uc  1 a 2 139 ]
-[s S935 _IO_FILE 0 ]
+[s S1559 _IO_FILE 0 ]
 "1368
-[v vfprintf@fp fp `*.39S935  1 p 2 133 ]
+[v vfprintf@fp fp `*.39S1559  1 p 2 133 ]
 [v vfprintf@fmt fmt `*.32Cuc  1 p 2 135 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 137 ]
 "1382
@@ -562,9 +796,9 @@
 "672
 [v vfpfcnvrt@ct ct `[3]uc  1 a 3 129 ]
 [v vfpfcnvrt@c c `uc  1 a 1 132 ]
-[s S935 _IO_FILE 0 ]
+[s S1559 _IO_FILE 0 ]
 "670
-[v vfpfcnvrt@fp fp `*.39S935  1 p 2 113 ]
+[v vfpfcnvrt@fp fp `*.39S1559  1 p 2 113 ]
 [v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 115 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 117 ]
 "1365
@@ -605,9 +839,9 @@
 "321
 [v efgtoa@mode mode `uc  1 a 1 90 ]
 [v efgtoa@nmode nmode `uc  1 a 1 87 ]
-[s S935 _IO_FILE 0 ]
+[s S1559 _IO_FILE 0 ]
 "319
-[v efgtoa@fp fp `*.39S935  1 p 2 45 ]
+[v efgtoa@fp fp `*.39S1559  1 p 2 45 ]
 [v efgtoa@f f `d  1 p 4 47 ]
 [v efgtoa@c c `uc  1 p 1 51 ]
 "503
@@ -642,9 +876,9 @@
 "74
 [v pad@w w `i  1 a 2 25 ]
 [v pad@i i `i  1 a 2 23 ]
-[s S935 _IO_FILE 0 ]
+[s S1559 _IO_FILE 0 ]
 "72
-[v pad@fp fp `*.39S935  1 p 2 16 ]
+[v pad@fp fp `*.39S1559  1 p 2 16 ]
 [v pad@buf buf `*.39uc  1 p 2 18 ]
 [v pad@p p `i  1 p 2 20 ]
 "95
@@ -667,16 +901,16 @@
 [v fputs@c c `uc  1 a 1 13 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 9 ]
-[s S1536 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputs@fp fp `*.39S1536  1 p 2 11 ]
+[s S2160 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.39S2160  1 p 2 11 ]
 "19
 } 0
 "8 /opt/microchip/xc8/v2.05/pic/sources/c99/common/nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 0 ]
-[s S1536 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputc@fp fp `*.39S1536  1 p 2 2 ]
+[s S2160 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.39S2160  1 p 2 2 ]
 "21
 } 0
 "7 /opt/microchip/xc8/v2.05/pic/sources/c99/common/putch.c
@@ -687,9 +921,9 @@
 "3 /opt/microchip/xc8/v2.05/pic/sources/c99/common/floorf.c
 [v _floorf floorf `(f  1 e 4 0 ]
 {
-[u S1502 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S2126 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "5
-[v floorf@u u `S1502  1 a 4 41 ]
+[v floorf@u u `S2126  1 a 4 41 ]
 "7
 [v floorf@m m `ul  1 a 4 35 ]
 "6
@@ -697,21 +931,21 @@
 "3
 [v floorf@x x `f  1 p 4 25 ]
 "4
-[v floorf@F524 F524 `S1502  1 s 4 F524 ]
+[v floorf@F524 F524 `S2126  1 s 4 F524 ]
 "27
 } 0
 "4 /opt/microchip/xc8/v2.05/pic/sources/c99/common/__fpclassifyf.c
 [v ___fpclassifyf __fpclassifyf `(i  1 e 2 0 ]
 {
-[u S1502 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S2126 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "6
-[v ___fpclassifyf@u u `S1502  1 a 4 10 ]
+[v ___fpclassifyf@u u `S2126  1 a 4 10 ]
 "7
 [v ___fpclassifyf@e e `i  1 a 2 8 ]
 "4
 [v ___fpclassifyf@x x `f  1 p 4 0 ]
 "5
-[v ___fpclassifyf@F463 F463 `S1502  1 s 4 F463 ]
+[v ___fpclassifyf@F463 F463 `S2126  1 s 4 F463 ]
 "11
 } 0
 "43 /opt/microchip/xc8/v2.05/pic/sources/c99/common/fltol.c
@@ -756,17 +990,17 @@
 "8 /opt/microchip/xc8/v2.05/pic/sources/c99/common/sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S1367 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S1991 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S1372 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
-[u S1375 . 4 `l 1 i 4 0 `d 1 f 4 0 `S1367 1 fAsBytes 4 0 `S1372 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S1375  1 a 4 19 ]
+[s S1996 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S1999 . 4 `l 1 i 4 0 `d 1 f 4 0 `S1991 1 fAsBytes 4 0 `S1996 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S1999  1 a 4 19 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 14 ]
-[s S1443 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S2067 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S1446 . 2 `s 1 i 2 0 `us 1 n 2 0 `S1443 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S1446  1 a 2 23 ]
+[u S2070 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2067 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S2070  1 a 2 23 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 18 ]
 "11
@@ -836,27 +1070,27 @@
 [v ___awdiv@divisor divisor `i  1 p 2 2 ]
 "41
 } 0
-"190 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
+"270 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
 [v _memset memset `(v  1 e 1 0 ]
 {
-"191
+"271
 [v memset@i i `i  1 a 2 6 ]
-"190
+"270
 [v memset@st st `*.39uc  1 p 2 0 ]
 [v memset@x x `uc  1 p 1 2 ]
 [v memset@size size `i  1 p 2 3 ]
-"194
+"274
 } 0
 "58 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/USART1.c
 [v _USART1_SendString USART1_SendString `(uc  1 e 1 0 ]
 {
 "59
-[v USART1_SendString@attempts attempts `i  1 a 2 12 ]
-[v USART1_SendString@i i `i  1 a 2 10 ]
+[v USART1_SendString@attempts attempts `ui  1 a 2 10 ]
+[v USART1_SendString@i i `ui  1 a 2 8 ]
 "58
-[v USART1_SendString@str str `*.34uc  1 p 2 4 ]
+[v USART1_SendString@str str `*.39uc  1 p 2 4 ]
 [v USART1_SendString@size size `i  1 p 2 6 ]
-"72
+"73
 } 0
 "49
 [v _USART1_SendByte USART1_SendByte `(uc  1 e 1 0 ]
@@ -866,21 +1100,49 @@
 [v USART1_SendByte@byte byte `uc  1 a 1 0 ]
 "56
 } 0
-"180 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
-[v _GetStringSize GetStringSize `(i  1 e 2 0 ]
+"89 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/I2C.c
+[v _I2C_handler I2C_handler `(v  1 e 1 0 ]
 {
-"181
-[v GetStringSize@i i `i  1 a 2 2 ]
-"188
-} 0
-"76 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/USART1.c
-[v _USART1_ReceiveCommand USART1_ReceiveCommand `(uc  1 e 1 0 ]
-{
-"92
-[v USART1_ReceiveCommand@temp temp `uc  1 a 1 0 ]
+[v I2C_handler@ad5272_select ad5272_select `uc  1 a 1 wreg ]
+[v I2C_handler@ad5272_select ad5272_select `uc  1 a 1 wreg ]
+[v I2C_handler@value value `i  1 p 2 12 ]
+[v I2C_handler@ad5272_select ad5272_select `uc  1 a 1 14 ]
 "98
 } 0
-"5
+"49
+[v _I2C_Transmit I2C_Transmit `(uc  1 e 1 0 ]
+{
+"52
+[v I2C_Transmit@i i `uc  1 a 1 11 ]
+"49
+[v I2C_Transmit@buffer buffer `*.39uc  1 p 2 0 ]
+[v I2C_Transmit@buffer_size buffer_size `uc  1 p 1 2 ]
+[v I2C_Transmit@address address `uc  1 p 1 3 ]
+"63
+} 0
+"260 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
+[v _GetStringSize GetStringSize `(i  1 e 2 0 ]
+{
+"261
+[v GetStringSize@i i `i  1 a 2 2 ]
+"268
+} 0
+"84 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/USART1.c
+[v _USART1_ReceiveCommand USART1_ReceiveCommand `(uc  1 e 1 0 ]
+{
+"132
+} 0
+"15 /opt/microchip/xc8/v2.05/pic/sources/c99/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"5 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/USART1.c
 [v _USART1_Init USART1_Init `(v  1 e 1 0 ]
 {
 [v USART1_Init@baud_rate baud_rate `uc  1 a 1 wreg ]
@@ -889,52 +1151,57 @@
 [v USART1_Init@baud_rate baud_rate `uc  1 a 1 2 ]
 "47
 } 0
-"158 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
+"4 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/I2C.c
+[v _I2C_Init I2C_Init `(v  1 e 1 0 ]
+{
+"47
+} 0
+"236 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
 [v _ADC_Init ADC_Init `(v  1 e 1 0 ]
 {
-"169
+"247
 } 0
-"43
-[v _timer0_isr timer0_isr `IIH(v  1 e 1 0 ]
+"63
+[v _TIMER0_ISR TIMER0_ISR `IIH(v  1 e 1 0 ]
 {
-"57
+"78
 } 0
-"172
+"250
 [v _ADC_Start ADC_Start `(v  1 e 1 0 ]
 {
 [v ADC_Start@pin pin `uc  1 a 1 wreg ]
 [v ADC_Start@pin pin `uc  1 a 1 wreg ]
 [v ADC_Start@pin pin `uc  1 a 1 0 ]
-"175
+"255
 } 0
-"59
-[v _uart1_tx_isr uart1_tx_isr `IIH(v  1 e 1 0 ]
+"80
+[v _UART1_TX_ISR UART1_TX_ISR `IIH(v  1 e 1 0 ]
 {
-"63
+"84
 } 0
-"65
-[v _uart1_rx_isr uart1_rx_isr `IIH(v  1 e 1 0 ]
+"86
+[v _UART1_RX_ISR UART1_RX_ISR `IIH(v  1 e 1 0 ]
 {
-"68
+"89
 } 0
-"70
-[v _adc_isr adc_isr `IIH(v  1 e 1 0 ]
+"91
+[v _ADC_ISR ADC_ISR `IIH(v  1 e 1 0 ]
 {
-"71
-[v adc_isr@adc_result adc_result `i  1 a 2 42 ]
-"75
+"92
+[v ADC_ISR@adc_result adc_result `i  1 a 2 42 ]
+"96
 } 0
 "8 /opt/microchip/xc8/v2.05/pic/sources/c99/common/sprcmul.c
 [v i2___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S1367 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-[s S1372 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
-[u S1375 . 4 `l 1 i 4 0 `d 1 f 4 0 `S1367 1 fAsBytes 4 0 `S1372 1 fAsWords 4 0 ]
-[v i2___flmul@prod __flmul `S1375  1 a 4 34 ]
+[s S1991 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S1996 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S1999 . 4 `l 1 i 4 0 `d 1 f 4 0 `S1991 1 fAsBytes 4 0 `S1996 1 fAsWords 4 0 ]
+[v i2___flmul@prod __flmul `S1999  1 a 4 34 ]
 [v i2___flmul@grs __flmul `ul  1 a 4 28 ]
-[s S1443 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
-[u S1446 . 2 `s 1 i 2 0 `us 1 n 2 0 `S1443 1 nAsBytes 2 0 ]
-[v i2___flmul@temp __flmul `S1446  1 a 2 38 ]
+[s S2067 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[u S2070 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2067 1 nAsBytes 2 0 ]
+[v i2___flmul@temp __flmul `S2070  1 a 2 38 ]
 [v i2___flmul@bexp __flmul `uc  1 a 1 33 ]
 [v i2___flmul@aexp __flmul `uc  1 a 1 32 ]
 [v i2___flmul@sign __flmul `uc  1 a 1 27 ]
@@ -957,8 +1224,23 @@
 [v ___xxtofl@sign sign `uc  1 a 1 9 ]
 "44
 } 0
-"77 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
-[v _default_isr default_isr `IIH(v  1 e 1 0 ]
+"98 /home/iqsoft/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c
+[v _I2C_TX_ISR I2C_TX_ISR `IIH(v  1 e 1 0 ]
 {
-"79
+"101
+} 0
+"102
+[v _I2C_RX_ISR I2C_RX_ISR `IIH(v  1 e 1 0 ]
+{
+"105
+} 0
+"107
+[v _I2C_GENERAL_ISR I2C_GENERAL_ISR `IIH(v  1 e 1 0 ]
+{
+"111
+} 0
+"113
+[v _DEFAULT_ISR DEFAULT_ISR `IIH(v  1 e 1 0 ]
+{
+"115
 } 0

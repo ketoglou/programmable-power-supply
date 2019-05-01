@@ -56,7 +56,7 @@ unsigned char USART1_SendByte(unsigned char byte){
 }
 
 unsigned char USART1_SendString(char *str,int size){
-    int attempts =3000,i;
+    unsigned int attempts = 65000,i;
     for(i=0;i<size;i++){
         if(!USART1_SendByte(*(str + i))){
             attempts --;
@@ -64,35 +64,69 @@ unsigned char USART1_SendString(char *str,int size){
         }
         if(!attempts)
             return 0;
+        attempts = 65000;
     }
-    attempts =3000;
+    attempts =65000;
     while(!USART1_SendByte('\r') && (attempts --)); //CR
     while(!USART1_SendByte('\n') && (attempts --)); //LF
     return 1;
 }
 
 
-//All must be command Cxy\r\n where x = 0-9,y = 0-9
-unsigned char USART1_ReceiveCommand(void){
-    if(rx_counter == 0){
+/* Commands are :
+ * Rx where x is 0-9,these commands are for read something
+ * Wabcde where a,b,c,d is 0-9(a refers to command type,b,c,d,e is numbers)
+ * these commands are for write something
+ * If COMMAND_WR = 1 then we receive read command else if COMMAND_WR = 0
+ * we receive write command.Function return -1 if does not receive something
+ * properly or anything.
+ */
+unsigned char USART1_ReceiveCommand(void){;
+    if(rx_counter == 0)
         return 0;
-    }else if(rx_counter == 1 && rx_buffer[0] != 'C'){
+    if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R'){
         rx_counter = 0;
-    }else if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
-        rx_counter = 0;
-    }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){
-        rx_counter = 0;
-    }else if(rx_counter == 4 && rx_buffer[3] != '\r'){
-        rx_counter = 0;
-    }else if(rx_counter == 5){
-        if(rx_buffer[0] != 'C' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || (rx_buffer[2] < 48) || (rx_buffer[2] > 57) || rx_buffer[3] != '\r' || rx_buffer[4] != '\n'){
+        return 0;
+    }
+    if(rx_buffer[0] == 'R') {   
+        if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
             rx_counter = 0;
-            return 0;
+        }else if(rx_counter == 3 && rx_buffer[2] != '\r'){
+            rx_counter = 0;
+        }else if(rx_counter == 4){
+            if(rx_buffer[0] != 'R' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || rx_buffer[2] != '\r' || rx_buffer[3] != '\n'){
+                rx_counter = 0;
+                return 0;
+            }
+            COMMAND_WR = 1;
+            COMMAND = rx_buffer[1]-48;
+            rx_counter = 0;
+            return 1;
         }
-        unsigned char temp;
-        temp = ((rx_buffer[1]-48) * 10) + (rx_buffer[2]-48);
-        rx_counter = 0;
-        return temp;
+    }else{  
+        if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 4 && ((rx_buffer[3] < 48) || (rx_buffer[3] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 5 && ((rx_buffer[4] < 48) || (rx_buffer[4] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 6 && ((rx_buffer[5] < 48) || (rx_buffer[5] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 7 && rx_buffer[6] != '\r'){
+            rx_counter = 0;
+        }else if(rx_counter == 8){
+            if(rx_buffer[0] != 'W' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || (rx_buffer[2] < 48) || (rx_buffer[2] > 57) || (rx_buffer[3] < 48) || (rx_buffer[3] > 57) || (rx_buffer[4] < 48) || (rx_buffer[4] > 57) || (rx_buffer[5] < 48) || (rx_buffer[5] > 57) || rx_buffer[6] != '\r' || rx_buffer[7] != '\n'){
+                rx_counter = 0;
+                return 0;
+            }
+            COMMAND_WR = 0;
+            COMMAND = rx_buffer[1]-48;
+            COMMAND_WRITE_NUMBER = ((rx_buffer[2]-48) * 1000) + ((rx_buffer[3]-48) * 100) + ((rx_buffer[4]-48) * 10) + (rx_buffer[5]-48);
+            rx_counter = 0;
+            return 1;
+        }
     }
     return 0;
 }
