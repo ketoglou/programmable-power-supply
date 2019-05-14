@@ -1,68 +1,53 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[t ~ __interrupt . k ]
-[t T1 __interrupt irq ( 31 ) ]
-"43584 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43584:     struct {
-[s S1988 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1988 . OUTPS MD16 OUT . EN ]
-"43591
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43591:     struct {
-[s S1989 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1989 . T0OUTPS T0MD16 T0OUT . T0EN ]
-"43598
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43598:     struct {
-[s S1990 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1990 . OUTPS0 OUTPS1 OUTPS2 OUTPS3 T016BIT ]
-"43583
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43583: typedef union {
-[u S1987 `S1988 1 `S1989 1 `S1990 1 ]
-[n S1987 . . . . ]
-"43606
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43606: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0x3FB8)));
-[v _T0CON0bits `VS1987 ~T0 @X0 0 e@16312 ]
-"43824
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43824:     struct {
-[s S1997 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1997 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
-"43834
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43834:     struct {
-[s S1998 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1998 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
-"43823
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43823: typedef union {
-[u S1996 `S1997 1 `S1998 1 ]
-[n S1996 . . . ]
-"43845
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43845: extern volatile LATAbits_t LATAbits __attribute__((address(0x3FBA)));
-[v _LATAbits `VS1996 ~T0 @X0 0 e@16314 ]
-"43186
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43186: extern volatile unsigned char TMR0L __attribute__((address(0x3FB6)));
-[v _TMR0L `Vuc ~T0 @X0 0 e@16310 ]
-"43324
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43324: extern volatile unsigned char TMR0H __attribute__((address(0x3FB7)));
-[v _TMR0H `Vuc ~T0 @X0 0 e@16311 ]
-"51 main.c
-[; ;main.c: 51: void ADC_Start(unsigned char pin);
-[v _ADC_Start `(v ~T0 @X0 0 ef1`uc ]
-"4297 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4297:     struct {
-[s S191 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S191 . I2C1TXIF I2C1IF I2C1EIF U1RXIF U1TXIF U1EIF U1IF TMR0IF ]
-"4307
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4307:     struct {
-[s S192 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S192 . . RXBNIF . TXBNIF ]
-"4296
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4296: typedef union {
-[u S190 `S191 1 `S192 1 ]
-[n S190 . . . ]
-"4314
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4314: extern volatile PIR3bits_t PIR3bits __attribute__((address(0x39A3)));
-[v _PIR3bits `VS190 ~T0 @X0 0 e@14755 ]
-[t T2 __interrupt irq ( 28 ) ]
-"24994
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 24994: extern volatile unsigned char U1TXB __attribute__((address(0x3DEA)));
-[v _U1TXB `Vuc ~T0 @X0 0 e@15850 ]
+"44284 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44284:     struct {
+[s S2010 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2010 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"44283
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44283: typedef union {
+[u S2009 `S2010 1 ]
+[n S2009 . . ]
+"44295
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44295: extern volatile TRISCbits_t TRISCbits __attribute__((address(0x3FC4)));
+[v _TRISCbits `VS2009 ~T0 @X0 0 e@16324 ]
+"8930
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 8930:     struct {
+[s S396 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S396 . ANSELC0 ANSELC1 ANSELC2 ANSELC3 ANSELC4 ANSELC5 ANSELC6 ANSELC7 ]
+"8929
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 8929: typedef union {
+[u S395 `S396 1 ]
+[n S395 . . ]
+"8941
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 8941: extern volatile ANSELCbits_t ANSELCbits __attribute__((address(0x3A60)));
+[v _ANSELCbits `VS395 ~T0 @X0 0 e@14944 ]
+"10501
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 10501: extern volatile unsigned char U1RXPPS __attribute__((address(0x3AE5)));
+[v _U1RXPPS `Vuc ~T0 @X0 0 e@15077 ]
+"7666
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 7666: extern volatile unsigned char RC7PPS __attribute__((address(0x3A17)));
+[v _RC7PPS `Vuc ~T0 @X0 0 e@14871 ]
+"25558
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25558: extern volatile unsigned char U1BRGH __attribute__((address(0x3DF6)));
+[v _U1BRGH `Vuc ~T0 @X0 0 e@15862 ]
+"25538
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25538: extern volatile unsigned char U1BRGL __attribute__((address(0x3DF5)));
+[v _U1BRGL `Vuc ~T0 @X0 0 e@15861 ]
+"25193
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25193: extern volatile unsigned char U1CON0 __attribute__((address(0x3DF2)));
+[v _U1CON0 `Vuc ~T0 @X0 0 e@15858 ]
+"25309
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25309: extern volatile unsigned char U1CON1 __attribute__((address(0x3DF3)));
+[v _U1CON1 `Vuc ~T0 @X0 0 e@15859 ]
+"24347
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 24347: extern volatile unsigned char U2CON2 __attribute__((address(0x3DDC)));
+[v _U2CON2 `Vuc ~T0 @X0 0 e@15836 ]
+"25876
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25876: extern volatile unsigned char U1ERRIE __attribute__((address(0x3DFA)));
+[v _U1ERRIE `Vuc ~T0 @X0 0 e@15866 ]
+"25708
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25708: extern volatile unsigned char U1UIR __attribute__((address(0x3DF8)));
+[v _U1UIR `Vuc ~T0 @X0 0 e@15864 ]
 "3644
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 3644:     struct {
 [s S164 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -82,216 +67,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3668
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 3668: extern volatile PIE3bits_t PIE3bits __attribute__((address(0x3993)));
 [v _PIE3bits `VS163 ~T0 @X0 0 e@14739 ]
-[t T3 __interrupt irq ( 27 ) ]
-"24936
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 24936: extern volatile unsigned char U1RXB __attribute__((address(0x3DE8)));
-[v _U1RXB `Vuc ~T0 @X0 0 e@15848 ]
-[t T4 __interrupt irq ( 10 ) ]
-"29261
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 29261: extern volatile unsigned char ADRESL __attribute__((address(0x3EEF)));
-[v _ADRESL `Vuc ~T0 @X0 0 e@16111 ]
-"29389
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 29389: extern volatile unsigned char ADRESH __attribute__((address(0x3EF0)));
-[v _ADRESH `Vuc ~T0 @X0 0 e@16112 ]
-"29509
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 29509: extern volatile unsigned char ADPCH __attribute__((address(0x3EF1)));
-[v _ADPCH `Vuc ~T0 @X0 0 e@16113 ]
-"4133
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4133:     struct {
-[s S184 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S184 . INT0IF ZCDIF ADIF ADTIF C1IF SMT1IF SMT1PRAIF SMT1PWAIF ]
-"4143
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4143:     struct {
-[s S185 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S185 . . TX1IF RC1IF . PSPIF ]
-"4150
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4150:     struct {
-[s S186 :4 `uc 1 :1 `uc 1 ]
-[n S186 . . TXIF ]
-"4132
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4132: typedef union {
-[u S183 `S184 1 `S185 1 `S186 1 ]
-[n S183 . . . . ]
-"4155
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4155: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x39A1)));
-[v _PIR1bits `VS183 ~T0 @X0 0 e@14753 ]
-[t T5 __interrupt irq ( 24 ) ]
-"22993
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 22993: extern volatile unsigned char I2C1TXB __attribute__((address(0x3D6B)));
-[v _I2C1TXB `Vuc ~T0 @X0 0 e@15723 ]
-[t T6 __interrupt irq ( 23 ) ]
-"22973
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 22973: extern volatile unsigned char I2C1RXB __attribute__((address(0x3D6A)));
-[v _I2C1RXB `Vuc ~T0 @X0 0 e@15722 ]
-[t T7 __interrupt irq ( 25 ) ]
-"23648
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 23648:     struct {
-[s S1057 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1057 . SCIF RSCIF PCIF ADRIF WRIF . ACKTIF CNTIF ]
-"23658
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 23658:     struct {
-[s S1058 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1058 . SC1IF RSC1IF PC1IF ADR1IF WR1IF . ACKT1IF CNT1IF ]
-"23647
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 23647: typedef union {
-[u S1056 `S1057 1 `S1058 1 ]
-[n S1056 . . . ]
-"23669
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 23669: extern volatile I2C1PIRbits_t I2C1PIRbits __attribute__((address(0x3D79)));
-[v _I2C1PIRbits `VS1056 ~T0 @X0 0 e@15737 ]
-"23642
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 23642: extern volatile unsigned char I2C1PIR __attribute__((address(0x3D79)));
-[v _I2C1PIR `Vuc ~T0 @X0 0 e@15737 ]
-[t T8 __interrupt irq ( default ) ]
-[p mainexit ]
-"5654
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 5654: extern volatile unsigned char OSCFRQ __attribute__((address(0x39DF)));
-[v _OSCFRQ `Vuc ~T0 @X0 0 e@14815 ]
-"5550
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 5550: extern volatile unsigned char OSCTUNE __attribute__((address(0x39DE)));
-[v _OSCTUNE `Vuc ~T0 @X0 0 e@14814 ]
-"5499
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 5499: extern volatile unsigned char OSCEN __attribute__((address(0x39DD)));
-[v _OSCEN `Vuc ~T0 @X0 0 e@14813 ]
-"5398
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 5398:     struct {
-[s S241 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S241 . PLLR . ADOR SOR LFOR MFOR HFOR EXTOR ]
-"5397
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 5397: typedef union {
-[u S240 `S241 1 ]
-[n S240 . . ]
-"5409
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 5409: extern volatile OSCSTATbits_t OSCSTATbits __attribute__((address(0x39DC)));
-[v _OSCSTATbits `VS240 ~T0 @X0 0 e@14812 ]
-"44716
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44716: extern volatile unsigned char IVTLOCK __attribute__((address(0x3FD4)));
-[v _IVTLOCK `Vuc ~T0 @X0 0 e@16340 ]
-"863
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 863: extern volatile unsigned char WDTCON1 __attribute__((address(0x395C)));
-[v _WDTCON1 `Vuc ~T0 @X0 0 e@14684 ]
-"788
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 788: extern volatile unsigned char WDTCON0 __attribute__((address(0x395B)));
-[v _WDTCON0 `Vuc ~T0 @X0 0 e@14683 ]
-"9747
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 9747:     struct {
-[s S432 :1 `uc 1 ]
-[n S432 . PPSLOCKED ]
-"9746
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 9746: typedef union {
-[u S431 `S432 1 ]
-[n S431 . . ]
-"9751
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 9751: extern volatile PPSLOCKbits_t PPSLOCKbits __attribute__((address(0x3ABF)));
-[v _PPSLOCKbits `VS431 ~T0 @X0 0 e@15039 ]
-"48 main.c
-[; ;main.c: 48: void timer0_init(void);
-[v _timer0_init `(v ~T0 @X0 0 ef ]
-"17 ./USART1.h
-[; ;./USART1.h: 17: void USART1_Init(unsigned char baud_rate);
-[v _USART1_Init `(v ~T0 @X0 0 ef1`uc ]
-"50 main.c
-[; ;main.c: 50: void ADC_Init(void);
-[v _ADC_Init `(v ~T0 @X0 0 ef ]
-"25 ./I2C.h
-[; ;./I2C.h: 25: void I2C_Init(void);
-[v _I2C_Init `(v ~T0 @X0 0 ef ]
-"44626 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44626:     struct {
-[s S2026 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2026 . INT0EDG INT1EDG INT2EDG . IPEN GIEL GIE ]
-"44635
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44635:     struct {
-[s S2027 :7 `uc 1 :1 `uc 1 ]
-[n S2027 . . GIEH ]
-"44625
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44625: typedef union {
-[u S2025 `S2026 1 `S2027 1 ]
-[n S2025 . . . ]
-"44640
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44640: extern volatile INTCON0bits_t INTCON0bits __attribute__((address(0x3FD2)));
-[v _INTCON0bits `VS2025 ~T0 @X0 0 e@16338 ]
-"44160
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44160:     struct {
-[s S2006 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2006 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
-"44159
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44159: typedef union {
-[u S2005 `S2006 1 ]
-[n S2005 . . ]
-"44171
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44171: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x3FC2)));
-[v _TRISAbits `VS2005 ~T0 @X0 0 e@16322 ]
-"7722
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 7722:     struct {
-[s S354 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S354 . ANSELA0 ANSELA1 ANSELA2 ANSELA3 ANSELA4 ANSELA5 ANSELA6 ANSELA7 ]
-"7721
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 7721: typedef union {
-[u S353 `S354 1 ]
-[n S353 . . ]
-"7733
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 7733: extern volatile ANSELAbits_t ANSELAbits __attribute__((address(0x3A40)));
-[v _ANSELAbits `VS353 ~T0 @X0 0 e@14912 ]
-"44222
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44222:     struct {
-[s S2008 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2008 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
-"44221
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44221: typedef union {
-[u S2007 `S2008 1 ]
-[n S2007 . . ]
-"44233
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 44233: extern volatile TRISBbits_t TRISBbits __attribute__((address(0x3FC3)));
-[v _TRISBbits `VS2007 ~T0 @X0 0 e@16323 ]
-"43936
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43936:     struct {
-[s S2000 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2000 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
-"43946
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43946:     struct {
-[s S2001 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2001 . LB0 LB1 LB2 LB3 LB4 LB5 LB6 LB7 ]
-"43935
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43935: typedef union {
-[u S1999 `S2000 1 `S2001 1 ]
-[n S1999 . . . ]
-"43957
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43957: extern volatile LATBbits_t LATBbits __attribute__((address(0x3FBB)));
-[v _LATBbits `VS1999 ~T0 @X0 0 e@16315 ]
-[v F15195 `(v ~T0 @X0 1 tf1`ul ]
-"183 /opt/microchip/xc8/v2.05/pic/include/pic18.h
-[v __delay `JF15195 ~T0 @X0 0 e ]
-[p i __delay ]
-"31 ./I2C.h
-[; ;./I2C.h: 31: unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsigned char address);
-[v _I2C_Transmit `(uc ~T0 @X0 0 ef3`*uc`uc`uc ]
-"20 ./USART1.h
-[; ;./USART1.h: 20: unsigned char USART1_ReceiveCommand(void);
-[v _USART1_ReceiveCommand `(uc ~T0 @X0 0 ef ]
-"49 main.c
-[; ;main.c: 49: void USART_handler(void);
-[v _USART_handler `(v ~T0 @X0 0 ef ]
-"54
-[; ;main.c: 54: void memset(char *st,char x,int size);
-[v _memset `(v ~T0 @X0 0 ef3`*uc`uc`i ]
-"115 /opt/microchip/xc8/v2.05/pic/include/c99/stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"42 ./I2C.h
-[; ;./I2C.h: 42: void I2C_handler(unsigned char ad5272_select,int value);
-[v _I2C_handler `(v ~T0 @X0 0 ef2`uc`i ]
-"19 ./USART1.h
-[; ;./USART1.h: 19: unsigned char USART1_SendString(char *str,int size);
-[v _USART1_SendString `(uc ~T0 @X0 0 ef2`*uc`i ]
-"53 main.c
-[; ;main.c: 53: int GetStringSize(void);
-[v _GetStringSize `(i ~T0 @X0 0 ef ]
-"43578 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43578: extern volatile unsigned char T0CON0 __attribute__((address(0x3FB8)));
-[v _T0CON0 `Vuc ~T0 @X0 0 e@16312 ]
-"43676
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 43676: extern volatile unsigned char T0CON1 __attribute__((address(0x3FB9)));
-[v _T0CON1 `Vuc ~T0 @X0 0 e@16313 ]
 "2988
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 2988:     struct {
 [s S136 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -307,94 +82,45 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3005
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 3005: extern volatile IPR3bits_t IPR3bits __attribute__((address(0x3983)));
 [v _IPR3bits `VS135 ~T0 @X0 0 e@14723 ]
-"8218
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 8218:     struct {
-[s S370 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S370 . ANSELB0 ANSELB1 ANSELB2 ANSELB3 ANSELB4 ANSELB5 ANSELB6 ANSELB7 ]
-"8217
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 8217: typedef union {
-[u S369 `S370 1 ]
-[n S369 . . ]
-"8229
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 8229: extern volatile ANSELBbits_t ANSELBbits __attribute__((address(0x3A50)));
-[v _ANSELBbits `VS369 ~T0 @X0 0 e@14928 ]
-"30073
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30073: extern volatile unsigned char ADCON0 __attribute__((address(0x3EF8)));
-[v _ADCON0 `Vuc ~T0 @X0 0 e@16120 ]
-"30200
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30200: extern volatile unsigned char ADCON1 __attribute__((address(0x3EF9)));
-[v _ADCON1 `Vuc ~T0 @X0 0 e@16121 ]
-"30275
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30275: extern volatile unsigned char ADCON2 __attribute__((address(0x3EFA)));
-[v _ADCON2 `Vuc ~T0 @X0 0 e@16122 ]
-"30708
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30708: extern volatile unsigned char ADREF __attribute__((address(0x3EFD)));
-[v _ADREF `Vuc ~T0 @X0 0 e@16125 ]
-"2833
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 2833:     struct {
-[s S130 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S130 . INT0IP ZCDIP ADIP ADTIP C1IP SMT1IP SMT1PRAIP SMT1PWAIP ]
-"2843
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 2843:     struct {
-[s S131 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S131 . . TX1IP RC1IP . PSPIP ]
-"2832
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 2832: typedef union {
-[u S129 `S130 1 `S131 1 ]
-[n S129 . . . ]
-"2851
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 2851: extern volatile IPR1bits_t IPR1bits __attribute__((address(0x3981)));
-[v _IPR1bits `VS129 ~T0 @X0 0 e@14721 ]
-"3480
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 3480:     struct {
-[s S157 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S157 . INT0IE ZCDIE ADIE ADTIE C1IE SMT1IE SMT1PRAIE SMT1PWAIE ]
-"3490
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 3490:     struct {
-[s S158 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S158 . . TX1IE RC1IE . PSPIE ]
-"3497
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 3497:     struct {
-[s S159 :4 `uc 1 :1 `uc 1 ]
-[n S159 . . TXIE ]
-"3479
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 3479: typedef union {
-[u S156 `S157 1 `S158 1 `S159 1 ]
-[n S156 . . . . ]
-"3502
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 3502: extern volatile PIE1bits_t PIE1bits __attribute__((address(0x3991)));
-[v _PIE1bits `VS156 ~T0 @X0 0 e@14737 ]
-"30079
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30079:     struct {
-[s S1348 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1348 . GO . FM CS . CONT ON ]
-"30088
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30088:     struct {
-[s S1349 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1349 . ADGO . ADFM ADCS . ADCONT ADON ]
-"30097
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30097:     struct {
-[s S1350 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1350 . DONE . FM0 ]
-"30102
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30102:     struct {
-[s S1351 :1 `uc 1 ]
-[n S1351 . GO_NOT_DONE ]
-"30105
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30105:     struct {
-[s S1352 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1352 . GO_nDONE . ADFM0 ]
-"30110
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30110:     struct {
-[s S1353 :7 `uc 1 :1 `uc 1 ]
-[n S1353 . . ADCAL ]
-"30078
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30078: typedef union {
-[u S1347 `S1348 1 `S1349 1 `S1350 1 `S1351 1 `S1352 1 `S1353 1 ]
-[n S1347 . . . . . . . ]
-"30115
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30115: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x3EF8)));
-[v _ADCON0bits `VS1347 ~T0 @X0 0 e@16120 ]
+"4291
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4291: extern volatile unsigned char PIR3 __attribute__((address(0x39A3)));
+[v _PIR3 `Vuc ~T0 @X0 0 e@14755 ]
+"25315
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25315:     struct {
+[s S1147 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S1147 . SENDB BRKOVR . RXBIMD WUE . ON ]
+"25324
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25324:     struct {
+[s S1148 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S1148 . U1SENDB U1BRKOVR . U1RXBIMD U1WUE . U1ON ]
+"25314
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25314: typedef union {
+[u S1146 `S1147 1 `S1148 1 ]
+[n S1146 . . . ]
+"25334
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 25334: extern volatile U1CON1bits_t U1CON1bits __attribute__((address(0x3DF3)));
+[v _U1CON1bits `VS1146 ~T0 @X0 0 e@15859 ]
+"8 ./USART1.h
+[; ;./USART1.h: 8: char rx_counter;
+[v _rx_counter `uc ~T0 @X0 1 e ]
+"9
+[; ;./USART1.h: 9: char rx_buffer[32];
+[v _rx_buffer `uc ~T0 @X0 -> 32 `i e ]
+"10
+[; ;./USART1.h: 10: char tx_buffer[32];
+[v _tx_buffer `uc ~T0 @X0 -> 32 `i e ]
+"11
+[; ;./USART1.h: 11: char tx_byte;
+[v _tx_byte `uc ~T0 @X0 1 e ]
+"12
+[; ;./USART1.h: 12: unsigned char COMMAND_WR;
+[v _COMMAND_WR `uc ~T0 @X0 1 e ]
+"13
+[; ;./USART1.h: 13: unsigned char COMMAND;
+[v _COMMAND `uc ~T0 @X0 1 e ]
+"14
+[; ;./USART1.h: 14: int COMMAND_WRITE_NUMBER;
+[v _COMMAND_WRITE_NUMBER `i ~T0 @X0 1 e ]
 "250 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 250: __asm("STATUS_CSHAD equ 03880h");
 [; <" STATUS_CSHAD equ 03880h ;# ">
@@ -2516,822 +2242,455 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46069
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 46069: __asm("TOSU equ 03FFFh");
 [; <" TOSU equ 03FFFh ;# ">
-"7 ./config.h
-[p x FEXTOSC = OFF ]
+"5 USART1.c
+[; ;USART1.c: 5: void USART1_Init(unsigned char baud_rate){
+[v _USART1_Init `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _USART1_Init ]
+[v _baud_rate `uc ~T0 @X0 1 r1 ]
+[f ]
+"7
+[; ;USART1.c: 7:     TRISCbits.TRISC6 = 1;
+[e = . . _TRISCbits 0 6 -> -> 1 `i `uc ]
 "8
-[p x RSTOSC = HFINTOSC_64MHZ ]
-"11
-[p x CLKOUTEN = OFF ]
-"12
-[p x PR1WAY = ON ]
-"13
-[p x CSWEN = OFF ]
-"14
-[p x FCMEN = OFF ]
-"17
-[p x MCLRE = EXTMCLR ]
-"18
-[p x PWRTS = PWRT_64 ]
-"19
-[p x MVECEN = ON ]
-"20
-[p x IVT1WAY = ON ]
-"21
-[p x LPBOREN = OFF ]
-"22
-[p x BOREN = NOSLP ]
-"25
-[p x BORV = VBOR_2P85 ]
-"26
-[p x ZCD = OFF ]
-"27
-[p x PPS1WAY = ON ]
-"28
-[p x STVREN = ON ]
-"29
-[p x DEBUG = OFF ]
-"30
-[p x XINST = OFF ]
-"33
-[p x WDTCPS = WDTCPS_31 ]
-"34
-[p x WDTE = OFF ]
-"37
-[p x WDTCWS = WDTCWS_7 ]
-"38
-[p x WDTCCS = SC ]
-"41
-[p x BBSIZE = BBSIZE_512 ]
-"42
-[p x BBEN = OFF ]
-"43
-[p x SAFEN = OFF ]
-"44
-[p x WRTAPP = OFF ]
-"47
-[p x WRTB = OFF ]
-"48
-[p x WRTC = OFF ]
-"49
-[p x WRTD = OFF ]
-"50
-[p x WRTSAF = OFF ]
-"51
-[p x LVP = OFF ]
-"54
-[p x CP = OFF ]
-"8 ./USART1.h
-[; ;./USART1.h: 8: char rx_counter;
-[v _rx_counter `uc ~T0 @X0 1 e ]
+[; ;USART1.c: 8:     TRISCbits.TRISC7 = 0;
+[e = . . _TRISCbits 0 7 -> -> 0 `i `uc ]
 "9
-[; ;./USART1.h: 9: char rx_buffer[32];
-[v _rx_buffer `uc ~T0 @X0 -> 32 `i e ]
+[; ;USART1.c: 9:     ANSELCbits.ANSELC6 = 0;
+[e = . . _ANSELCbits 0 6 -> -> 0 `i `uc ]
 "10
-[; ;./USART1.h: 10: char tx_buffer[32];
-[v _tx_buffer `uc ~T0 @X0 -> 32 `i e ]
+[; ;USART1.c: 10:     ANSELCbits.ANSELC7 = 0;
+[e = . . _ANSELCbits 0 7 -> -> 0 `i `uc ]
 "11
-[; ;./USART1.h: 11: char tx_byte;
-[v _tx_byte `uc ~T0 @X0 1 e ]
+[; ;USART1.c: 11:     U1RXPPS = 0x16;
+[e = _U1RXPPS -> -> 22 `i `uc ]
 "12
-[; ;./USART1.h: 12: unsigned char COMMAND_WR;
-[v _COMMAND_WR `uc ~T0 @X0 1 e ]
-"13
-[; ;./USART1.h: 13: unsigned char COMMAND;
-[v _COMMAND `uc ~T0 @X0 1 e ]
-"14
-[; ;./USART1.h: 14: int COMMAND_WRITE_NUMBER;
-[v _COMMAND_WRITE_NUMBER `i ~T0 @X0 1 e ]
-"13 ./I2C.h
-[; ;./I2C.h: 13: unsigned char I2C_TX_COUNTER;
-[v _I2C_TX_COUNTER `uc ~T0 @X0 1 e ]
-"14
-[; ;./I2C.h: 14: unsigned char I2C_RX_COUNTER;
-[v _I2C_RX_COUNTER `uc ~T0 @X0 1 e ]
+[; ;USART1.c: 12:     RC7PPS = 0x13;
+[e = _RC7PPS -> -> 19 `i `uc ]
 "15
-[; ;./I2C.h: 15: unsigned char I2C_TX_BUFFER[10];
-[v _I2C_TX_BUFFER `uc ~T0 @X0 -> 10 `i e ]
+[; ;USART1.c: 15:     switch(baud_rate){
+[e $U 2135  ]
+{
 "16
-[; ;./I2C.h: 16: unsigned char I2C_RX_BUFFER[10];
-[v _I2C_RX_BUFFER `uc ~T0 @X0 -> 10 `i e ]
-"17
-[; ;./I2C.h: 17: unsigned char I2C_STOP_DETECTED;
-[v _I2C_STOP_DETECTED `uc ~T0 @X0 1 e ]
-"20
-[; ;./I2C.h: 20: unsigned char AD5272_VOLTAGE_ADDRESS = 0x5E;
-[v _AD5272_VOLTAGE_ADDRESS `uc ~T0 @X0 1 e ]
-[i _AD5272_VOLTAGE_ADDRESS
--> -> 94 `i `uc
-]
-"21
-[; ;./I2C.h: 21: unsigned char AD5272_CURRENT_ADDRESS = 0x58;
-[v _AD5272_CURRENT_ADDRESS `uc ~T0 @X0 1 e ]
-[i _AD5272_CURRENT_ADDRESS
--> -> 88 `i `uc
-]
-"22
-[; ;./I2C.h: 22: unsigned char AD5272_COMMANDS[2] = {0x00,0x00};
-[v _AD5272_COMMANDS `uc ~T0 @X0 -> 2 `i e ]
-[i _AD5272_COMMANDS
-:U ..
--> -> 0 `i `uc
--> -> 0 `i `uc
-..
-]
-"57 main.c
-[; ;main.c: 57: unsigned char counter_timer0;
-[v _counter_timer0 `uc ~T0 @X0 1 e ]
-"58
-[; ;main.c: 58: unsigned char led_enable;
-[v _led_enable `uc ~T0 @X0 1 e ]
-"59
-[; ;main.c: 59: unsigned char measur_vol_or_cur = 1;
-[v _measur_vol_or_cur `uc ~T0 @X0 1 e ]
-[i _measur_vol_or_cur
--> -> 1 `i `uc
-]
-"60
-[; ;main.c: 60: float ADC_VOLTAGE_RESULT;
-[v _ADC_VOLTAGE_RESULT `f ~T0 @X0 1 e ]
-"61
-[; ;main.c: 61: float ADC_CURRENT_RESULT;
-[v _ADC_CURRENT_RESULT `f ~T0 @X0 1 e ]
-[v $root$_TIMER0_ISR `(v ~T0 @X0 0 e ]
-"65
-[; ;main.c: 65: void __attribute__((picinterrupt(("irq(31)")))) TIMER0_ISR(void){
-[v _TIMER0_ISR `(v ~T1 @X0 1 ef ]
-{
-[e :U _TIMER0_ISR ]
-[f ]
-"66
-[; ;main.c: 66:     T0CON0bits.EN = 0;
-[e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
-"67
-[; ;main.c: 67:     counter_timer0 ++;
-[e ++ _counter_timer0 -> -> 1 `i `uc ]
-"68
-[; ;main.c: 68:     if(counter_timer0 == 2){
-[e $ ! == -> _counter_timer0 `i -> 2 `i 2136  ]
-{
-"69
-[; ;main.c: 69:         LATAbits.LA0 = 0;
-[e = . . _LATAbits 1 0 -> -> 0 `i `uc ]
-"70
-[; ;main.c: 70:     }else if(counter_timer0 == 40){
-}
-[e $U 2137  ]
+[; ;USART1.c: 16:         case 1:
 [e :U 2136 ]
-[e $ ! == -> _counter_timer0 `i -> 40 `i 2138  ]
-{
-"71
-[; ;main.c: 71:         if(led_enable)
-[e $ ! != -> _led_enable `i -> 0 `i 2139  ]
-"72
-[; ;main.c: 72:             LATAbits.LA0 = 1;
-[e = . . _LATAbits 1 0 -> -> 1 `i `uc ]
-[e :U 2139 ]
-"73
-[; ;main.c: 73:         counter_timer0 = 0;
-[e = _counter_timer0 -> -> 0 `i `uc ]
-"74
-[; ;main.c: 74:     }
-}
-[e :U 2138 ]
+"17
+[; ;USART1.c: 17:             U1BRGH = 0x03;
+[e = _U1BRGH -> -> 3 `i `uc ]
+"18
+[; ;USART1.c: 18:             U1BRGL = 0x40;
+[e = _U1BRGL -> -> 64 `i `uc ]
+"19
+[; ;USART1.c: 19:             break;
+[e $U 2134  ]
+"20
+[; ;USART1.c: 20:         case 2:
 [e :U 2137 ]
-"75
-[; ;main.c: 75:     TMR0L = 0xB0;
-[e = _TMR0L -> -> 176 `i `uc ]
-"76
-[; ;main.c: 76:     TMR0H = 0x3C;
-[e = _TMR0H -> -> 60 `i `uc ]
-"77
-[; ;main.c: 77:     if(measur_vol_or_cur)
-[e $ ! != -> _measur_vol_or_cur `i -> 0 `i 2140  ]
-"78
-[; ;main.c: 78:         ADC_Start(12);
-[e ( _ADC_Start (1 -> -> 12 `i `uc ]
-[e $U 2141  ]
-"79
-[; ;main.c: 79:     else
-[e :U 2140 ]
-"80
-[; ;main.c: 80:         ADC_Start(13);
-[e ( _ADC_Start (1 -> -> 13 `i `uc ]
-[e :U 2141 ]
-"81
-[; ;main.c: 81:     measur_vol_or_cur = !measur_vol_or_cur;
-[e = _measur_vol_or_cur -> -> ! != -> _measur_vol_or_cur `i -> 0 `i `i `uc ]
-"82
-[; ;main.c: 82:     PIR3bits.TMR0IF = 0;
-[e = . . _PIR3bits 0 7 -> -> 0 `i `uc ]
-"83
-[; ;main.c: 83:     T0CON0bits.EN = 1;
-[e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-"84
-[; ;main.c: 84: }
-[e :UE 2135 ]
+"21
+[; ;USART1.c: 21:             U1BRGH = 0x01;
+[e = _U1BRGH -> -> 1 `i `uc ]
+"22
+[; ;USART1.c: 22:             U1BRGL = 0x14;
+[e = _U1BRGL -> -> 20 `i `uc ]
+"23
+[; ;USART1.c: 23:             break;
+[e $U 2134  ]
+"24
+[; ;USART1.c: 24:         case 3:
+[e :U 2138 ]
+"25
+[; ;USART1.c: 25:             U1BRGH = 0x00;
+[e = _U1BRGH -> -> 0 `i `uc ]
+"26
+[; ;USART1.c: 26:             U1BRGL = 0x89;
+[e = _U1BRGL -> -> 137 `i `uc ]
+"27
+[; ;USART1.c: 27:             break;
+[e $U 2134  ]
+"28
+[; ;USART1.c: 28:         default:
+[e :U 2139 ]
+"29
+[; ;USART1.c: 29:             U1BRGH = 0x00;
+[e = _U1BRGH -> -> 0 `i `uc ]
+"30
+[; ;USART1.c: 30:             U1BRGL = 0x89;
+[e = _U1BRGL -> -> 137 `i `uc ]
+"31
+[; ;USART1.c: 31:             break;
+[e $U 2134  ]
+"32
+[; ;USART1.c: 32:     }
 }
-[v $root$_UART1_TX_ISR `(v ~T0 @X0 0 e ]
-"86
-[; ;main.c: 86: void __attribute__((picinterrupt(("irq(28)")))) UART1_TX_ISR(void){
-[v _UART1_TX_ISR `(v ~T2 @X0 1 ef ]
+[e $U 2134  ]
+[e :U 2135 ]
+[e [\ -> _baud_rate `i , $ -> 1 `i 2136
+ , $ -> 2 `i 2137
+ , $ -> 3 `i 2138
+ 2139 ]
+[e :U 2134 ]
+"34
+[; ;USART1.c: 34:     rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"36
+[; ;USART1.c: 36:     U1CON0 = 0xB0;
+[e = _U1CON0 -> -> 176 `i `uc ]
+"37
+[; ;USART1.c: 37:     U1CON1 = 0x00;
+[e = _U1CON1 -> -> 0 `i `uc ]
+"38
+[; ;USART1.c: 38:     U2CON2 = 0x80;
+[e = _U2CON2 -> -> 128 `i `uc ]
+"39
+[; ;USART1.c: 39:     U1ERRIE = 0x00;
+[e = _U1ERRIE -> -> 0 `i `uc ]
+"40
+[; ;USART1.c: 40:     U1UIR = 0x00;
+[e = _U1UIR -> -> 0 `i `uc ]
+"41
+[; ;USART1.c: 41:     PIE3bits.U1RXIE = 1;
+[e = . . _PIE3bits 0 3 -> -> 1 `i `uc ]
+"42
+[; ;USART1.c: 42:     PIE3bits.U1TXIE =1;
+[e = . . _PIE3bits 0 4 -> -> 1 `i `uc ]
+"43
+[; ;USART1.c: 43:     IPR3bits.U1RXIP = 1;
+[e = . . _IPR3bits 0 3 -> -> 1 `i `uc ]
+"44
+[; ;USART1.c: 44:     IPR3bits.U1TXIP = 1;
+[e = . . _IPR3bits 0 4 -> -> 1 `i `uc ]
+"45
+[; ;USART1.c: 45:     PIR3 = 0x00;
+[e = _PIR3 -> -> 0 `i `uc ]
+"46
+[; ;USART1.c: 46:     U1CON1bits.ON = 1;
+[e = . . _U1CON1bits 0 6 -> -> 1 `i `uc ]
+"47
+[; ;USART1.c: 47: }
+[e :UE 2133 ]
+}
+"49
+[; ;USART1.c: 49: unsigned char USART1_SendByte(unsigned char byte){
+[v _USART1_SendByte `(uc ~T0 @X0 1 ef1`uc ]
 {
-[e :U _UART1_TX_ISR ]
+[e :U _USART1_SendByte ]
+[v _byte `uc ~T0 @X0 1 r1 ]
 [f ]
-"88
-[; ;main.c: 88:     U1TXB = tx_byte;
-[e = _U1TXB -> _tx_byte `uc ]
-"89
-[; ;main.c: 89:     PIE3bits.U1TXIE = 0;
-[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-"90
-[; ;main.c: 90: }
+"50
+[; ;USART1.c: 50:     if(!PIE3bits.U1TXIE){
+[e $ ! ! != -> . . _PIE3bits 0 4 `i -> 0 `i 2141  ]
+{
+"51
+[; ;USART1.c: 51:         tx_byte = byte;
+[e = _tx_byte -> _byte `uc ]
+"52
+[; ;USART1.c: 52:         PIE3bits.U1TXIE = 1;
+[e = . . _PIE3bits 0 4 -> -> 1 `i `uc ]
+"53
+[; ;USART1.c: 53:         return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 2140  ]
+"54
+[; ;USART1.c: 54:     }
+}
+[e :U 2141 ]
+"55
+[; ;USART1.c: 55:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2140  ]
+"56
+[; ;USART1.c: 56: }
+[e :UE 2140 ]
+}
+"58
+[; ;USART1.c: 58: unsigned char USART1_SendString(char *str,int size){
+[v _USART1_SendString `(uc ~T0 @X0 1 ef2`*uc`i ]
+{
+[e :U _USART1_SendString ]
+[v _str `*uc ~T0 @X0 1 r1 ]
+[v _size `i ~T0 @X0 1 r2 ]
+[f ]
+"59
+[; ;USART1.c: 59:     unsigned int attempts = 65000,i;
+[v _attempts `ui ~T0 @X0 1 a ]
+[e = _attempts -> -> 65000 `l `ui ]
+[v _i `ui ~T0 @X0 1 a ]
+"60
+[; ;USART1.c: 60:     for(i=0;i<size;i++){
+{
+[e = _i -> -> 0 `i `ui ]
+[e $U 2146  ]
+[e :U 2143 ]
+{
+"61
+[; ;USART1.c: 61:         if(!USART1_SendByte(*(str + i))){
+[e $ ! ! != -> ( _USART1_SendByte (1 -> *U + _str * -> _i `ux -> -> # *U _str `ui `ux `uc `i -> 0 `i 2147  ]
+{
+"62
+[; ;USART1.c: 62:             attempts --;
+[e -- _attempts -> -> 1 `i `ui ]
+"63
+[; ;USART1.c: 63:             i --;
+[e -- _i -> -> 1 `i `ui ]
+"64
+[; ;USART1.c: 64:         }
+}
+[e :U 2147 ]
+"65
+[; ;USART1.c: 65:         if(!attempts)
+[e $ ! ! != _attempts -> -> 0 `i `ui 2148  ]
+"66
+[; ;USART1.c: 66:             return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2142  ]
+[e :U 2148 ]
+"67
+[; ;USART1.c: 67:         attempts = 65000;
+[e = _attempts -> -> 65000 `l `ui ]
+"68
+[; ;USART1.c: 68:     }
+}
+[e ++ _i -> -> 1 `i `ui ]
+[e :U 2146 ]
+[e $ < _i -> _size `ui 2143  ]
+[e :U 2144 ]
+}
+"69
+[; ;USART1.c: 69:     attempts =65000;
+[e = _attempts -> -> 65000 `l `ui ]
+"70
+[; ;USART1.c: 70:     while(!USART1_SendByte('\r') && (attempts --));
+[e $U 2149  ]
+[e :U 2150 ]
+[e :U 2149 ]
+[e $ && ! != -> ( _USART1_SendByte (1 -> -> 13 `ui `uc `i -> 0 `i != -- _attempts -> -> 1 `i `ui -> -> 0 `i `ui 2150  ]
+[e :U 2151 ]
+"71
+[; ;USART1.c: 71:     while(!USART1_SendByte('\n') && (attempts --));
+[e $U 2152  ]
+[e :U 2153 ]
+[e :U 2152 ]
+[e $ && ! != -> ( _USART1_SendByte (1 -> -> 10 `ui `uc `i -> 0 `i != -- _attempts -> -> 1 `i `ui -> -> 0 `i `ui 2153  ]
+[e :U 2154 ]
+"72
+[; ;USART1.c: 72:     return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 2142  ]
+"73
+[; ;USART1.c: 73: }
 [e :UE 2142 ]
 }
-[v $root$_UART1_RX_ISR `(v ~T0 @X0 0 e ]
-"92
-[; ;main.c: 92: void __attribute__((picinterrupt(("irq(27)")))) UART1_RX_ISR(void){
-[v _UART1_RX_ISR `(v ~T3 @X0 1 ef ]
+"84
+[; ;USART1.c: 84: unsigned char USART1_ReceiveCommand(void){;
+[v _USART1_ReceiveCommand `(uc ~T0 @X0 1 ef ]
 {
-[e :U _UART1_RX_ISR ]
+[e :U _USART1_ReceiveCommand ]
 [f ]
-"93
-[; ;main.c: 93:     rx_buffer[rx_counter] = U1RXB;
-[e = *U + &U _rx_buffer * -> _rx_counter `ux -> -> # *U &U _rx_buffer `ui `ux -> _U1RXB `uc ]
-"94
-[; ;main.c: 94:     rx_counter ++;
-[e ++ _rx_counter -> -> 1 `i `uc ]
-"95
-[; ;main.c: 95: }
-[e :UE 2143 ]
-}
-[v $root$_ADC_ISR `(v ~T0 @X0 0 e ]
-"97
-[; ;main.c: 97: void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
-[v _ADC_ISR `(v ~T4 @X0 1 ef ]
-{
-[e :U _ADC_ISR ]
-[f ]
-"98
-[; ;main.c: 98:     int adc_result = ADRESL;
-[v _adc_result `i ~T0 @X0 1 a ]
-[e = _adc_result -> _ADRESL `i ]
-"99
-[; ;main.c: 99:     adc_result = adc_result | (ADRESH <<8);
-[e = _adc_result | _adc_result << -> _ADRESH `i -> 8 `i ]
-"100
-[; ;main.c: 100:     if(ADPCH == 12)
-[e $ ! == -> _ADPCH `i -> 12 `i 2145  ]
-"101
-[; ;main.c: 101:         ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122;
-[e = _ADC_VOLTAGE_RESULT -> * -> -> _adc_result `f `d .0.00122 `f ]
-[e $U 2146  ]
-"102
-[; ;main.c: 102:     else if(ADPCH == 13)
-[e :U 2145 ]
-[e $ ! == -> _ADPCH `i -> 13 `i 2147  ]
-"103
-[; ;main.c: 103:         ADC_CURRENT_RESULT = (float)adc_result * 0.00122;
-[e = _ADC_CURRENT_RESULT -> * -> -> _adc_result `f `d .0.00122 `f ]
-[e :U 2147 ]
-[e :U 2146 ]
-"104
-[; ;main.c: 104:     PIR1bits.ADIF = 0;
-[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
-"105
-[; ;main.c: 105: }
-[e :UE 2144 ]
-}
-[v $root$_I2C_TX_ISR `(v ~T0 @X0 0 e ]
-"107
-[; ;main.c: 107: void __attribute__((picinterrupt(("irq(24)")))) I2C_TX_ISR(void){
-[v _I2C_TX_ISR `(v ~T5 @X0 1 ef ]
-{
-[e :U _I2C_TX_ISR ]
-[f ]
-"108
-[; ;main.c: 108:     I2C1TXB = I2C_TX_BUFFER[I2C_TX_COUNTER];
-[e = _I2C1TXB *U + &U _I2C_TX_BUFFER * -> _I2C_TX_COUNTER `ux -> -> # *U &U _I2C_TX_BUFFER `ui `ux ]
-"109
-[; ;main.c: 109:     I2C_TX_COUNTER ++;
-[e ++ _I2C_TX_COUNTER -> -> 1 `i `uc ]
-"110
-[; ;main.c: 110: }
-[e :UE 2148 ]
-}
-[v $root$_I2C_RX_ISR `(v ~T0 @X0 0 e ]
-"111
-[; ;main.c: 111: void __attribute__((picinterrupt(("irq(23)")))) I2C_RX_ISR(void){
-[v _I2C_RX_ISR `(v ~T6 @X0 1 ef ]
-{
-[e :U _I2C_RX_ISR ]
-[f ]
-"112
-[; ;main.c: 112:     I2C_RX_BUFFER[I2C_RX_COUNTER] = I2C1RXB;
-[e = *U + &U _I2C_RX_BUFFER * -> _I2C_RX_COUNTER `ux -> -> # *U &U _I2C_RX_BUFFER `ui `ux _I2C1RXB ]
-"113
-[; ;main.c: 113:     I2C_RX_COUNTER ++;
-[e ++ _I2C_RX_COUNTER -> -> 1 `i `uc ]
-"114
-[; ;main.c: 114: }
-[e :UE 2149 ]
-}
-[v $root$_I2C_GENERAL_ISR `(v ~T0 @X0 0 e ]
-"116
-[; ;main.c: 116: void __attribute__((picinterrupt(("irq(25)")))) I2C_GENERAL_ISR(void){
-[v _I2C_GENERAL_ISR `(v ~T7 @X0 1 ef ]
-{
-[e :U _I2C_GENERAL_ISR ]
-[f ]
-"117
-[; ;main.c: 117:     if(I2C1PIRbits.PC1IF)
-[e $ ! != -> . . _I2C1PIRbits 1 2 `i -> 0 `i 2151  ]
-"118
-[; ;main.c: 118:         I2C_STOP_DETECTED = 1;
-[e = _I2C_STOP_DETECTED -> -> 1 `i `uc ]
-[e :U 2151 ]
-"119
-[; ;main.c: 119:     I2C1PIR = 0x00;
-[e = _I2C1PIR -> -> 0 `i `uc ]
-"120
-[; ;main.c: 120: }
-[e :UE 2150 ]
-}
-[v $root$_DEFAULT_ISR `(v ~T0 @X0 0 e ]
-"122
-[; ;main.c: 122: void __attribute__((picinterrupt(("irq(default)")))) DEFAULT_ISR(void){
-[v _DEFAULT_ISR `(v ~T8 @X0 1 ef ]
-{
-[e :U _DEFAULT_ISR ]
-[f ]
-"124
-[; ;main.c: 124: }
-[e :UE 2152 ]
-}
-[v $root$_main `(v ~T0 @X0 0 e ]
-"128
-[; ;main.c: 128: void main(void) {
-[v _main `(v ~T0 @X0 1 ef ]
-{
-[e :U _main ]
-[f ]
-"129
-[; ;main.c: 129:     OSCFRQ = 0x08;
-[e = _OSCFRQ -> -> 8 `i `uc ]
-"130
-[; ;main.c: 130:     OSCTUNE = 0x00;
-[e = _OSCTUNE -> -> 0 `i `uc ]
-"131
-[; ;main.c: 131:     OSCEN = 0x40;
-[e = _OSCEN -> -> 64 `i `uc ]
-"132
-[; ;main.c: 132:     while(!OSCSTATbits.HFOR && !OSCSTATbits.ADOR);
-[e $U 2154  ]
-[e :U 2155 ]
-[e :U 2154 ]
-[e $ && ! != -> . . _OSCSTATbits 0 6 `i -> 0 `i ! != -> . . _OSCSTATbits 0 2 `i -> 0 `i 2155  ]
+"85
+[; ;USART1.c: 85:     if(rx_counter == 0)
+[e $ ! == -> _rx_counter `i -> 0 `i 2156  ]
+"86
+[; ;USART1.c: 86:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2155  ]
 [e :U 2156 ]
-"138
-[; ;main.c: 138:     IVTLOCK = 0x01;
-[e = _IVTLOCK -> -> 1 `i `uc ]
-"141
-[; ;main.c: 141:     WDTCON1 = 0x07;
-[e = _WDTCON1 -> -> 7 `i `uc ]
-"142
-[; ;main.c: 142:     WDTCON0 = 0x3F;
-[e = _WDTCON0 -> -> 63 `i `uc ]
-"145
-[; ;main.c: 145:     PPSLOCKbits.PPSLOCKED = 0;
-[e = . . _PPSLOCKbits 0 0 -> -> 0 `i `uc ]
-"148
-[; ;main.c: 148:     timer0_init();
-[e ( _timer0_init ..  ]
-"149
-[; ;main.c: 149:     USART1_Init(1);
-[e ( _USART1_Init (1 -> -> 1 `i `uc ]
-"150
-[; ;main.c: 150:     ADC_Init();
-[e ( _ADC_Init ..  ]
-"151
-[; ;main.c: 151:     I2C_Init();
-[e ( _I2C_Init ..  ]
-"153
-[; ;main.c: 153:     INTCON0bits.GIEH = 1;
-[e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
-"154
-[; ;main.c: 154:     INTCON0bits.GIEL = 1;
-[e = . . _INTCON0bits 0 5 -> -> 1 `i `uc ]
-"155
-[; ;main.c: 155:     INTCON0bits.IPEN = 1;
-[e = . . _INTCON0bits 0 4 -> -> 1 `i `uc ]
-"158
-[; ;main.c: 158:     TRISAbits.TRISA0 = 0;
-[e = . . _TRISAbits 0 0 -> -> 0 `i `uc ]
-"159
-[; ;main.c: 159:     ANSELAbits.ANSELA0 = 1;
-[e = . . _ANSELAbits 0 0 -> -> 1 `i `uc ]
-"160
-[; ;main.c: 160:     led_enable = 1;
-[e = _led_enable -> -> 1 `i `uc ]
-"162
-[; ;main.c: 162:     TRISAbits.TRISA1 = 0;
-[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
-"163
-[; ;main.c: 163:     ANSELAbits.ANSELA1 = 1;
-[e = . . _ANSELAbits 0 1 -> -> 1 `i `uc ]
-"164
-[; ;main.c: 164:     LATAbits.LA1 = 0;
-[e = . . _LATAbits 1 1 -> -> 0 `i `uc ]
-"166
-[; ;main.c: 166:     TRISBbits.TRISB2 = 0;
-[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
-"167
-[; ;main.c: 167:     TRISBbits.TRISB3 = 0;
-[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
-"168
-[; ;main.c: 168:     LATBbits.LB2 = 1;
-[e = . . _LATBbits 1 2 -> -> 1 `i `uc ]
-"169
-[; ;main.c: 169:     LATBbits.LB3 = 1;
-[e = . . _LATBbits 1 3 -> -> 1 `i `uc ]
-"171
-[; ;main.c: 171:     _delay((unsigned long)((2000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"173
-[; ;main.c: 173:     AD5272_COMMANDS[0] = 0x1C;
-[e = *U + &U _AD5272_COMMANDS * -> -> -> 0 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> -> 28 `i `uc ]
-"174
-[; ;main.c: 174:     AD5272_COMMANDS[1] = 0x02;
-[e = *U + &U _AD5272_COMMANDS * -> -> -> 1 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> -> 2 `i `uc ]
-"175
-[; ;main.c: 175:     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
-[e ( _I2C_Transmit (3 , , &U _AD5272_COMMANDS -> -> 2 `i `uc _AD5272_VOLTAGE_ADDRESS ]
-"176
-[; ;main.c: 176:     while(!I2C_STOP_DETECTED);
-[e $U 2157  ]
-[e :U 2158 ]
-[e :U 2157 ]
-[e $ ! != -> _I2C_STOP_DETECTED `i -> 0 `i 2158  ]
-[e :U 2159 ]
-"177
-[; ;main.c: 177:     I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
-[e ( _I2C_Transmit (3 , , &U _AD5272_COMMANDS -> -> 2 `i `uc _AD5272_CURRENT_ADDRESS ]
-"178
-[; ;main.c: 178:     while(!I2C_STOP_DETECTED);
-[e $U 2160  ]
-[e :U 2161 ]
-[e :U 2160 ]
-[e $ ! != -> _I2C_STOP_DETECTED `i -> 0 `i 2161  ]
-[e :U 2162 ]
-"179
-[; ;main.c: 179:     AD5272_COMMANDS[0] = 0x04;
-[e = *U + &U _AD5272_COMMANDS * -> -> -> 0 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> -> 4 `i `uc ]
-"181
-[; ;main.c: 181:     unsigned char receive_command;
-[v _receive_command `uc ~T0 @X0 1 a ]
-"183
-[; ;main.c: 183:     while(1){
-[e :U 2164 ]
+"87
+[; ;USART1.c: 87:     if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R'){
+[e $ ! && && == -> _rx_counter `i -> 1 `i != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 87 `ui != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 82 `ui 2157  ]
 {
-"184
-[; ;main.c: 184:         receive_command = USART1_ReceiveCommand();
-[e = _receive_command ( _USART1_ReceiveCommand ..  ]
-"185
-[; ;main.c: 185:         if(receive_command)
-[e $ ! != -> _receive_command `i -> 0 `i 2166  ]
-"186
-[; ;main.c: 186:             USART_handler();
-[e ( _USART_handler ..  ]
-[e :U 2166 ]
-"187
-[; ;main.c: 187:     }
+"88
+[; ;USART1.c: 88:         rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"89
+[; ;USART1.c: 89:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2155  ]
+"90
+[; ;USART1.c: 90:     }
+}
+[e :U 2157 ]
+"91
+[; ;USART1.c: 91:     if(rx_buffer[0] == 'R') {
+[e $ ! == -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 82 `ui 2158  ]
+{
+"92
+[; ;USART1.c: 92:         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+[e $ ! && == -> _rx_counter `i -> 2 `i || < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2159  ]
+{
+"93
+[; ;USART1.c: 93:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"94
+[; ;USART1.c: 94:         }else if(rx_counter == 3 && rx_buffer[2] != '\r'){
+}
+[e $U 2160  ]
+[e :U 2159 ]
+[e $ ! && == -> _rx_counter `i -> 3 `i != -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui 2161  ]
+{
+"95
+[; ;USART1.c: 95:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"96
+[; ;USART1.c: 96:         }else if(rx_counter == 4){
+}
+[e $U 2162  ]
+[e :U 2161 ]
+[e $ ! == -> _rx_counter `i -> 4 `i 2163  ]
+{
+"97
+[; ;USART1.c: 97:             if(rx_buffer[0] != 'R' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || rx_buffer[2] != '\r' || rx_buffer[3] != '\n'){
+[e $ ! || || || || != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 82 `ui < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i != -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui != -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 10 `ui 2164  ]
+{
+"98
+[; ;USART1.c: 98:                 rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"99
+[; ;USART1.c: 99:                 return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2155  ]
+"100
+[; ;USART1.c: 100:             }
+}
+[e :U 2164 ]
+"101
+[; ;USART1.c: 101:             COMMAND_WR = 1;
+[e = _COMMAND_WR -> -> 1 `i `uc ]
+"102
+[; ;USART1.c: 102:             COMMAND = rx_buffer[1]-48;
+[e = _COMMAND -> - -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i `uc ]
+"103
+[; ;USART1.c: 103:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"104
+[; ;USART1.c: 104:             return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 2155  ]
+"105
+[; ;USART1.c: 105:         }
 }
 [e :U 2163 ]
-[e $U 2164  ]
-[e :U 2165 ]
-"188
-[; ;main.c: 188: }
-[e :UE 2153 ]
+[e :U 2162 ]
+[e :U 2160 ]
+"106
+[; ;USART1.c: 106:     }else{
 }
-"192
-[; ;main.c: 192: void USART_handler(void){
-[v _USART_handler `(v ~T0 @X0 1 ef ]
+[e $U 2165  ]
+[e :U 2158 ]
 {
-[e :U _USART_handler ]
-[f ]
-"193
-[; ;main.c: 193:     memset(tx_buffer,0,32);
-[e ( _memset (3 , , &U _tx_buffer -> -> 0 `i `uc -> 32 `i ]
-"194
-[; ;main.c: 194:     if(COMMAND_WR){
-[e $ ! != -> _COMMAND_WR `i -> 0 `i 2168  ]
+"107
+[; ;USART1.c: 107:         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+[e $ ! && == -> _rx_counter `i -> 2 `i || < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2166  ]
 {
-"195
-[; ;main.c: 195:         switch(COMMAND){
-[e $U 2170  ]
+"108
+[; ;USART1.c: 108:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"109
+[; ;USART1.c: 109:         }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){
+}
+[e $U 2167  ]
+[e :U 2166 ]
+[e $ ! && == -> _rx_counter `i -> 3 `i || < -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2168  ]
 {
-"196
-[; ;main.c: 196:             case 0:
-[e :U 2171 ]
-"197
-[; ;main.c: 197:                 sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
-[e ( _sprintf (1 , (. , &U _tx_buffer :s 1C -> _ADC_VOLTAGE_RESULT `d ]
-"198
-[; ;main.c: 198:                 break;
-[e $U 2169  ]
-"199
-[; ;main.c: 199:             case 1:
-[e :U 2172 ]
-"200
-[; ;main.c: 200:                 sprintf(tx_buffer,"Current:%f A",ADC_CURRENT_RESULT);
-[e ( _sprintf (1 , (. , &U _tx_buffer :s 2C -> _ADC_CURRENT_RESULT `d ]
-"201
-[; ;main.c: 201:                 break;
-[e $U 2169  ]
-"202
-[; ;main.c: 202:             default:
-[e :U 2173 ]
-"203
-[; ;main.c: 203:                 sprintf(tx_buffer,"Command not recognized!");
-[e ( _sprintf (1 , &U _tx_buffer :s 3C ]
-"204
-[; ;main.c: 204:                 break;
-[e $U 2169  ]
-"205
-[; ;main.c: 205:         }
+"110
+[; ;USART1.c: 110:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"111
+[; ;USART1.c: 111:         }else if(rx_counter == 4 && ((rx_buffer[3] < 48) || (rx_buffer[3] > 57))){
 }
 [e $U 2169  ]
-[e :U 2170 ]
-[e [\ -> _COMMAND `i , $ -> 0 `i 2171
- , $ -> 1 `i 2172
- 2173 ]
-[e :U 2169 ]
-"206
-[; ;main.c: 206:     }else{
-}
-[e $U 2174  ]
 [e :U 2168 ]
+[e $ ! && == -> _rx_counter `i -> 4 `i || < -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2170  ]
 {
-"207
-[; ;main.c: 207:         switch(COMMAND){
-[e $U 2176  ]
+"112
+[; ;USART1.c: 112:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"113
+[; ;USART1.c: 113:         }else if(rx_counter == 5 && ((rx_buffer[4] < 48) || (rx_buffer[4] > 57))){
+}
+[e $U 2171  ]
+[e :U 2170 ]
+[e $ ! && == -> _rx_counter `i -> 5 `i || < -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2172  ]
 {
-"208
-[; ;main.c: 208:             case 0:
-[e :U 2177 ]
-"209
-[; ;main.c: 209:                 led_enable = !led_enable;
-[e = _led_enable -> -> ! != -> _led_enable `i -> 0 `i `i `uc ]
-"210
-[; ;main.c: 210:                 if(led_enable)
-[e $ ! != -> _led_enable `i -> 0 `i 2178  ]
-"211
-[; ;main.c: 211:                     sprintf(tx_buffer,"Blinking LED is ON!");
-[e ( _sprintf (1 , &U _tx_buffer :s 4C ]
-[e $U 2179  ]
-"212
-[; ;main.c: 212:                 else
-[e :U 2178 ]
-"213
-[; ;main.c: 213:                     sprintf(tx_buffer,"Blinking LED is OFF!");
-[e ( _sprintf (1 , &U _tx_buffer :s 5C ]
-[e :U 2179 ]
-"214
-[; ;main.c: 214:                 break;
-[e $U 2175  ]
-"215
-[; ;main.c: 215:             case 1:
-[e :U 2180 ]
-"216
-[; ;main.c: 216:                 I2C_handler(0,COMMAND_WRITE_NUMBER);
-[e ( _I2C_handler (2 , -> -> 0 `i `uc _COMMAND_WRITE_NUMBER ]
-"217
-[; ;main.c: 217:                 sprintf(tx_buffer,"Voltage set!");
-[e ( _sprintf (1 , &U _tx_buffer :s 6C ]
-"218
-[; ;main.c: 218:                 break;
-[e $U 2175  ]
-"219
-[; ;main.c: 219:             case 2:
-[e :U 2181 ]
-"220
-[; ;main.c: 220:                 I2C_handler(1,COMMAND_WRITE_NUMBER);
-[e ( _I2C_handler (2 , -> -> 1 `i `uc _COMMAND_WRITE_NUMBER ]
-"221
-[; ;main.c: 221:                 sprintf(tx_buffer,"Current Limit set!");
-[e ( _sprintf (1 , &U _tx_buffer :s 7C ]
-"222
-[; ;main.c: 222:                 break;
-[e $U 2175  ]
-"223
-[; ;main.c: 223:             default:
-[e :U 2182 ]
-"224
-[; ;main.c: 224:                 sprintf(tx_buffer,"Command not recognized!");
-[e ( _sprintf (1 , &U _tx_buffer :s 8C ]
-"225
-[; ;main.c: 225:                 break;
-[e $U 2175  ]
-"226
-[; ;main.c: 226:         }
+"114
+[; ;USART1.c: 114:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"115
+[; ;USART1.c: 115:         }else if(rx_counter == 6 && ((rx_buffer[5] < 48) || (rx_buffer[5] > 57))){
+}
+[e $U 2173  ]
+[e :U 2172 ]
+[e $ ! && == -> _rx_counter `i -> 6 `i || < -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2174  ]
+{
+"116
+[; ;USART1.c: 116:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"117
+[; ;USART1.c: 117:         }else if(rx_counter == 7 && rx_buffer[6] != '\r'){
 }
 [e $U 2175  ]
-[e :U 2176 ]
-[e [\ -> _COMMAND `i , $ -> 0 `i 2177
- , $ -> 1 `i 2180
- , $ -> 2 `i 2181
- 2182 ]
-[e :U 2175 ]
-"227
-[; ;main.c: 227:     }
-}
 [e :U 2174 ]
-"228
-[; ;main.c: 228:     USART1_SendString(tx_buffer,GetStringSize());
-[e ( _USART1_SendString (2 , &U _tx_buffer ( _GetStringSize ..  ]
-"229
-[; ;main.c: 229: }
-[e :UE 2167 ]
-}
-"233
-[; ;main.c: 233: void timer0_init(void){
-[v _timer0_init `(v ~T0 @X0 1 ef ]
+[e $ ! && == -> _rx_counter `i -> 7 `i != -> *U + &U _rx_buffer * -> -> -> 6 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui 2176  ]
 {
-[e :U _timer0_init ]
-[f ]
-"234
-[; ;main.c: 234:     T0CON0 = 0x10;
-[e = _T0CON0 -> -> 16 `i `uc ]
-"235
-[; ;main.c: 235:     T0CON1 = 0x75;
-[e = _T0CON1 -> -> 117 `i `uc ]
-"236
-[; ;main.c: 236:     TMR0L = 0xB0;
-[e = _TMR0L -> -> 176 `i `uc ]
-"237
-[; ;main.c: 237:     TMR0H = 0x3C;
-[e = _TMR0H -> -> 60 `i `uc ]
-"238
-[; ;main.c: 238:     counter_timer0 = 0;
-[e = _counter_timer0 -> -> 0 `i `uc ]
-"239
-[; ;main.c: 239:     IPR3bits.TMR0IP = 0;
-[e = . . _IPR3bits 0 7 -> -> 0 `i `uc ]
-"240
-[; ;main.c: 240:     PIR3bits.TMR0IF = 0;
-[e = . . _PIR3bits 0 7 -> -> 0 `i `uc ]
-"241
-[; ;main.c: 241:     PIE3bits.TMR0IE = 1;
-[e = . . _PIE3bits 0 7 -> -> 1 `i `uc ]
-"242
-[; ;main.c: 242:     T0CON0bits.EN = 1;
-[e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-"243
-[; ;main.c: 243: }
-[e :UE 2183 ]
+"118
+[; ;USART1.c: 118:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"119
+[; ;USART1.c: 119:         }else if(rx_counter == 8){
 }
-"246
-[; ;main.c: 246: void ADC_Init(void){
-[v _ADC_Init `(v ~T0 @X0 1 ef ]
+[e $U 2177  ]
+[e :U 2176 ]
+[e $ ! == -> _rx_counter `i -> 8 `i 2178  ]
 {
-[e :U _ADC_Init ]
-[f ]
-"248
-[; ;main.c: 248:     TRISBbits.TRISB4 = 1;
-[e = . . _TRISBbits 0 4 -> -> 1 `i `uc ]
-"249
-[; ;main.c: 249:     ANSELBbits.ANSELB4 = 1;
-[e = . . _ANSELBbits 0 4 -> -> 1 `i `uc ]
-"250
-[; ;main.c: 250:     ADCON0 = 0x94;
-[e = _ADCON0 -> -> 148 `i `uc ]
-"251
-[; ;main.c: 251:     ADCON1 = 0x00;
-[e = _ADCON1 -> -> 0 `i `uc ]
-"252
-[; ;main.c: 252:     ADCON2 = 0x00;
-[e = _ADCON2 -> -> 0 `i `uc ]
-"253
-[; ;main.c: 253:     ADREF = 0x00;
-[e = _ADREF -> -> 0 `i `uc ]
-"254
-[; ;main.c: 254:     IPR1bits.ADIP = 0;
-[e = . . _IPR1bits 0 2 -> -> 0 `i `uc ]
-"255
-[; ;main.c: 255:     PIE1bits.ADIE = 1;
-[e = . . _PIE1bits 0 2 -> -> 1 `i `uc ]
-"256
-[; ;main.c: 256:     PIR1bits.ADIF = 0;
-[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
-"257
-[; ;main.c: 257: }
-[e :UE 2184 ]
-}
-"260
-[; ;main.c: 260: void ADC_Start(unsigned char pin){
-[v _ADC_Start `(v ~T0 @X0 1 ef1`uc ]
+"120
+[; ;USART1.c: 120:             if(rx_buffer[0] != 'W' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || (rx_buffer[2] < 48) || (rx_buffer[2] > 57) || (rx_buffer[3] < 48) || (rx_buffer[3] > 57) || (rx_buffer[4] < 48) || (rx_buffer[4] > 57) || (rx_buffer[5] < 48) || (rx_buffer[5] > 57) || rx_buffer[6] != '\r' || rx_buffer[7] != '\n'){
+[e $ ! || || || || || || || || || || || || != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 87 `ui < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i < -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i < -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i < -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i < -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i != -> *U + &U _rx_buffer * -> -> -> 6 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui != -> *U + &U _rx_buffer * -> -> -> 7 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 10 `ui 2179  ]
 {
-[e :U _ADC_Start ]
-[v _pin `uc ~T0 @X0 1 r1 ]
-[f ]
-"261
-[; ;main.c: 261:     if(!ADCON0bits.GO){
-[e $ ! ! != -> . . _ADCON0bits 0 0 `i -> 0 `i 2186  ]
-{
-"262
-[; ;main.c: 262:         ADPCH = pin;
-[e = _ADPCH _pin ]
-"263
-[; ;main.c: 263:         ADCON0bits.GO = 1;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"264
-[; ;main.c: 264:     }
+"121
+[; ;USART1.c: 121:                 rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"122
+[; ;USART1.c: 122:                 return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2155  ]
+"123
+[; ;USART1.c: 123:             }
 }
-[e :U 2186 ]
-"265
-[; ;main.c: 265: }
-[e :UE 2185 ]
+[e :U 2179 ]
+"124
+[; ;USART1.c: 124:             COMMAND_WR = 0;
+[e = _COMMAND_WR -> -> 0 `i `uc ]
+"125
+[; ;USART1.c: 125:             COMMAND = rx_buffer[1]-48;
+[e = _COMMAND -> - -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i `uc ]
+"126
+[; ;USART1.c: 126:             COMMAND_WRITE_NUMBER = ((rx_buffer[2]-48) * 1000) + ((rx_buffer[3]-48) * 100) + ((rx_buffer[4]-48) * 10) + (rx_buffer[5]-48);
+[e = _COMMAND_WRITE_NUMBER + + + * - -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i -> 1000 `i * - -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i -> 100 `i * - -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i -> 10 `i - -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i ]
+"127
+[; ;USART1.c: 127:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"128
+[; ;USART1.c: 128:             return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 2155  ]
+"129
+[; ;USART1.c: 129:         }
 }
-"270
-[; ;main.c: 270: int GetStringSize(void){
-[v _GetStringSize `(i ~T0 @X0 1 ef ]
-{
-[e :U _GetStringSize ]
-[f ]
-"271
-[; ;main.c: 271:     int i;
-[v _i `i ~T0 @X0 1 a ]
-"272
-[; ;main.c: 272:     for(i=0;i<32;i++){
-{
-[e = _i -> 0 `i ]
-[e $ < _i -> 32 `i 2188  ]
-[e $U 2189  ]
-[e :U 2188 ]
-{
-"273
-[; ;main.c: 273:         if(tx_buffer[i] == 0){
-[e $ ! == -> *U + &U _tx_buffer * -> -> _i `ui `ux -> -> # *U &U _tx_buffer `ui `ux `i -> 0 `i 2191  ]
-{
-"274
-[; ;main.c: 274:             break;
-[e $U 2189  ]
-"275
-[; ;main.c: 275:         }
+[e :U 2178 ]
+[e :U 2177 ]
+[e :U 2175 ]
+[e :U 2173 ]
+[e :U 2171 ]
+[e :U 2169 ]
+[e :U 2167 ]
+"130
+[; ;USART1.c: 130:     }
 }
-[e :U 2191 ]
-"276
-[; ;main.c: 276:     }
+[e :U 2165 ]
+"131
+[; ;USART1.c: 131:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2155  ]
+"132
+[; ;USART1.c: 132: }
+[e :UE 2155 ]
 }
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 32 `i 2188  ]
-[e :U 2189 ]
-}
-"277
-[; ;main.c: 277:     return i;
-[e ) _i ]
-[e $UE 2187  ]
-"278
-[; ;main.c: 278: }
-[e :UE 2187 ]
-}
-"280
-[; ;main.c: 280: void memset(char *st,char x,int size){
-[v _memset `(v ~T0 @X0 1 ef3`*uc`uc`i ]
-{
-[e :U _memset ]
-[v _st `*uc ~T0 @X0 1 r1 ]
-[v _x `uc ~T0 @X0 1 r2 ]
-[v _size `i ~T0 @X0 1 r3 ]
-[f ]
-"281
-[; ;main.c: 281:     for(int i=0;i<size;i++){
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $U 2196  ]
-[e :U 2193 ]
-{
-"282
-[; ;main.c: 282:         st[i] = x;
-[e = *U + _st * -> _i `x -> -> # *U _st `i `x _x ]
-"283
-[; ;main.c: 283:     }
-}
-[e ++ _i -> 1 `i ]
-[e :U 2196 ]
-[e $ < _i _size 2193  ]
-[e :U 2194 ]
-}
-"284
-[; ;main.c: 284: }
-[e :UE 2192 ]
-}
-[p f _sprintf 8396800 ]
-[a 1C 86 111 108 116 97 103 101 58 37 102 32 86 0 ]
-[a 2C 67 117 114 114 101 110 116 58 37 102 32 65 0 ]
-[a 7C 67 117 114 114 101 110 116 32 76 105 109 105 116 32 115 101 116 33 0 ]
-[a 6C 86 111 108 116 97 103 101 32 115 101 116 33 0 ]
-[a 3C 67 111 109 109 97 110 100 32 110 111 116 32 114 101 99 111 103 110 105 122 101 100 33 0 ]
-[a 8C 67 111 109 109 97 110 100 32 110 111 116 32 114 101 99 111 103 110 105 122 101 100 33 0 ]
-[a 4C 66 108 105 110 107 105 110 103 32 76 69 68 32 105 115 32 79 78 33 0 ]
-[a 5C 66 108 105 110 107 105 110 103 32 76 69 68 32 105 115 32 79 70 70 33 0 ]

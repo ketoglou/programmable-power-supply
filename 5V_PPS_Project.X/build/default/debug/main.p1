@@ -93,9 +93,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29389
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 29389: extern volatile unsigned char ADRESH __attribute__((address(0x3EF0)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@16112 ]
-"29509
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 29509: extern volatile unsigned char ADPCH __attribute__((address(0x3EF1)));
-[v _ADPCH `Vuc ~T0 @X0 0 e@16113 ]
 "4133
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 4133:     struct {
 [s S184 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -395,6 +392,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30115
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 30115: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x3EF8)));
 [v _ADCON0bits `VS1347 ~T0 @X0 0 e@16120 ]
+"29509
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 29509: extern volatile unsigned char ADPCH __attribute__((address(0x3EF1)));
+[v _ADPCH `Vuc ~T0 @X0 0 e@16113 ]
 "250 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 250: __asm("STATUS_CSHAD equ 03880h");
 [; <" STATUS_CSHAD equ 03880h ;# ">
@@ -2644,658 +2644,622 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 58: unsigned char led_enable;
 [v _led_enable `uc ~T0 @X0 1 e ]
 "59
-[; ;main.c: 59: unsigned char measur_vol_or_cur = 1;
-[v _measur_vol_or_cur `uc ~T0 @X0 1 e ]
-[i _measur_vol_or_cur
--> -> 1 `i `uc
-]
-"60
-[; ;main.c: 60: float ADC_VOLTAGE_RESULT;
+[; ;main.c: 59: float ADC_VOLTAGE_RESULT;
 [v _ADC_VOLTAGE_RESULT `f ~T0 @X0 1 e ]
-"61
-[; ;main.c: 61: float ADC_CURRENT_RESULT;
-[v _ADC_CURRENT_RESULT `f ~T0 @X0 1 e ]
 [v $root$_TIMER0_ISR `(v ~T0 @X0 0 e ]
-"65
-[; ;main.c: 65: void __attribute__((picinterrupt(("irq(31)")))) TIMER0_ISR(void){
+"63
+[; ;main.c: 63: void __attribute__((picinterrupt(("irq(31)")))) TIMER0_ISR(void){
 [v _TIMER0_ISR `(v ~T1 @X0 1 ef ]
 {
 [e :U _TIMER0_ISR ]
 [f ]
-"66
-[; ;main.c: 66:     T0CON0bits.EN = 0;
+"64
+[; ;main.c: 64:     T0CON0bits.EN = 0;
 [e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
-"67
-[; ;main.c: 67:     counter_timer0 ++;
+"65
+[; ;main.c: 65:     counter_timer0 ++;
 [e ++ _counter_timer0 -> -> 1 `i `uc ]
-"68
-[; ;main.c: 68:     if(counter_timer0 == 2){
+"66
+[; ;main.c: 66:     if(counter_timer0 == 2){
 [e $ ! == -> _counter_timer0 `i -> 2 `i 2136  ]
 {
-"69
-[; ;main.c: 69:         LATAbits.LA0 = 0;
+"67
+[; ;main.c: 67:         LATAbits.LA0 = 0;
 [e = . . _LATAbits 1 0 -> -> 0 `i `uc ]
-"70
-[; ;main.c: 70:     }else if(counter_timer0 == 40){
+"68
+[; ;main.c: 68:     }else if(counter_timer0 == 40){
 }
 [e $U 2137  ]
 [e :U 2136 ]
 [e $ ! == -> _counter_timer0 `i -> 40 `i 2138  ]
 {
-"71
-[; ;main.c: 71:         if(led_enable)
+"69
+[; ;main.c: 69:         if(led_enable)
 [e $ ! != -> _led_enable `i -> 0 `i 2139  ]
-"72
-[; ;main.c: 72:             LATAbits.LA0 = 1;
+"70
+[; ;main.c: 70:             LATAbits.LA0 = 1;
 [e = . . _LATAbits 1 0 -> -> 1 `i `uc ]
 [e :U 2139 ]
-"73
-[; ;main.c: 73:         counter_timer0 = 0;
+"71
+[; ;main.c: 71:         counter_timer0 = 0;
 [e = _counter_timer0 -> -> 0 `i `uc ]
-"74
-[; ;main.c: 74:     }
+"72
+[; ;main.c: 72:     }
 }
 [e :U 2138 ]
 [e :U 2137 ]
-"75
-[; ;main.c: 75:     TMR0L = 0xB0;
+"73
+[; ;main.c: 73:     TMR0L = 0xB0;
 [e = _TMR0L -> -> 176 `i `uc ]
-"76
-[; ;main.c: 76:     TMR0H = 0x3C;
+"74
+[; ;main.c: 74:     TMR0H = 0x3C;
 [e = _TMR0H -> -> 60 `i `uc ]
-"77
-[; ;main.c: 77:     if(measur_vol_or_cur)
-[e $ ! != -> _measur_vol_or_cur `i -> 0 `i 2140  ]
-"78
-[; ;main.c: 78:         ADC_Start(12);
+"75
+[; ;main.c: 75:     ADC_Start(12);
 [e ( _ADC_Start (1 -> -> 12 `i `uc ]
-[e $U 2141  ]
-"79
-[; ;main.c: 79:     else
-[e :U 2140 ]
-"80
-[; ;main.c: 80:         ADC_Start(13);
-[e ( _ADC_Start (1 -> -> 13 `i `uc ]
-[e :U 2141 ]
-"81
-[; ;main.c: 81:     measur_vol_or_cur = !measur_vol_or_cur;
-[e = _measur_vol_or_cur -> -> ! != -> _measur_vol_or_cur `i -> 0 `i `i `uc ]
-"82
-[; ;main.c: 82:     PIR3bits.TMR0IF = 0;
+"76
+[; ;main.c: 76:     PIR3bits.TMR0IF = 0;
 [e = . . _PIR3bits 0 7 -> -> 0 `i `uc ]
-"83
-[; ;main.c: 83:     T0CON0bits.EN = 1;
+"77
+[; ;main.c: 77:     T0CON0bits.EN = 1;
 [e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-"84
-[; ;main.c: 84: }
+"78
+[; ;main.c: 78: }
 [e :UE 2135 ]
 }
 [v $root$_UART1_TX_ISR `(v ~T0 @X0 0 e ]
-"86
-[; ;main.c: 86: void __attribute__((picinterrupt(("irq(28)")))) UART1_TX_ISR(void){
+"80
+[; ;main.c: 80: void __attribute__((picinterrupt(("irq(28)")))) UART1_TX_ISR(void){
 [v _UART1_TX_ISR `(v ~T2 @X0 1 ef ]
 {
 [e :U _UART1_TX_ISR ]
 [f ]
-"88
-[; ;main.c: 88:     U1TXB = tx_byte;
+"82
+[; ;main.c: 82:     U1TXB = tx_byte;
 [e = _U1TXB -> _tx_byte `uc ]
-"89
-[; ;main.c: 89:     PIE3bits.U1TXIE = 0;
+"83
+[; ;main.c: 83:     PIE3bits.U1TXIE = 0;
 [e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-"90
-[; ;main.c: 90: }
-[e :UE 2142 ]
+"84
+[; ;main.c: 84: }
+[e :UE 2140 ]
 }
 [v $root$_UART1_RX_ISR `(v ~T0 @X0 0 e ]
-"92
-[; ;main.c: 92: void __attribute__((picinterrupt(("irq(27)")))) UART1_RX_ISR(void){
+"86
+[; ;main.c: 86: void __attribute__((picinterrupt(("irq(27)")))) UART1_RX_ISR(void){
 [v _UART1_RX_ISR `(v ~T3 @X0 1 ef ]
 {
 [e :U _UART1_RX_ISR ]
 [f ]
-"93
-[; ;main.c: 93:     rx_buffer[rx_counter] = U1RXB;
+"87
+[; ;main.c: 87:     rx_buffer[rx_counter] = U1RXB;
 [e = *U + &U _rx_buffer * -> _rx_counter `ux -> -> # *U &U _rx_buffer `ui `ux -> _U1RXB `uc ]
-"94
-[; ;main.c: 94:     rx_counter ++;
+"88
+[; ;main.c: 88:     rx_counter ++;
 [e ++ _rx_counter -> -> 1 `i `uc ]
-"95
-[; ;main.c: 95: }
-[e :UE 2143 ]
+"89
+[; ;main.c: 89: }
+[e :UE 2141 ]
 }
 [v $root$_ADC_ISR `(v ~T0 @X0 0 e ]
-"97
-[; ;main.c: 97: void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
+"91
+[; ;main.c: 91: void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
 [v _ADC_ISR `(v ~T4 @X0 1 ef ]
 {
 [e :U _ADC_ISR ]
 [f ]
-"98
-[; ;main.c: 98:     int adc_result = ADRESL;
+"92
+[; ;main.c: 92:     int adc_result = ADRESL;
 [v _adc_result `i ~T0 @X0 1 a ]
 [e = _adc_result -> _ADRESL `i ]
-"99
-[; ;main.c: 99:     adc_result = adc_result | (ADRESH <<8);
+"93
+[; ;main.c: 93:     adc_result = adc_result | (ADRESH <<8);
 [e = _adc_result | _adc_result << -> _ADRESH `i -> 8 `i ]
-"100
-[; ;main.c: 100:     if(ADPCH == 12)
-[e $ ! == -> _ADPCH `i -> 12 `i 2145  ]
-"101
-[; ;main.c: 101:         ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122;
+"94
+[; ;main.c: 94:     ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122;
 [e = _ADC_VOLTAGE_RESULT -> * -> -> _adc_result `f `d .0.00122 `f ]
-[e $U 2146  ]
-"102
-[; ;main.c: 102:     else if(ADPCH == 13)
-[e :U 2145 ]
-[e $ ! == -> _ADPCH `i -> 13 `i 2147  ]
-"103
-[; ;main.c: 103:         ADC_CURRENT_RESULT = (float)adc_result * 0.00122;
-[e = _ADC_CURRENT_RESULT -> * -> -> _adc_result `f `d .0.00122 `f ]
-[e :U 2147 ]
-[e :U 2146 ]
-"104
-[; ;main.c: 104:     PIR1bits.ADIF = 0;
+"95
+[; ;main.c: 95:     PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
-"105
-[; ;main.c: 105: }
-[e :UE 2144 ]
+"96
+[; ;main.c: 96: }
+[e :UE 2142 ]
 }
 [v $root$_I2C_TX_ISR `(v ~T0 @X0 0 e ]
-"107
-[; ;main.c: 107: void __attribute__((picinterrupt(("irq(24)")))) I2C_TX_ISR(void){
+"98
+[; ;main.c: 98: void __attribute__((picinterrupt(("irq(24)")))) I2C_TX_ISR(void){
 [v _I2C_TX_ISR `(v ~T5 @X0 1 ef ]
 {
 [e :U _I2C_TX_ISR ]
 [f ]
-"108
-[; ;main.c: 108:     I2C1TXB = I2C_TX_BUFFER[I2C_TX_COUNTER];
+"99
+[; ;main.c: 99:     I2C1TXB = I2C_TX_BUFFER[I2C_TX_COUNTER];
 [e = _I2C1TXB *U + &U _I2C_TX_BUFFER * -> _I2C_TX_COUNTER `ux -> -> # *U &U _I2C_TX_BUFFER `ui `ux ]
-"109
-[; ;main.c: 109:     I2C_TX_COUNTER ++;
+"100
+[; ;main.c: 100:     I2C_TX_COUNTER ++;
 [e ++ _I2C_TX_COUNTER -> -> 1 `i `uc ]
-"110
-[; ;main.c: 110: }
-[e :UE 2148 ]
+"101
+[; ;main.c: 101: }
+[e :UE 2143 ]
 }
 [v $root$_I2C_RX_ISR `(v ~T0 @X0 0 e ]
-"111
-[; ;main.c: 111: void __attribute__((picinterrupt(("irq(23)")))) I2C_RX_ISR(void){
+"102
+[; ;main.c: 102: void __attribute__((picinterrupt(("irq(23)")))) I2C_RX_ISR(void){
 [v _I2C_RX_ISR `(v ~T6 @X0 1 ef ]
 {
 [e :U _I2C_RX_ISR ]
 [f ]
-"112
-[; ;main.c: 112:     I2C_RX_BUFFER[I2C_RX_COUNTER] = I2C1RXB;
+"103
+[; ;main.c: 103:     I2C_RX_BUFFER[I2C_RX_COUNTER] = I2C1RXB;
 [e = *U + &U _I2C_RX_BUFFER * -> _I2C_RX_COUNTER `ux -> -> # *U &U _I2C_RX_BUFFER `ui `ux _I2C1RXB ]
-"113
-[; ;main.c: 113:     I2C_RX_COUNTER ++;
+"104
+[; ;main.c: 104:     I2C_RX_COUNTER ++;
 [e ++ _I2C_RX_COUNTER -> -> 1 `i `uc ]
-"114
-[; ;main.c: 114: }
-[e :UE 2149 ]
+"105
+[; ;main.c: 105: }
+[e :UE 2144 ]
 }
 [v $root$_I2C_GENERAL_ISR `(v ~T0 @X0 0 e ]
-"116
-[; ;main.c: 116: void __attribute__((picinterrupt(("irq(25)")))) I2C_GENERAL_ISR(void){
+"107
+[; ;main.c: 107: void __attribute__((picinterrupt(("irq(25)")))) I2C_GENERAL_ISR(void){
 [v _I2C_GENERAL_ISR `(v ~T7 @X0 1 ef ]
 {
 [e :U _I2C_GENERAL_ISR ]
 [f ]
-"117
-[; ;main.c: 117:     if(I2C1PIRbits.PC1IF)
-[e $ ! != -> . . _I2C1PIRbits 1 2 `i -> 0 `i 2151  ]
-"118
-[; ;main.c: 118:         I2C_STOP_DETECTED = 1;
+"108
+[; ;main.c: 108:     if(I2C1PIRbits.PC1IF)
+[e $ ! != -> . . _I2C1PIRbits 1 2 `i -> 0 `i 2146  ]
+"109
+[; ;main.c: 109:         I2C_STOP_DETECTED = 1;
 [e = _I2C_STOP_DETECTED -> -> 1 `i `uc ]
-[e :U 2151 ]
-"119
-[; ;main.c: 119:     I2C1PIR = 0x00;
+[e :U 2146 ]
+"110
+[; ;main.c: 110:     I2C1PIR = 0x00;
 [e = _I2C1PIR -> -> 0 `i `uc ]
-"120
-[; ;main.c: 120: }
-[e :UE 2150 ]
+"111
+[; ;main.c: 111: }
+[e :UE 2145 ]
 }
 [v $root$_DEFAULT_ISR `(v ~T0 @X0 0 e ]
-"122
-[; ;main.c: 122: void __attribute__((picinterrupt(("irq(default)")))) DEFAULT_ISR(void){
+"113
+[; ;main.c: 113: void __attribute__((picinterrupt(("irq(default)")))) DEFAULT_ISR(void){
 [v _DEFAULT_ISR `(v ~T8 @X0 1 ef ]
 {
 [e :U _DEFAULT_ISR ]
 [f ]
-"124
-[; ;main.c: 124: }
-[e :UE 2152 ]
+"115
+[; ;main.c: 115: }
+[e :UE 2147 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"128
-[; ;main.c: 128: void main(void) {
+"119
+[; ;main.c: 119: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"129
-[; ;main.c: 129:     OSCFRQ = 0x08;
+"120
+[; ;main.c: 120:     OSCFRQ = 0x08;
 [e = _OSCFRQ -> -> 8 `i `uc ]
-"130
-[; ;main.c: 130:     OSCTUNE = 0x00;
+"121
+[; ;main.c: 121:     OSCTUNE = 0x00;
 [e = _OSCTUNE -> -> 0 `i `uc ]
-"131
-[; ;main.c: 131:     OSCEN = 0x40;
+"122
+[; ;main.c: 122:     OSCEN = 0x40;
 [e = _OSCEN -> -> 64 `i `uc ]
-"132
-[; ;main.c: 132:     while(!OSCSTATbits.HFOR && !OSCSTATbits.ADOR);
-[e $U 2154  ]
-[e :U 2155 ]
-[e :U 2154 ]
-[e $ && ! != -> . . _OSCSTATbits 0 6 `i -> 0 `i ! != -> . . _OSCSTATbits 0 2 `i -> 0 `i 2155  ]
-[e :U 2156 ]
-"138
-[; ;main.c: 138:     IVTLOCK = 0x01;
+"123
+[; ;main.c: 123:     while(!OSCSTATbits.HFOR && !OSCSTATbits.ADOR);
+[e $U 2149  ]
+[e :U 2150 ]
+[e :U 2149 ]
+[e $ && ! != -> . . _OSCSTATbits 0 6 `i -> 0 `i ! != -> . . _OSCSTATbits 0 2 `i -> 0 `i 2150  ]
+[e :U 2151 ]
+"129
+[; ;main.c: 129:     IVTLOCK = 0x01;
 [e = _IVTLOCK -> -> 1 `i `uc ]
-"141
-[; ;main.c: 141:     WDTCON1 = 0x07;
+"132
+[; ;main.c: 132:     WDTCON1 = 0x07;
 [e = _WDTCON1 -> -> 7 `i `uc ]
-"142
-[; ;main.c: 142:     WDTCON0 = 0x3F;
+"133
+[; ;main.c: 133:     WDTCON0 = 0x3F;
 [e = _WDTCON0 -> -> 63 `i `uc ]
-"145
-[; ;main.c: 145:     PPSLOCKbits.PPSLOCKED = 0;
+"136
+[; ;main.c: 136:     PPSLOCKbits.PPSLOCKED = 0;
 [e = . . _PPSLOCKbits 0 0 -> -> 0 `i `uc ]
-"148
-[; ;main.c: 148:     timer0_init();
+"139
+[; ;main.c: 139:     timer0_init();
 [e ( _timer0_init ..  ]
-"149
-[; ;main.c: 149:     USART1_Init(1);
+"140
+[; ;main.c: 140:     USART1_Init(1);
 [e ( _USART1_Init (1 -> -> 1 `i `uc ]
-"150
-[; ;main.c: 150:     ADC_Init();
+"141
+[; ;main.c: 141:     ADC_Init();
 [e ( _ADC_Init ..  ]
-"151
-[; ;main.c: 151:     I2C_Init();
+"142
+[; ;main.c: 142:     I2C_Init();
 [e ( _I2C_Init ..  ]
-"153
-[; ;main.c: 153:     INTCON0bits.GIEH = 1;
+"144
+[; ;main.c: 144:     INTCON0bits.GIEH = 1;
 [e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
-"154
-[; ;main.c: 154:     INTCON0bits.GIEL = 1;
+"145
+[; ;main.c: 145:     INTCON0bits.GIEL = 1;
 [e = . . _INTCON0bits 0 5 -> -> 1 `i `uc ]
-"155
-[; ;main.c: 155:     INTCON0bits.IPEN = 1;
+"146
+[; ;main.c: 146:     INTCON0bits.IPEN = 1;
 [e = . . _INTCON0bits 0 4 -> -> 1 `i `uc ]
-"158
-[; ;main.c: 158:     TRISAbits.TRISA0 = 0;
+"149
+[; ;main.c: 149:     TRISAbits.TRISA0 = 0;
 [e = . . _TRISAbits 0 0 -> -> 0 `i `uc ]
-"159
-[; ;main.c: 159:     ANSELAbits.ANSELA0 = 1;
+"150
+[; ;main.c: 150:     ANSELAbits.ANSELA0 = 1;
 [e = . . _ANSELAbits 0 0 -> -> 1 `i `uc ]
-"160
-[; ;main.c: 160:     led_enable = 1;
+"151
+[; ;main.c: 151:     led_enable = 1;
 [e = _led_enable -> -> 1 `i `uc ]
-"162
-[; ;main.c: 162:     TRISAbits.TRISA1 = 0;
+"153
+[; ;main.c: 153:     TRISAbits.TRISA1 = 0;
 [e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
-"163
-[; ;main.c: 163:     ANSELAbits.ANSELA1 = 1;
+"154
+[; ;main.c: 154:     ANSELAbits.ANSELA1 = 1;
 [e = . . _ANSELAbits 0 1 -> -> 1 `i `uc ]
-"164
-[; ;main.c: 164:     LATAbits.LA1 = 0;
+"155
+[; ;main.c: 155:     LATAbits.LA1 = 0;
 [e = . . _LATAbits 1 1 -> -> 0 `i `uc ]
-"166
-[; ;main.c: 166:     TRISBbits.TRISB2 = 0;
+"157
+[; ;main.c: 157:     TRISBbits.TRISB2 = 0;
 [e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
-"167
-[; ;main.c: 167:     TRISBbits.TRISB3 = 0;
+"158
+[; ;main.c: 158:     TRISBbits.TRISB3 = 0;
 [e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
-"168
-[; ;main.c: 168:     LATBbits.LB2 = 1;
+"159
+[; ;main.c: 159:     LATBbits.LB2 = 1;
 [e = . . _LATBbits 1 2 -> -> 1 `i `uc ]
-"169
-[; ;main.c: 169:     LATBbits.LB3 = 1;
+"160
+[; ;main.c: 160:     LATBbits.LB3 = 1;
 [e = . . _LATBbits 1 3 -> -> 1 `i `uc ]
-"171
-[; ;main.c: 171:     _delay((unsigned long)((2000)*(64000000/4000.0)));
+"162
+[; ;main.c: 162:     _delay((unsigned long)((2000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"173
-[; ;main.c: 173:     AD5272_COMMANDS[0] = 0x1C;
-[e = *U + &U _AD5272_COMMANDS * -> -> -> 0 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> -> 28 `i `uc ]
-"174
-[; ;main.c: 174:     AD5272_COMMANDS[1] = 0x02;
+"164
+[; ;main.c: 164:     AD5272_COMMANDS[0] = 0x00;
+[e = *U + &U _AD5272_COMMANDS * -> -> -> 0 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> -> 0 `i `uc ]
+"165
+[; ;main.c: 165:     AD5272_COMMANDS[1] = 0x02;
 [e = *U + &U _AD5272_COMMANDS * -> -> -> 1 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> -> 2 `i `uc ]
-"175
-[; ;main.c: 175:     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
+"166
+[; ;main.c: 166:     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
 [e ( _I2C_Transmit (3 , , &U _AD5272_COMMANDS -> -> 2 `i `uc _AD5272_VOLTAGE_ADDRESS ]
-"176
-[; ;main.c: 176:     while(!I2C_STOP_DETECTED);
-[e $U 2157  ]
-[e :U 2158 ]
-[e :U 2157 ]
-[e $ ! != -> _I2C_STOP_DETECTED `i -> 0 `i 2158  ]
-[e :U 2159 ]
-"177
-[; ;main.c: 177:     I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
+"167
+[; ;main.c: 167:     while(!I2C_STOP_DETECTED);
+[e $U 2152  ]
+[e :U 2153 ]
+[e :U 2152 ]
+[e $ ! != -> _I2C_STOP_DETECTED `i -> 0 `i 2153  ]
+[e :U 2154 ]
+"168
+[; ;main.c: 168:     I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
 [e ( _I2C_Transmit (3 , , &U _AD5272_COMMANDS -> -> 2 `i `uc _AD5272_CURRENT_ADDRESS ]
-"178
-[; ;main.c: 178:     while(!I2C_STOP_DETECTED);
-[e $U 2160  ]
-[e :U 2161 ]
-[e :U 2160 ]
-[e $ ! != -> _I2C_STOP_DETECTED `i -> 0 `i 2161  ]
-[e :U 2162 ]
-"179
-[; ;main.c: 179:     AD5272_COMMANDS[0] = 0x04;
+"169
+[; ;main.c: 169:     while(!I2C_STOP_DETECTED);
+[e $U 2155  ]
+[e :U 2156 ]
+[e :U 2155 ]
+[e $ ! != -> _I2C_STOP_DETECTED `i -> 0 `i 2156  ]
+[e :U 2157 ]
+"170
+[; ;main.c: 170:     AD5272_COMMANDS[0] = 0x04;
 [e = *U + &U _AD5272_COMMANDS * -> -> -> 0 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> -> 4 `i `uc ]
-"181
-[; ;main.c: 181:     unsigned char receive_command;
+"172
+[; ;main.c: 172:     unsigned char receive_command;
 [v _receive_command `uc ~T0 @X0 1 a ]
-"183
-[; ;main.c: 183:     while(1){
-[e :U 2164 ]
+"174
+[; ;main.c: 174:     while(1){
+[e :U 2159 ]
 {
-"184
-[; ;main.c: 184:         receive_command = USART1_ReceiveCommand();
+"175
+[; ;main.c: 175:         receive_command = USART1_ReceiveCommand();
 [e = _receive_command ( _USART1_ReceiveCommand ..  ]
-"185
-[; ;main.c: 185:         if(receive_command)
-[e $ ! != -> _receive_command `i -> 0 `i 2166  ]
-"186
-[; ;main.c: 186:             USART_handler();
+"176
+[; ;main.c: 176:         if(receive_command)
+[e $ ! != -> _receive_command `i -> 0 `i 2161  ]
+"177
+[; ;main.c: 177:             USART_handler();
 [e ( _USART_handler ..  ]
-[e :U 2166 ]
-"187
-[; ;main.c: 187:     }
+[e :U 2161 ]
+"178
+[; ;main.c: 178:     }
 }
-[e :U 2163 ]
-[e $U 2164  ]
-[e :U 2165 ]
-"188
-[; ;main.c: 188: }
-[e :UE 2153 ]
+[e :U 2158 ]
+[e $U 2159  ]
+[e :U 2160 ]
+"179
+[; ;main.c: 179: }
+[e :UE 2148 ]
 }
-"192
-[; ;main.c: 192: void USART_handler(void){
+"183
+[; ;main.c: 183: void USART_handler(void){
 [v _USART_handler `(v ~T0 @X0 1 ef ]
 {
 [e :U _USART_handler ]
 [f ]
-"193
-[; ;main.c: 193:     memset(tx_buffer,0,32);
+"184
+[; ;main.c: 184:     memset(tx_buffer,0,32);
 [e ( _memset (3 , , &U _tx_buffer -> -> 0 `i `uc -> 32 `i ]
-"194
-[; ;main.c: 194:     if(COMMAND_WR){
-[e $ ! != -> _COMMAND_WR `i -> 0 `i 2168  ]
+"185
+[; ;main.c: 185:     if(COMMAND_WR){
+[e $ ! != -> _COMMAND_WR `i -> 0 `i 2163  ]
 {
-"195
-[; ;main.c: 195:         switch(COMMAND){
-[e $U 2170  ]
+"186
+[; ;main.c: 186:         switch(COMMAND){
+[e $U 2165  ]
 {
-"196
-[; ;main.c: 196:             case 0:
-[e :U 2171 ]
-"197
-[; ;main.c: 197:                 sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
+"187
+[; ;main.c: 187:             case 0:
+[e :U 2166 ]
+"188
+[; ;main.c: 188:                 sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
 [e ( _sprintf (1 , (. , &U _tx_buffer :s 1C -> _ADC_VOLTAGE_RESULT `d ]
-"198
-[; ;main.c: 198:                 break;
+"189
+[; ;main.c: 189:                 break;
+[e $U 2164  ]
+"190
+[; ;main.c: 190:             case 1:
+[e :U 2167 ]
+"191
+[; ;main.c: 191:                 sprintf(tx_buffer,"Current:%f A",ADC_VOLTAGE_RESULT);
+[e ( _sprintf (1 , (. , &U _tx_buffer :s 2C -> _ADC_VOLTAGE_RESULT `d ]
+"192
+[; ;main.c: 192:                 break;
+[e $U 2164  ]
+"193
+[; ;main.c: 193:             default:
+[e :U 2168 ]
+"194
+[; ;main.c: 194:                 sprintf(tx_buffer,"Command not recognized!");
+[e ( _sprintf (1 , &U _tx_buffer :s 3C ]
+"195
+[; ;main.c: 195:                 break;
+[e $U 2164  ]
+"196
+[; ;main.c: 196:         }
+}
+[e $U 2164  ]
+[e :U 2165 ]
+[e [\ -> _COMMAND `i , $ -> 0 `i 2166
+ , $ -> 1 `i 2167
+ 2168 ]
+[e :U 2164 ]
+"197
+[; ;main.c: 197:     }else{
+}
 [e $U 2169  ]
+[e :U 2163 ]
+{
+"198
+[; ;main.c: 198:         switch(COMMAND){
+[e $U 2171  ]
+{
 "199
-[; ;main.c: 199:             case 1:
+[; ;main.c: 199:             case 0:
 [e :U 2172 ]
 "200
-[; ;main.c: 200:                 sprintf(tx_buffer,"Current:%f A",ADC_CURRENT_RESULT);
-[e ( _sprintf (1 , (. , &U _tx_buffer :s 2C -> _ADC_CURRENT_RESULT `d ]
-"201
-[; ;main.c: 201:                 break;
-[e $U 2169  ]
-"202
-[; ;main.c: 202:             default:
-[e :U 2173 ]
-"203
-[; ;main.c: 203:                 sprintf(tx_buffer,"Command not recognized!");
-[e ( _sprintf (1 , &U _tx_buffer :s 3C ]
-"204
-[; ;main.c: 204:                 break;
-[e $U 2169  ]
-"205
-[; ;main.c: 205:         }
-}
-[e $U 2169  ]
-[e :U 2170 ]
-[e [\ -> _COMMAND `i , $ -> 0 `i 2171
- , $ -> 1 `i 2172
- 2173 ]
-[e :U 2169 ]
-"206
-[; ;main.c: 206:     }else{
-}
-[e $U 2174  ]
-[e :U 2168 ]
-{
-"207
-[; ;main.c: 207:         switch(COMMAND){
-[e $U 2176  ]
-{
-"208
-[; ;main.c: 208:             case 0:
-[e :U 2177 ]
-"209
-[; ;main.c: 209:                 led_enable = !led_enable;
+[; ;main.c: 200:                 led_enable = !led_enable;
 [e = _led_enable -> -> ! != -> _led_enable `i -> 0 `i `i `uc ]
-"210
-[; ;main.c: 210:                 if(led_enable)
-[e $ ! != -> _led_enable `i -> 0 `i 2178  ]
-"211
-[; ;main.c: 211:                     sprintf(tx_buffer,"Blinking LED is ON!");
+"201
+[; ;main.c: 201:                 if(led_enable)
+[e $ ! != -> _led_enable `i -> 0 `i 2173  ]
+"202
+[; ;main.c: 202:                     sprintf(tx_buffer,"Blinking LED is ON!");
 [e ( _sprintf (1 , &U _tx_buffer :s 4C ]
-[e $U 2179  ]
-"212
-[; ;main.c: 212:                 else
-[e :U 2178 ]
-"213
-[; ;main.c: 213:                     sprintf(tx_buffer,"Blinking LED is OFF!");
+[e $U 2174  ]
+"203
+[; ;main.c: 203:                 else
+[e :U 2173 ]
+"204
+[; ;main.c: 204:                     sprintf(tx_buffer,"Blinking LED is OFF!");
 [e ( _sprintf (1 , &U _tx_buffer :s 5C ]
-[e :U 2179 ]
-"214
-[; ;main.c: 214:                 break;
-[e $U 2175  ]
-"215
-[; ;main.c: 215:             case 1:
-[e :U 2180 ]
-"216
-[; ;main.c: 216:                 I2C_handler(0,COMMAND_WRITE_NUMBER);
-[e ( _I2C_handler (2 , -> -> 0 `i `uc _COMMAND_WRITE_NUMBER ]
-"217
-[; ;main.c: 217:                 sprintf(tx_buffer,"Voltage set!");
-[e ( _sprintf (1 , &U _tx_buffer :s 6C ]
-"218
-[; ;main.c: 218:                 break;
-[e $U 2175  ]
-"219
-[; ;main.c: 219:             case 2:
-[e :U 2181 ]
-"220
-[; ;main.c: 220:                 I2C_handler(1,COMMAND_WRITE_NUMBER);
-[e ( _I2C_handler (2 , -> -> 1 `i `uc _COMMAND_WRITE_NUMBER ]
-"221
-[; ;main.c: 221:                 sprintf(tx_buffer,"Current Limit set!");
-[e ( _sprintf (1 , &U _tx_buffer :s 7C ]
-"222
-[; ;main.c: 222:                 break;
-[e $U 2175  ]
-"223
-[; ;main.c: 223:             default:
-[e :U 2182 ]
-"224
-[; ;main.c: 224:                 sprintf(tx_buffer,"Command not recognized!");
-[e ( _sprintf (1 , &U _tx_buffer :s 8C ]
-"225
-[; ;main.c: 225:                 break;
-[e $U 2175  ]
-"226
-[; ;main.c: 226:         }
-}
-[e $U 2175  ]
-[e :U 2176 ]
-[e [\ -> _COMMAND `i , $ -> 0 `i 2177
- , $ -> 1 `i 2180
- , $ -> 2 `i 2181
- 2182 ]
-[e :U 2175 ]
-"227
-[; ;main.c: 227:     }
-}
 [e :U 2174 ]
-"228
-[; ;main.c: 228:     USART1_SendString(tx_buffer,GetStringSize());
-[e ( _USART1_SendString (2 , &U _tx_buffer ( _GetStringSize ..  ]
-"229
-[; ;main.c: 229: }
-[e :UE 2167 ]
+"205
+[; ;main.c: 205:                 break;
+[e $U 2170  ]
+"206
+[; ;main.c: 206:             case 1:
+[e :U 2175 ]
+"207
+[; ;main.c: 207:                 I2C_handler(0,COMMAND_WRITE_NUMBER);
+[e ( _I2C_handler (2 , -> -> 0 `i `uc _COMMAND_WRITE_NUMBER ]
+"208
+[; ;main.c: 208:                 sprintf(tx_buffer,"Voltage set!");
+[e ( _sprintf (1 , &U _tx_buffer :s 6C ]
+"209
+[; ;main.c: 209:                 break;
+[e $U 2170  ]
+"210
+[; ;main.c: 210:             case 2:
+[e :U 2176 ]
+"211
+[; ;main.c: 211:                 I2C_handler(1,COMMAND_WRITE_NUMBER);
+[e ( _I2C_handler (2 , -> -> 1 `i `uc _COMMAND_WRITE_NUMBER ]
+"212
+[; ;main.c: 212:                 sprintf(tx_buffer,"Current Limit set!");
+[e ( _sprintf (1 , &U _tx_buffer :s 7C ]
+"213
+[; ;main.c: 213:                 break;
+[e $U 2170  ]
+"214
+[; ;main.c: 214:             default:
+[e :U 2177 ]
+"215
+[; ;main.c: 215:                 sprintf(tx_buffer,"Command not recognized!");
+[e ( _sprintf (1 , &U _tx_buffer :s 8C ]
+"216
+[; ;main.c: 216:                 break;
+[e $U 2170  ]
+"217
+[; ;main.c: 217:         }
 }
-"233
-[; ;main.c: 233: void timer0_init(void){
+[e $U 2170  ]
+[e :U 2171 ]
+[e [\ -> _COMMAND `i , $ -> 0 `i 2172
+ , $ -> 1 `i 2175
+ , $ -> 2 `i 2176
+ 2177 ]
+[e :U 2170 ]
+"218
+[; ;main.c: 218:     }
+}
+[e :U 2169 ]
+"219
+[; ;main.c: 219:     USART1_SendString(tx_buffer,GetStringSize());
+[e ( _USART1_SendString (2 , &U _tx_buffer ( _GetStringSize ..  ]
+"220
+[; ;main.c: 220: }
+[e :UE 2162 ]
+}
+"224
+[; ;main.c: 224: void timer0_init(void){
 [v _timer0_init `(v ~T0 @X0 1 ef ]
 {
 [e :U _timer0_init ]
 [f ]
-"234
-[; ;main.c: 234:     T0CON0 = 0x10;
+"225
+[; ;main.c: 225:     T0CON0 = 0x10;
 [e = _T0CON0 -> -> 16 `i `uc ]
-"235
-[; ;main.c: 235:     T0CON1 = 0x75;
+"226
+[; ;main.c: 226:     T0CON1 = 0x75;
 [e = _T0CON1 -> -> 117 `i `uc ]
-"236
-[; ;main.c: 236:     TMR0L = 0xB0;
+"227
+[; ;main.c: 227:     TMR0L = 0xB0;
 [e = _TMR0L -> -> 176 `i `uc ]
-"237
-[; ;main.c: 237:     TMR0H = 0x3C;
+"228
+[; ;main.c: 228:     TMR0H = 0x3C;
 [e = _TMR0H -> -> 60 `i `uc ]
-"238
-[; ;main.c: 238:     counter_timer0 = 0;
+"229
+[; ;main.c: 229:     counter_timer0 = 0;
 [e = _counter_timer0 -> -> 0 `i `uc ]
-"239
-[; ;main.c: 239:     IPR3bits.TMR0IP = 0;
+"230
+[; ;main.c: 230:     IPR3bits.TMR0IP = 0;
 [e = . . _IPR3bits 0 7 -> -> 0 `i `uc ]
-"240
-[; ;main.c: 240:     PIR3bits.TMR0IF = 0;
+"231
+[; ;main.c: 231:     PIR3bits.TMR0IF = 0;
 [e = . . _PIR3bits 0 7 -> -> 0 `i `uc ]
-"241
-[; ;main.c: 241:     PIE3bits.TMR0IE = 1;
+"232
+[; ;main.c: 232:     PIE3bits.TMR0IE = 1;
 [e = . . _PIE3bits 0 7 -> -> 1 `i `uc ]
-"242
-[; ;main.c: 242:     T0CON0bits.EN = 1;
+"233
+[; ;main.c: 233:     T0CON0bits.EN = 1;
 [e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-"243
-[; ;main.c: 243: }
-[e :UE 2183 ]
+"234
+[; ;main.c: 234: }
+[e :UE 2178 ]
 }
-"246
-[; ;main.c: 246: void ADC_Init(void){
+"237
+[; ;main.c: 237: void ADC_Init(void){
 [v _ADC_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _ADC_Init ]
 [f ]
-"248
-[; ;main.c: 248:     TRISBbits.TRISB4 = 1;
+"239
+[; ;main.c: 239:     TRISBbits.TRISB4 = 1;
 [e = . . _TRISBbits 0 4 -> -> 1 `i `uc ]
-"249
-[; ;main.c: 249:     ANSELBbits.ANSELB4 = 1;
+"240
+[; ;main.c: 240:     ANSELBbits.ANSELB4 = 1;
 [e = . . _ANSELBbits 0 4 -> -> 1 `i `uc ]
-"250
-[; ;main.c: 250:     ADCON0 = 0x94;
+"241
+[; ;main.c: 241:     ADCON0 = 0x94;
 [e = _ADCON0 -> -> 148 `i `uc ]
-"251
-[; ;main.c: 251:     ADCON1 = 0x00;
+"242
+[; ;main.c: 242:     ADCON1 = 0x00;
 [e = _ADCON1 -> -> 0 `i `uc ]
-"252
-[; ;main.c: 252:     ADCON2 = 0x00;
+"243
+[; ;main.c: 243:     ADCON2 = 0x00;
 [e = _ADCON2 -> -> 0 `i `uc ]
-"253
-[; ;main.c: 253:     ADREF = 0x00;
+"244
+[; ;main.c: 244:     ADREF = 0x00;
 [e = _ADREF -> -> 0 `i `uc ]
-"254
-[; ;main.c: 254:     IPR1bits.ADIP = 0;
+"245
+[; ;main.c: 245:     IPR1bits.ADIP = 0;
 [e = . . _IPR1bits 0 2 -> -> 0 `i `uc ]
-"255
-[; ;main.c: 255:     PIE1bits.ADIE = 1;
+"246
+[; ;main.c: 246:     PIE1bits.ADIE = 1;
 [e = . . _PIE1bits 0 2 -> -> 1 `i `uc ]
-"256
-[; ;main.c: 256:     PIR1bits.ADIF = 0;
+"247
+[; ;main.c: 247:     PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
-"257
-[; ;main.c: 257: }
-[e :UE 2184 ]
+"248
+[; ;main.c: 248: }
+[e :UE 2179 ]
 }
-"260
-[; ;main.c: 260: void ADC_Start(unsigned char pin){
+"251
+[; ;main.c: 251: void ADC_Start(unsigned char pin){
 [v _ADC_Start `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _ADC_Start ]
 [v _pin `uc ~T0 @X0 1 r1 ]
 [f ]
-"261
-[; ;main.c: 261:     if(!ADCON0bits.GO){
-[e $ ! ! != -> . . _ADCON0bits 0 0 `i -> 0 `i 2186  ]
+"252
+[; ;main.c: 252:     if(!ADCON0bits.GO){
+[e $ ! ! != -> . . _ADCON0bits 0 0 `i -> 0 `i 2181  ]
 {
-"262
-[; ;main.c: 262:         ADPCH = pin;
+"253
+[; ;main.c: 253:         ADPCH = pin;
 [e = _ADPCH _pin ]
-"263
-[; ;main.c: 263:         ADCON0bits.GO = 1;
+"254
+[; ;main.c: 254:         ADCON0bits.GO = 1;
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"264
-[; ;main.c: 264:     }
+"255
+[; ;main.c: 255:     }
 }
-[e :U 2186 ]
-"265
-[; ;main.c: 265: }
-[e :UE 2185 ]
+[e :U 2181 ]
+"256
+[; ;main.c: 256: }
+[e :UE 2180 ]
 }
-"270
-[; ;main.c: 270: int GetStringSize(void){
+"261
+[; ;main.c: 261: int GetStringSize(void){
 [v _GetStringSize `(i ~T0 @X0 1 ef ]
 {
 [e :U _GetStringSize ]
 [f ]
-"271
-[; ;main.c: 271:     int i;
+"262
+[; ;main.c: 262:     int i;
 [v _i `i ~T0 @X0 1 a ]
-"272
-[; ;main.c: 272:     for(i=0;i<32;i++){
+"263
+[; ;main.c: 263:     for(i=0;i<32;i++){
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 32 `i 2188  ]
-[e $U 2189  ]
-[e :U 2188 ]
+[e $ < _i -> 32 `i 2183  ]
+[e $U 2184  ]
+[e :U 2183 ]
 {
-"273
-[; ;main.c: 273:         if(tx_buffer[i] == 0){
-[e $ ! == -> *U + &U _tx_buffer * -> -> _i `ui `ux -> -> # *U &U _tx_buffer `ui `ux `i -> 0 `i 2191  ]
+"264
+[; ;main.c: 264:         if(tx_buffer[i] == 0){
+[e $ ! == -> *U + &U _tx_buffer * -> -> _i `ui `ux -> -> # *U &U _tx_buffer `ui `ux `i -> 0 `i 2186  ]
 {
-"274
-[; ;main.c: 274:             break;
-[e $U 2189  ]
-"275
-[; ;main.c: 275:         }
+"265
+[; ;main.c: 265:             break;
+[e $U 2184  ]
+"266
+[; ;main.c: 266:         }
 }
-[e :U 2191 ]
-"276
-[; ;main.c: 276:     }
+[e :U 2186 ]
+"267
+[; ;main.c: 267:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 32 `i 2188  ]
-[e :U 2189 ]
+[e $ < _i -> 32 `i 2183  ]
+[e :U 2184 ]
 }
-"277
-[; ;main.c: 277:     return i;
+"268
+[; ;main.c: 268:     return i;
 [e ) _i ]
-[e $UE 2187  ]
-"278
-[; ;main.c: 278: }
-[e :UE 2187 ]
+[e $UE 2182  ]
+"269
+[; ;main.c: 269: }
+[e :UE 2182 ]
 }
-"280
-[; ;main.c: 280: void memset(char *st,char x,int size){
+"271
+[; ;main.c: 271: void memset(char *st,char x,int size){
 [v _memset `(v ~T0 @X0 1 ef3`*uc`uc`i ]
 {
 [e :U _memset ]
@@ -3303,28 +3267,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _x `uc ~T0 @X0 1 r2 ]
 [v _size `i ~T0 @X0 1 r3 ]
 [f ]
-"281
-[; ;main.c: 281:     for(int i=0;i<size;i++){
+"272
+[; ;main.c: 272:     for(int i=0;i<size;i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 2196  ]
-[e :U 2193 ]
+[e $U 2191  ]
+[e :U 2188 ]
 {
-"282
-[; ;main.c: 282:         st[i] = x;
+"273
+[; ;main.c: 273:         st[i] = x;
 [e = *U + _st * -> _i `x -> -> # *U _st `i `x _x ]
-"283
-[; ;main.c: 283:     }
+"274
+[; ;main.c: 274:     }
 }
 [e ++ _i -> 1 `i ]
-[e :U 2196 ]
-[e $ < _i _size 2193  ]
-[e :U 2194 ]
+[e :U 2191 ]
+[e $ < _i _size 2188  ]
+[e :U 2189 ]
 }
-"284
-[; ;main.c: 284: }
-[e :UE 2192 ]
+"275
+[; ;main.c: 275: }
+[e :UE 2187 ]
 }
 [p f _sprintf 8396800 ]
 [a 1C 86 111 108 116 97 103 101 58 37 102 32 86 0 ]

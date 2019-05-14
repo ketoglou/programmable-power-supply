@@ -25795,9 +25795,7 @@ void memset(char *st,char x,int size);
 
 unsigned char counter_timer0;
 unsigned char led_enable;
-unsigned char measur_vol_or_cur = 1;
 float ADC_VOLTAGE_RESULT;
-float ADC_CURRENT_RESULT;
 
 
 
@@ -25813,11 +25811,7 @@ void __attribute__((picinterrupt(("irq(31)")))) TIMER0_ISR(void){
     }
     TMR0L = 0xB0;
     TMR0H = 0x3C;
-    if(measur_vol_or_cur)
-        ADC_Start(12);
-    else
-        ADC_Start(13);
-    measur_vol_or_cur = !measur_vol_or_cur;
+    ADC_Start(12);
     PIR3bits.TMR0IF = 0;
     T0CON0bits.EN = 1;
 }
@@ -25836,10 +25830,7 @@ void __attribute__((picinterrupt(("irq(27)")))) UART1_RX_ISR(void){
 void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
-    if(ADPCH == 12)
-        ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122;
-    else if(ADPCH == 13)
-        ADC_CURRENT_RESULT = (float)adc_result * 0.00122;
+    ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122;
     PIR1bits.ADIF = 0;
 }
 
@@ -25909,7 +25900,7 @@ void main(void) {
 
     _delay((unsigned long)((2000)*(64000000/4000.0)));
 
-    AD5272_COMMANDS[0] = 0x1C;
+    AD5272_COMMANDS[0] = 0x00;
     AD5272_COMMANDS[1] = 0x02;
     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
     while(!I2C_STOP_DETECTED);
@@ -25936,7 +25927,7 @@ void USART_handler(void){
                 sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
                 break;
             case 1:
-                sprintf(tx_buffer,"Current:%f A",ADC_CURRENT_RESULT);
+                sprintf(tx_buffer,"Current:%f A",ADC_VOLTAGE_RESULT);
                 break;
             default:
                 sprintf(tx_buffer,"Command not recognized!");

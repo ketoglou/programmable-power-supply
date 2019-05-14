@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "USART1.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,30 @@
 # 1 "<built-in>" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-# 28 "main.c"
+# 1 "USART1.c" 2
+
+# 1 "./USART1.h" 1
+
+
+
+
+
+
+
+char rx_counter;
+char rx_buffer[32];
+char tx_buffer[32];
+char tx_byte;
+unsigned char COMMAND_WR;
+unsigned char COMMAND;
+int COMMAND_WRITE_NUMBER;
+
+
+void USART1_Init(unsigned char baud_rate);
+unsigned char USART1_SendByte(unsigned char byte);
+unsigned char USART1_SendString(char *str,int size);
+unsigned char USART1_ReceiveCommand(void);
+# 3 "USART1.c" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -25529,495 +25551,124 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
-# 29 "main.c" 2
-# 1 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 1 3
-# 24 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 3
-# 1 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 1 3
-# 10 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 3
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 145 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 3
-typedef long ssize_t;
-# 254 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 3
-typedef long long off_t;
-# 407 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 25 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 2 3
-# 52 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-
-#pragma printf_check(printf) const
-#pragma printf_check(vprintf) const
-#pragma printf_check(sprintf) const
-#pragma printf_check(snprintf) const
-#pragma printf_check(vsprintf) const
-#pragma printf_check(vsnprintf) const
-
-
-int printf(const char *restrict, ...);
-int fprintf(FILE *restrict, const char *restrict, ...);
-int sprintf(char *restrict, const char *restrict, ...);
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-int scanf(const char *restrict, ...);
-int fscanf(FILE *restrict, const char *restrict, ...);
-int sscanf(const char *restrict, const char *restrict, ...);
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 30 "main.c" 2
-# 1 "./config.h" 1
-
-
-
-
-
-
-#pragma config FEXTOSC = OFF
-#pragma config RSTOSC = HFINTOSC_64MHZ
-
-
-#pragma config CLKOUTEN = OFF
-#pragma config PR1WAY = ON
-#pragma config CSWEN = OFF
-#pragma config FCMEN = OFF
-
-
-#pragma config MCLRE = EXTMCLR
-#pragma config PWRTS = PWRT_64
-#pragma config MVECEN = ON
-#pragma config IVT1WAY = ON
-#pragma config LPBOREN = OFF
-#pragma config BOREN = NOSLP
-
-
-#pragma config BORV = VBOR_2P85
-#pragma config ZCD = OFF
-#pragma config PPS1WAY = ON
-#pragma config STVREN = ON
-#pragma config DEBUG = OFF
-#pragma config XINST = OFF
-
-
-#pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = OFF
-
-
-#pragma config WDTCWS = WDTCWS_7
-#pragma config WDTCCS = SC
-
-
-#pragma config BBSIZE = BBSIZE_512
-#pragma config BBEN = OFF
-#pragma config SAFEN = OFF
-#pragma config WRTAPP = OFF
-
-
-#pragma config WRTB = OFF
-#pragma config WRTC = OFF
-#pragma config WRTD = OFF
-#pragma config WRTSAF = OFF
-#pragma config LVP = OFF
-
-
-#pragma config CP = OFF
-# 31 "main.c" 2
-# 1 "./USART1.h" 1
-
-
-
-
-
-
-
-char rx_counter;
-char rx_buffer[32];
-char tx_buffer[32];
-char tx_byte;
-unsigned char COMMAND_WR;
-unsigned char COMMAND;
-int COMMAND_WRITE_NUMBER;
-
-
-void USART1_Init(unsigned char baud_rate);
-unsigned char USART1_SendByte(unsigned char byte);
-unsigned char USART1_SendString(char *str,int size);
-unsigned char USART1_ReceiveCommand(void);
-# 32 "main.c" 2
-# 1 "./I2C.h" 1
-# 13 "./I2C.h"
-unsigned char I2C_TX_COUNTER;
-unsigned char I2C_RX_COUNTER;
-unsigned char I2C_TX_BUFFER[10];
-unsigned char I2C_RX_BUFFER[10];
-unsigned char I2C_STOP_DETECTED;
-
-
-unsigned char AD5272_VOLTAGE_ADDRESS = 0x5E;
-unsigned char AD5272_CURRENT_ADDRESS = 0x58;
-unsigned char AD5272_COMMANDS[2] = {0x00,0x00};
-
-
-void I2C_Init(void);
-
-
-
-
-
-unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsigned char address);
-
-
-unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address);
-
-
-
-
-unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_size);
-
-
-void I2C_handler(unsigned char ad5272_select,int value);
-# 33 "main.c" 2
-
-
-
-
-typedef enum _BOOL { FALSE = 0, TRUE = 1 } boolean;
-# 48 "main.c"
-void timer0_init(void);
-void USART_handler(void);
-void ADC_Init(void);
-void ADC_Start(unsigned char pin);
-void ADC_GetResult(void);
-int GetStringSize(void);
-void memset(char *st,char x,int size);
-
-
-unsigned char counter_timer0;
-unsigned char led_enable;
-unsigned char measur_vol_or_cur = 1;
-float ADC_VOLTAGE_RESULT;
-float ADC_CURRENT_RESULT;
-
-
-
-void __attribute__((picinterrupt(("irq(31)")))) TIMER0_ISR(void){
-    T0CON0bits.EN = 0;
-    counter_timer0 ++;
-    if(counter_timer0 == 2){
-        LATAbits.LA0 = 0;
-    }else if(counter_timer0 == 40){
-        if(led_enable)
-            LATAbits.LA0 = 1;
-        counter_timer0 = 0;
+# 4 "USART1.c" 2
+
+void USART1_Init(unsigned char baud_rate){
+
+    TRISCbits.TRISC6 = 1;
+    TRISCbits.TRISC7 = 0;
+    ANSELCbits.ANSELC6 = 0;
+    ANSELCbits.ANSELC7 = 0;
+    U1RXPPS = 0x16;
+    RC7PPS = 0x13;
+
+
+    switch(baud_rate){
+        case 1:
+            U1BRGH = 0x03;
+            U1BRGL = 0x40;
+            break;
+        case 2:
+            U1BRGH = 0x01;
+            U1BRGL = 0x14;
+            break;
+        case 3:
+            U1BRGH = 0x00;
+            U1BRGL = 0x89;
+            break;
+        default:
+            U1BRGH = 0x00;
+            U1BRGL = 0x89;
+            break;
     }
-    TMR0L = 0xB0;
-    TMR0H = 0x3C;
-    if(measur_vol_or_cur)
-        ADC_Start(12);
-    else
-        ADC_Start(13);
-    measur_vol_or_cur = !measur_vol_or_cur;
-    PIR3bits.TMR0IF = 0;
-    T0CON0bits.EN = 1;
+
+    rx_counter = 0;
+
+    U1CON0 = 0xB0;
+    U1CON1 = 0x00;
+    U2CON2 = 0x80;
+    U1ERRIE = 0x00;
+    U1UIR = 0x00;
+    PIE3bits.U1RXIE = 1;
+    PIE3bits.U1TXIE =1;
+    IPR3bits.U1RXIP = 1;
+    IPR3bits.U1TXIP = 1;
+    PIR3 = 0x00;
+    U1CON1bits.ON = 1;
 }
 
-void __attribute__((picinterrupt(("irq(28)")))) UART1_TX_ISR(void){
-
-    U1TXB = tx_byte;
-    PIE3bits.U1TXIE = 0;
-}
-
-void __attribute__((picinterrupt(("irq(27)")))) UART1_RX_ISR(void){
-    rx_buffer[rx_counter] = U1RXB;
-    rx_counter ++;
-}
-
-void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
-    int adc_result = ADRESL;
-    adc_result = adc_result | (ADRESH <<8);
-    if(ADPCH == 12)
-        ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122;
-    else if(ADPCH == 13)
-        ADC_CURRENT_RESULT = (float)adc_result * 0.00122;
-    PIR1bits.ADIF = 0;
-}
-
-void __attribute__((picinterrupt(("irq(24)")))) I2C_TX_ISR(void){
-    I2C1TXB = I2C_TX_BUFFER[I2C_TX_COUNTER];
-    I2C_TX_COUNTER ++;
-}
-void __attribute__((picinterrupt(("irq(23)")))) I2C_RX_ISR(void){
-    I2C_RX_BUFFER[I2C_RX_COUNTER] = I2C1RXB;
-    I2C_RX_COUNTER ++;
-}
-
-void __attribute__((picinterrupt(("irq(25)")))) I2C_GENERAL_ISR(void){
-    if(I2C1PIRbits.PC1IF)
-        I2C_STOP_DETECTED = 1;
-    I2C1PIR = 0x00;
-}
-
-void __attribute__((picinterrupt(("irq(default)")))) DEFAULT_ISR(void){
-
-}
-
-
-
-void main(void) {
-    OSCFRQ = 0x08;
-    OSCTUNE = 0x00;
-    OSCEN = 0x40;
-    while(!OSCSTATbits.HFOR && !OSCSTATbits.ADOR);
-
-
-
-
-
-    IVTLOCK = 0x01;
-
-
-    WDTCON1 = 0x07;
-    WDTCON0 = 0x3F;
-
-
-    PPSLOCKbits.PPSLOCKED = 0;
-
-
-    timer0_init();
-    USART1_Init(1);
-    ADC_Init();
-    I2C_Init();
-
-    INTCON0bits.GIEH = 1;
-    INTCON0bits.GIEL = 1;
-    INTCON0bits.IPEN = 1;
-
-
-    TRISAbits.TRISA0 = 0;
-    ANSELAbits.ANSELA0 = 1;
-    led_enable = 1;
-
-    TRISAbits.TRISA1 = 0;
-    ANSELAbits.ANSELA1 = 1;
-    LATAbits.LA1 = 0;
-
-    TRISBbits.TRISB2 = 0;
-    TRISBbits.TRISB3 = 0;
-    LATBbits.LB2 = 1;
-    LATBbits.LB3 = 1;
-
-    _delay((unsigned long)((2000)*(64000000/4000.0)));
-
-    AD5272_COMMANDS[0] = 0x1C;
-    AD5272_COMMANDS[1] = 0x02;
-    I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
-    while(!I2C_STOP_DETECTED);
-    I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
-    while(!I2C_STOP_DETECTED);
-    AD5272_COMMANDS[0] = 0x04;
-
-    unsigned char receive_command;
-
-    while(1){
-        receive_command = USART1_ReceiveCommand();
-        if(receive_command)
-            USART_handler();
+unsigned char USART1_SendByte(unsigned char byte){
+    if(!PIE3bits.U1TXIE){
+        tx_byte = byte;
+        PIE3bits.U1TXIE = 1;
+        return 1;
     }
+    return 0;
 }
 
-
-
-void USART_handler(void){
-    memset(tx_buffer,0,32);
-    if(COMMAND_WR){
-        switch(COMMAND){
-            case 0:
-                sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
-                break;
-            case 1:
-                sprintf(tx_buffer,"Current:%f A",ADC_CURRENT_RESULT);
-                break;
-            default:
-                sprintf(tx_buffer,"Command not recognized!");
-                break;
+unsigned char USART1_SendString(char *str,int size){
+    unsigned int attempts = 65000,i;
+    for(i=0;i<size;i++){
+        if(!USART1_SendByte(*(str + i))){
+            attempts --;
+            i --;
+        }
+        if(!attempts)
+            return 0;
+        attempts = 65000;
+    }
+    attempts =65000;
+    while(!USART1_SendByte('\r') && (attempts --));
+    while(!USART1_SendByte('\n') && (attempts --));
+    return 1;
+}
+# 84 "USART1.c"
+unsigned char USART1_ReceiveCommand(void){;
+    if(rx_counter == 0)
+        return 0;
+    if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R'){
+        rx_counter = 0;
+        return 0;
+    }
+    if(rx_buffer[0] == 'R') {
+        if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 3 && rx_buffer[2] != '\r'){
+            rx_counter = 0;
+        }else if(rx_counter == 4){
+            if(rx_buffer[0] != 'R' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || rx_buffer[2] != '\r' || rx_buffer[3] != '\n'){
+                rx_counter = 0;
+                return 0;
+            }
+            COMMAND_WR = 1;
+            COMMAND = rx_buffer[1]-48;
+            rx_counter = 0;
+            return 1;
         }
     }else{
-        switch(COMMAND){
-            case 0:
-                led_enable = !led_enable;
-                if(led_enable)
-                    sprintf(tx_buffer,"Blinking LED is ON!");
-                else
-                    sprintf(tx_buffer,"Blinking LED is OFF!");
-                break;
-            case 1:
-                I2C_handler(0,COMMAND_WRITE_NUMBER);
-                sprintf(tx_buffer,"Voltage set!");
-                break;
-            case 2:
-                I2C_handler(1,COMMAND_WRITE_NUMBER);
-                sprintf(tx_buffer,"Current Limit set!");
-                break;
-            default:
-                sprintf(tx_buffer,"Command not recognized!");
-                break;
+        if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 4 && ((rx_buffer[3] < 48) || (rx_buffer[3] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 5 && ((rx_buffer[4] < 48) || (rx_buffer[4] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 6 && ((rx_buffer[5] < 48) || (rx_buffer[5] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 7 && rx_buffer[6] != '\r'){
+            rx_counter = 0;
+        }else if(rx_counter == 8){
+            if(rx_buffer[0] != 'W' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || (rx_buffer[2] < 48) || (rx_buffer[2] > 57) || (rx_buffer[3] < 48) || (rx_buffer[3] > 57) || (rx_buffer[4] < 48) || (rx_buffer[4] > 57) || (rx_buffer[5] < 48) || (rx_buffer[5] > 57) || rx_buffer[6] != '\r' || rx_buffer[7] != '\n'){
+                rx_counter = 0;
+                return 0;
+            }
+            COMMAND_WR = 0;
+            COMMAND = rx_buffer[1]-48;
+            COMMAND_WRITE_NUMBER = ((rx_buffer[2]-48) * 1000) + ((rx_buffer[3]-48) * 100) + ((rx_buffer[4]-48) * 10) + (rx_buffer[5]-48);
+            rx_counter = 0;
+            return 1;
         }
     }
-    USART1_SendString(tx_buffer,GetStringSize());
-}
-
-
-
-void timer0_init(void){
-    T0CON0 = 0x10;
-    T0CON1 = 0x75;
-    TMR0L = 0xB0;
-    TMR0H = 0x3C;
-    counter_timer0 = 0;
-    IPR3bits.TMR0IP = 0;
-    PIR3bits.TMR0IF = 0;
-    PIE3bits.TMR0IE = 1;
-    T0CON0bits.EN = 1;
-}
-
-
-void ADC_Init(void){
-
-    TRISBbits.TRISB4 = 1;
-    ANSELBbits.ANSELB4 = 1;
-    ADCON0 = 0x94;
-    ADCON1 = 0x00;
-    ADCON2 = 0x00;
-    ADREF = 0x00;
-    IPR1bits.ADIP = 0;
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 0;
-}
-
-
-void ADC_Start(unsigned char pin){
-    if(!ADCON0bits.GO){
-        ADPCH = pin;
-        ADCON0bits.GO = 1;
-    }
-}
-
-
-
-
-int GetStringSize(void){
-    int i;
-    for(i=0;i<32;i++){
-        if(tx_buffer[i] == 0){
-            break;
-        }
-    }
-    return i;
-}
-
-void memset(char *st,char x,int size){
-    for(int i=0;i<size;i++){
-        st[i] = x;
-    }
+    return 0;
 }

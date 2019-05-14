@@ -56,7 +56,9 @@ void memset(char *st,char x,int size);
 //Define variables
 byte counter_timer0;
 byte led_enable;
+byte measur_vol_or_cur = 1;
 float ADC_VOLTAGE_RESULT;
+float ADC_CURRENT_RESULT;
 
 //---------------------------Interrupt Routines---------------------------------
 
@@ -72,7 +74,11 @@ void __interrupt(irq(IRQ_TMR0)) TIMER0_ISR(void){
     }
     TMR0L = 0xB0;
     TMR0H = 0x3C;
-    ADC_Start(VOLTAGE_PIN);
+    if(measur_vol_or_cur)
+        ADC_Start(VOLTAGE_PIN);
+    else
+        ADC_Start(CURRENT_PIN);
+    measur_vol_or_cur = !measur_vol_or_cur;
     PIR3bits.TMR0IF = 0; //Clear interrupt flag
     T0CON0bits.EN = 1; //Enable Timer0
 }
@@ -91,7 +97,10 @@ void __interrupt(irq(IRQ_U1RX)) UART1_RX_ISR(void){
 void __interrupt(irq(IRQ_AD)) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
-    ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122; //5/4095
+    if(ADPCH == VOLTAGE_PIN)
+        ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122; //5/4095
+    else if(ADPCH == CURRENT_PIN)
+        ADC_CURRENT_RESULT = (float)adc_result * 0.00122;
     PIR1bits.ADIF = 0; //Clear interrupt flag
 }
 
@@ -145,15 +154,6 @@ void main(void) {
     INTCON0bits.GIEL = 1; //Enable low priority interrupts
     INTCON0bits.IPEN = 1; //Enable interrupt priority
     
-    //AD5272 Initialize
-    AD5272_COMMANDS[0] = I2C_CONTROL_WRITE;
-    AD5272_COMMANDS[1] = I2C_CONTROL_DATA;
-    I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
-    while(!I2C_STOP_DETECTED);
-    I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
-    while(!I2C_STOP_DETECTED);
-    AD5272_COMMANDS[0] = I2C_RDAC_WRITE;
-    
     //Example LED
     TRISAbits.TRISA0 = 0;
     ANSELAbits.ANSELA0 = 1;
@@ -167,6 +167,16 @@ void main(void) {
     TRISBbits.TRISB3 = 0;
     LATBbits.LB2 = 1;
     LATBbits.LB3 = 1;
+    
+    __delay_ms(2000);
+    //AD5272 Initialize
+    AD5272_COMMANDS[0] = I2C_CONTROL_WRITE;
+    AD5272_COMMANDS[1] = I2C_CONTROL_DATA;
+    I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
+    while(!I2C_STOP_DETECTED);
+    I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
+    while(!I2C_STOP_DETECTED);
+    AD5272_COMMANDS[0] = I2C_RDAC_WRITE;
     
     byte receive_command;
     
@@ -187,7 +197,7 @@ void USART_handler(void){
                 sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
                 break;
             case 1:
-                sprintf(tx_buffer,"Current:%f A",ADC_VOLTAGE_RESULT);
+                sprintf(tx_buffer,"Current:%f A",ADC_CURRENT_RESULT);
                 break;
             default:
                 sprintf(tx_buffer,"Command not recognized!");
@@ -204,11 +214,11 @@ void USART_handler(void){
                 break;
             case 1:
                 I2C_handler(I2C_AD5272_VOLTAGE_SET,COMMAND_WRITE_NUMBER);
-                sprintf(tx_buffer,"Voltage seted!");
+                sprintf(tx_buffer,"Voltage set!");
                 break;
             case 2:
                 I2C_handler(I2C_AD5272_CURRENT_SET,COMMAND_WRITE_NUMBER);
-                sprintf(tx_buffer,"Current Limit seted!");
+                sprintf(tx_buffer,"Current Limit set!");
                 break;
             default:
                 sprintf(tx_buffer,"Command not recognized!");

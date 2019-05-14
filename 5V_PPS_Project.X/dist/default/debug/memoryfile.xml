@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production/5V_PPS_Project.X.production.hex">
+  <executable name="dist/default/debug/5V_PPS_Project.X.debug.hex">
     <memory name="program">
       <units>bytes</units>
       <length>131072</length>
-      <used>13281</used>
-      <free>117791</free>
+      <used>13130</used>
+      <free>117942</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>8192</length>
-      <used>412</used>
-      <free>7780</free>
+      <used>407</used>
+      <free>7785</free>
     </memory>
   </executable>
 </project>
