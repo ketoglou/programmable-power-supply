@@ -3,7 +3,7 @@
 
 # 5V,1.5A Programmable Power Supply 
 
-<img src="docs/5v_logo.png" width="30%">
+<img src="Documents/5v_logo.png" width="30%">
 
 
 ## Overview
