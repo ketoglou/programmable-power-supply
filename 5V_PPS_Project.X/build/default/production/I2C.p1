@@ -2383,35 +2383,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46069
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 46069: __asm("TOSU equ 03FFFh");
 [; <" TOSU equ 03FFFh ;# ">
-"13 ./I2C.h
-[; ;./I2C.h: 13: unsigned char I2C_TX_COUNTER;
+"11 ./I2C.h
+[; ;./I2C.h: 11: unsigned char I2C_TX_COUNTER;
 [v _I2C_TX_COUNTER `uc ~T0 @X0 1 e ]
-"14
-[; ;./I2C.h: 14: unsigned char I2C_RX_COUNTER;
+"12
+[; ;./I2C.h: 12: unsigned char I2C_RX_COUNTER;
 [v _I2C_RX_COUNTER `uc ~T0 @X0 1 e ]
-"15
-[; ;./I2C.h: 15: unsigned char I2C_TX_BUFFER[10];
+"13
+[; ;./I2C.h: 13: unsigned char I2C_TX_BUFFER[10];
 [v _I2C_TX_BUFFER `uc ~T0 @X0 -> 10 `i e ]
-"16
-[; ;./I2C.h: 16: unsigned char I2C_RX_BUFFER[10];
+"14
+[; ;./I2C.h: 14: unsigned char I2C_RX_BUFFER[10];
 [v _I2C_RX_BUFFER `uc ~T0 @X0 -> 10 `i e ]
-"17
-[; ;./I2C.h: 17: unsigned char I2C_STOP_DETECTED;
+"15
+[; ;./I2C.h: 15: unsigned char I2C_STOP_DETECTED;
 [v _I2C_STOP_DETECTED `uc ~T0 @X0 1 e ]
-"20
-[; ;./I2C.h: 20: unsigned char AD5272_VOLTAGE_ADDRESS = 0x5E;
+"18
+[; ;./I2C.h: 18: unsigned char AD5272_VOLTAGE_ADDRESS = 0x5E;
 [v _AD5272_VOLTAGE_ADDRESS `uc ~T0 @X0 1 e ]
 [i _AD5272_VOLTAGE_ADDRESS
 -> -> 94 `i `uc
 ]
-"21
-[; ;./I2C.h: 21: unsigned char AD5272_CURRENT_ADDRESS = 0x58;
-[v _AD5272_CURRENT_ADDRESS `uc ~T0 @X0 1 e ]
-[i _AD5272_CURRENT_ADDRESS
--> -> 88 `i `uc
-]
-"22
-[; ;./I2C.h: 22: unsigned char AD5272_COMMANDS[2] = {0x00,0x00};
+"19
+[; ;./I2C.h: 19: unsigned char AD5272_COMMANDS[2] = {0x00,0x00};
 [v _AD5272_COMMANDS `uc ~T0 @X0 -> 2 `i e ]
 [i _AD5272_COMMANDS
 :U ..
@@ -2597,106 +2591,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;I2C.c: 63: }
 [e :UE 2134 ]
 }
-"65
-[; ;I2C.c: 65: unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address){
-[v _I2C_Receive `(uc ~T0 @X0 1 ef2`uc`uc ]
-{
-[e :U _I2C_Receive ]
-[v _buffer_size `uc ~T0 @X0 1 r1 ]
-[v _address `uc ~T0 @X0 1 r2 ]
-[f ]
-"67
-[; ;I2C.c: 67:     if(I2C_STOP_DETECTED && I2C1STAT0bits.BFRE){
-[e $ ! && != -> _I2C_STOP_DETECTED `i -> 0 `i != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i 2141  ]
-{
-"68
-[; ;I2C.c: 68:         I2C_STOP_DETECTED = 0;
-[e = _I2C_STOP_DETECTED -> -> 0 `i `uc ]
-"69
-[; ;I2C.c: 69:         I2C1ADB1 = (address |0x01);
-[e = _I2C1ADB1 -> | -> _address `i -> 1 `i `uc ]
-"70
-[; ;I2C.c: 70:         I2C1CNT = buffer_size;
-[e = _I2C1CNT _buffer_size ]
-"71
-[; ;I2C.c: 71:         I2C_RX_COUNTER = 0;
-[e = _I2C_RX_COUNTER -> -> 0 `i `uc ]
-"72
-[; ;I2C.c: 72:         I2C1CON0bits.S = 1;
-[e = . . _I2C1CON0bits 0 3 -> -> 1 `i `uc ]
-"73
-[; ;I2C.c: 73:         return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 2140  ]
-"74
-[; ;I2C.c: 74:     }
-}
-[e :U 2141 ]
-"75
-[; ;I2C.c: 75:     return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 2140  ]
-"76
-[; ;I2C.c: 76: }
-[e :UE 2140 ]
-}
-"78
-[; ;I2C.c: 78: unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_size){
-[v _I2C_Receive_Ready `(uc ~T0 @X0 1 ef2`*uc`uc ]
-{
-[e :U _I2C_Receive_Ready ]
-[v _results `*uc ~T0 @X0 1 r1 ]
-[v _results_size `uc ~T0 @X0 1 r2 ]
-[f ]
-"79
-[; ;I2C.c: 79:     if(results_size == I2C_RX_COUNTER){
-[e $ ! == -> _results_size `i -> _I2C_RX_COUNTER `i 2143  ]
-{
-"80
-[; ;I2C.c: 80:         for(unsigned char i=0;i<I2C_RX_COUNTER;i++){
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $U 2147  ]
-[e :U 2144 ]
-{
-"81
-[; ;I2C.c: 81:             results[i] = I2C_RX_BUFFER[i];
-[e = *U + _results * -> _i `ux -> -> # *U _results `ui `ux *U + &U _I2C_RX_BUFFER * -> _i `ux -> -> # *U &U _I2C_RX_BUFFER `ui `ux ]
-"82
-[; ;I2C.c: 82:         }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 2147 ]
-[e $ < -> _i `i -> _I2C_RX_COUNTER `i 2144  ]
-[e :U 2145 ]
-}
-"83
-[; ;I2C.c: 83:         I2C_RX_COUNTER = 0;
-[e = _I2C_RX_COUNTER -> -> 0 `i `uc ]
-"84
-[; ;I2C.c: 84:         return 0xFF;
-[e ) -> -> 255 `i `uc ]
-[e $UE 2142  ]
-"85
-[; ;I2C.c: 85:     }
-}
-[e :U 2143 ]
-"86
-[; ;I2C.c: 86:     return I2C_RX_COUNTER;
-[e ) _I2C_RX_COUNTER ]
-[e $UE 2142  ]
-"87
-[; ;I2C.c: 87: }
-[e :UE 2142 ]
-}
 "89
-[; ;I2C.c: 89: void I2C_handler(unsigned char ad5272_select,int value){
-[v _I2C_handler `(v ~T0 @X0 1 ef2`uc`i ]
+[; ;I2C.c: 89: void I2C_handler(int value){
+[v _I2C_handler `(v ~T0 @X0 1 ef1`i ]
 {
 [e :U _I2C_handler ]
-[v _ad5272_select `uc ~T0 @X0 1 r1 ]
-[v _value `i ~T0 @X0 1 r2 ]
+[v _value `i ~T0 @X0 1 r1 ]
 [f ]
 "90
 [; ;I2C.c: 90:     AD5272_COMMANDS[0] = (unsigned char)(AD5272_COMMANDS[0] | (value >> 8));
@@ -2705,33 +2605,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;I2C.c: 91:     AD5272_COMMANDS[1] = (unsigned char)value;
 [e = *U + &U _AD5272_COMMANDS * -> -> -> 1 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> _value `uc ]
 "92
-[; ;I2C.c: 92:     if(ad5272_select == 0){
-[e $ ! == -> _ad5272_select `i -> 0 `i 2149  ]
-{
-"93
-[; ;I2C.c: 93:         I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
+[; ;I2C.c: 92:     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
 [e ( _I2C_Transmit (3 , , &U _AD5272_COMMANDS -> -> 2 `i `uc _AD5272_VOLTAGE_ADDRESS ]
+"93
+[; ;I2C.c: 93:     while(!I2C_STOP_DETECTED);
+[e $U 2141  ]
+[e :U 2142 ]
+[e :U 2141 ]
+[e $ ! != -> _I2C_STOP_DETECTED `i -> 0 `i 2142  ]
+[e :U 2143 ]
 "94
-[; ;I2C.c: 94:     }else{
-}
-[e $U 2150  ]
-[e :U 2149 ]
-{
-"95
-[; ;I2C.c: 95:         I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
-[e ( _I2C_Transmit (3 , , &U _AD5272_COMMANDS -> -> 2 `i `uc _AD5272_CURRENT_ADDRESS ]
-"96
-[; ;I2C.c: 96:     }
-}
-[e :U 2150 ]
-"97
-[; ;I2C.c: 97:     while(!I2C_STOP_DETECTED);
-[e $U 2151  ]
-[e :U 2152 ]
-[e :U 2151 ]
-[e $ ! != -> _I2C_STOP_DETECTED `i -> 0 `i 2152  ]
-[e :U 2153 ]
-"98
-[; ;I2C.c: 98: }
-[e :UE 2148 ]
+[; ;I2C.c: 94: }
+[e :UE 2140 ]
 }

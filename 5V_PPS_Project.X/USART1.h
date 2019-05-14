@@ -3,7 +3,7 @@
  * if USART is not use receive or transmit functions static must be removed from the one that is not used
  */
 #define RECEIVE_BUFFER_SIZE 32
-#define TRANSMIT_BUFFER_SIZE 32
+#define TRANSMIT_BUFFER_SIZE 55
 
 char rx_counter;
 char rx_buffer[RECEIVE_BUFFER_SIZE];

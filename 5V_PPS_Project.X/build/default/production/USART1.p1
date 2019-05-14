@@ -107,8 +107,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./USART1.h: 9: char rx_buffer[32];
 [v _rx_buffer `uc ~T0 @X0 -> 32 `i e ]
 "10
-[; ;./USART1.h: 10: char tx_buffer[32];
-[v _tx_buffer `uc ~T0 @X0 -> 32 `i e ]
+[; ;./USART1.h: 10: char tx_buffer[55];
+[v _tx_buffer `uc ~T0 @X0 -> 55 `i e ]
 "11
 [; ;./USART1.h: 11: char tx_byte;
 [v _tx_byte `uc ~T0 @X0 1 e ]

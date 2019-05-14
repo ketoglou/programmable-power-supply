@@ -25530,7 +25530,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
 # 2 "I2C.c" 2
 # 1 "./I2C.h" 1
-# 13 "./I2C.h"
+# 11 "./I2C.h"
 unsigned char I2C_TX_COUNTER;
 unsigned char I2C_RX_COUNTER;
 unsigned char I2C_TX_BUFFER[10];
@@ -25539,7 +25539,6 @@ unsigned char I2C_STOP_DETECTED;
 
 
 unsigned char AD5272_VOLTAGE_ADDRESS = 0x5E;
-unsigned char AD5272_CURRENT_ADDRESS = 0x58;
 unsigned char AD5272_COMMANDS[2] = {0x00,0x00};
 
 
@@ -25550,17 +25549,8 @@ void I2C_Init(void);
 
 
 unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsigned char address);
-
-
-unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address);
-
-
-
-
-unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_size);
-
-
-void I2C_handler(unsigned char ad5272_select,int value);
+# 39 "./I2C.h"
+void I2C_handler(int value);
 # 3 "I2C.c" 2
 
 void I2C_Init(void){
@@ -25623,38 +25613,10 @@ unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsig
     }
     return 0;
 }
-
-unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address){
-
-    if(I2C_STOP_DETECTED && I2C1STAT0bits.BFRE){
-        I2C_STOP_DETECTED = 0;
-        I2C1ADB1 = (address |0x01);
-        I2C1CNT = buffer_size;
-        I2C_RX_COUNTER = 0;
-        I2C1CON0bits.S = 1;
-        return 1;
-    }
-    return 0;
-}
-
-unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_size){
-    if(results_size == I2C_RX_COUNTER){
-        for(unsigned char i=0;i<I2C_RX_COUNTER;i++){
-            results[i] = I2C_RX_BUFFER[i];
-        }
-        I2C_RX_COUNTER = 0;
-        return 0xFF;
-    }
-    return I2C_RX_COUNTER;
-}
-
-void I2C_handler(unsigned char ad5272_select,int value){
+# 89 "I2C.c"
+void I2C_handler(int value){
     AD5272_COMMANDS[0] = (unsigned char)(AD5272_COMMANDS[0] | (value >> 8));
     AD5272_COMMANDS[1] = (unsigned char)value;
-    if(ad5272_select == 0){
-        I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
-    }else{
-        I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
-    }
+    I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
     while(!I2C_STOP_DETECTED);
 }

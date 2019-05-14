@@ -97,10 +97,11 @@ void __interrupt(irq(IRQ_U1RX)) UART1_RX_ISR(void){
 void __interrupt(irq(IRQ_AD)) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
+    float adc_float = (float)adc_result;
     if(ADPCH == VOLTAGE_PIN)
-        ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122; //5/4095
+        ADC_VOLTAGE_RESULT = adc_float * 0.00122; //5/4095
     else if(ADPCH == CURRENT_PIN)
-        ADC_CURRENT_RESULT = (float)adc_result * 0.00122;
+        ADC_CURRENT_RESULT = adc_float * 0.00122;
     PIR1bits.ADIF = 0; //Clear interrupt flag
 }
 
@@ -174,8 +175,6 @@ void main(void) {
     AD5272_COMMANDS[1] = I2C_CONTROL_DATA;
     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
     while(!I2C_STOP_DETECTED);
-    I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
-    while(!I2C_STOP_DETECTED);
     AD5272_COMMANDS[0] = I2C_RDAC_WRITE;
     
     byte receive_command;
@@ -194,10 +193,13 @@ void USART_handler(void){
     if(COMMAND_WR){ //READ COMMAND
         switch(COMMAND){
             case 0: //Voltage status
-                sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
+                sprintf(tx_buffer,"%f V",ADC_VOLTAGE_RESULT);
                 break;
             case 1:
-                sprintf(tx_buffer,"Current:%f A",ADC_CURRENT_RESULT);
+                sprintf(tx_buffer,"%f A",ADC_CURRENT_RESULT);
+                break;
+            case 2:
+                sprintf(tx_buffer,"Version 1.0\nTeam 5V\nXaris Ketoglou,Voula Kontotoli\n");
                 break;
             default:
                 sprintf(tx_buffer,"Command not recognized!");
@@ -213,11 +215,12 @@ void USART_handler(void){
                     sprintf(tx_buffer,"Blinking LED is OFF!");
                 break;
             case 1:
-                I2C_handler(I2C_AD5272_VOLTAGE_SET,COMMAND_WRITE_NUMBER);
+                I2C_handler(COMMAND_WRITE_NUMBER);
                 sprintf(tx_buffer,"Voltage set!");
                 break;
             case 2:
-                I2C_handler(I2C_AD5272_CURRENT_SET,COMMAND_WRITE_NUMBER);
+                /*EDW PREPEI NA PAIRNW TO CURRENT APO TON USER,NA TO EXW IPOLOGISMENO KAI AN IPERVAINEI TO
+                 ORIO NA BARAW TO BUZZER KAI NA RIXNW TIN TASI STA 0V*/
                 sprintf(tx_buffer,"Current Limit set!");
                 break;
             default:

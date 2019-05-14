@@ -18,7 +18,7 @@
 
 char rx_counter;
 char rx_buffer[32];
-char tx_buffer[32];
+char tx_buffer[55];
 char tx_byte;
 unsigned char COMMAND_WR;
 unsigned char COMMAND;

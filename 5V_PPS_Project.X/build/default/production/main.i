@@ -25733,7 +25733,7 @@ char *tempnam(const char *, const char *);
 
 char rx_counter;
 char rx_buffer[32];
-char tx_buffer[32];
+char tx_buffer[55];
 char tx_byte;
 unsigned char COMMAND_WR;
 unsigned char COMMAND;
@@ -25746,7 +25746,7 @@ unsigned char USART1_SendString(char *str,int size);
 unsigned char USART1_ReceiveCommand(void);
 # 32 "main.c" 2
 # 1 "./I2C.h" 1
-# 13 "./I2C.h"
+# 11 "./I2C.h"
 unsigned char I2C_TX_COUNTER;
 unsigned char I2C_RX_COUNTER;
 unsigned char I2C_TX_BUFFER[10];
@@ -25755,7 +25755,6 @@ unsigned char I2C_STOP_DETECTED;
 
 
 unsigned char AD5272_VOLTAGE_ADDRESS = 0x5E;
-unsigned char AD5272_CURRENT_ADDRESS = 0x58;
 unsigned char AD5272_COMMANDS[2] = {0x00,0x00};
 
 
@@ -25766,17 +25765,8 @@ void I2C_Init(void);
 
 
 unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsigned char address);
-
-
-unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address);
-
-
-
-
-unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_size);
-
-
-void I2C_handler(unsigned char ad5272_select,int value);
+# 39 "./I2C.h"
+void I2C_handler(int value);
 # 33 "main.c" 2
 
 
@@ -25836,10 +25826,11 @@ void __attribute__((picinterrupt(("irq(27)")))) UART1_RX_ISR(void){
 void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
+    float adc_float = (float)adc_result;
     if(ADPCH == 12)
-        ADC_VOLTAGE_RESULT = (float)adc_result * 0.00122;
+        ADC_VOLTAGE_RESULT = adc_float * 0.012;
     else if(ADPCH == 13)
-        ADC_CURRENT_RESULT = (float)adc_result * 0.00122;
+        ADC_CURRENT_RESULT = adc_float * 0.012;
     PIR1bits.ADIF = 0;
 }
 
@@ -25913,8 +25904,6 @@ void main(void) {
     AD5272_COMMANDS[1] = 0x02;
     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
     while(!I2C_STOP_DETECTED);
-    I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
-    while(!I2C_STOP_DETECTED);
     AD5272_COMMANDS[0] = 0x04;
 
     unsigned char receive_command;
@@ -25929,14 +25918,17 @@ void main(void) {
 
 
 void USART_handler(void){
-    memset(tx_buffer,0,32);
+    memset(tx_buffer,0,55);
     if(COMMAND_WR){
         switch(COMMAND){
             case 0:
-                sprintf(tx_buffer,"Voltage:%f V",ADC_VOLTAGE_RESULT);
+                sprintf(tx_buffer,"%f V",ADC_VOLTAGE_RESULT);
                 break;
             case 1:
-                sprintf(tx_buffer,"Current:%f A",ADC_CURRENT_RESULT);
+                sprintf(tx_buffer,"%f A",ADC_CURRENT_RESULT);
+                break;
+            case 2:
+                sprintf(tx_buffer,"Version 1.0\nTeam 5V\nXaris Ketoglou,Voula Kontotoli\n");
                 break;
             default:
                 sprintf(tx_buffer,"Command not recognized!");
@@ -25952,11 +25944,12 @@ void USART_handler(void){
                     sprintf(tx_buffer,"Blinking LED is OFF!");
                 break;
             case 1:
-                I2C_handler(0,COMMAND_WRITE_NUMBER);
+                I2C_handler(COMMAND_WRITE_NUMBER);
                 sprintf(tx_buffer,"Voltage set!");
                 break;
             case 2:
-                I2C_handler(1,COMMAND_WRITE_NUMBER);
+
+
                 sprintf(tx_buffer,"Current Limit set!");
                 break;
             default:
@@ -26008,7 +26001,7 @@ void ADC_Start(unsigned char pin){
 
 int GetStringSize(void){
     int i;
-    for(i=0;i<32;i++){
+    for(i=0;i<55;i++){
         if(tx_buffer[i] == 0){
             break;
         }

@@ -62,7 +62,7 @@ unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsig
     return 0;
 }
 
-unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address){
+/*unsigned char I2C_Receive(unsigned char buffer_size,unsigned char address){
     //We check i2c_rx_counter to make sure that previous data was read 
     if(I2C_STOP_DETECTED && I2C1STAT0bits.BFRE){
         I2C_STOP_DETECTED = 0;
@@ -84,15 +84,11 @@ unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_siz
         return 0xFF;
     }
     return I2C_RX_COUNTER;
-}
+}*/
 
-void I2C_handler(unsigned char ad5272_select,int value){
+void I2C_handler(int value){
     AD5272_COMMANDS[0] = (byte)(AD5272_COMMANDS[0] | (value >> 8));
     AD5272_COMMANDS[1] = (byte)value;
-    if(ad5272_select == I2C_AD5272_VOLTAGE_SET){
-        I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
-    }else{
-        I2C_Transmit(AD5272_COMMANDS,2,AD5272_CURRENT_ADDRESS);
-    }
+    I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
     while(!I2C_STOP_DETECTED);
 }
