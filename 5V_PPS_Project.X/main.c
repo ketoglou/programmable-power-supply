@@ -28,7 +28,7 @@
 #include <xc.h>
 #include <stdio.h>
 #include "config.h"
-#include "USART1.h"
+#include "UART1.h"
 #include "I2C.h"
 
 //Basic definitions
@@ -46,10 +46,9 @@ typedef enum _BOOL { FALSE = 0, TRUE = 1 } boolean;
 
 //Define functions
 void timer0_init(void);
-void USART_handler(void);
+void UART_handler(void);
 void ADC_Init(void);
 void ADC_Start(byte pin);
-void ADC_GetResult(void);
 int GetStringSize(void);
 void memset(char *st,char x,int size);
 
@@ -84,7 +83,7 @@ void __interrupt(irq(IRQ_TMR0)) TIMER0_ISR(void){
 }
 
 void __interrupt(irq(IRQ_U1TX)) UART1_TX_ISR(void){
-    //Transmit byte for USART
+    //Transmit byte for UART
     U1TXB = tx_byte;
     PIE3bits.U1TXIE = 0;
 }
@@ -97,11 +96,10 @@ void __interrupt(irq(IRQ_U1RX)) UART1_RX_ISR(void){
 void __interrupt(irq(IRQ_AD)) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
-    float adc_float = (float)adc_result;
     if(ADPCH == VOLTAGE_PIN)
-        ADC_VOLTAGE_RESULT = adc_float * 0.00122; //5/4095
+        ADC_VOLTAGE_RESULT = (float)adc_result; 
     else if(ADPCH == CURRENT_PIN)
-        ADC_CURRENT_RESULT = adc_float * 0.00122;
+        ADC_CURRENT_RESULT = (float)adc_result;
     PIR1bits.ADIF = 0; //Clear interrupt flag
 }
 
@@ -147,7 +145,7 @@ void main(void) {
     
     //Initialize modules
     timer0_init();
-    USART1_Init(BAUD_RATE);
+    UART1_Init(BAUD_RATE);
     ADC_Init();
     I2C_Init();
     
@@ -180,23 +178,25 @@ void main(void) {
     byte receive_command;
     
     while(1){
-        receive_command = USART1_ReceiveCommand();
+        receive_command = UART1_ReceiveCommand();
         if(receive_command)
-            USART_handler();
+            UART_handler();
     }
 }
 
 //--------------------------Basic functions-------------------------------------
 
-void USART_handler(void){
+void UART_handler(void){
     memset(tx_buffer,0,TRANSMIT_BUFFER_SIZE);
     if(COMMAND_WR){ //READ COMMAND
         switch(COMMAND){
             case 0: //Voltage status
-                sprintf(tx_buffer,"%f V",ADC_VOLTAGE_RESULT);
+                ADC_VOLTAGE_RESULT = ADC_VOLTAGE_RESULT * 0.00122;
+                sprintf(tx_buffer,"%f",ADC_VOLTAGE_RESULT);
                 break;
             case 1:
-                sprintf(tx_buffer,"%f A",ADC_CURRENT_RESULT);
+                ADC_CURRENT_RESULT = ADC_CURRENT_RESULT * 0.00122;
+                sprintf(tx_buffer,"%f",ADC_CURRENT_RESULT);
                 break;
             case 2:
                 sprintf(tx_buffer,"Version 1.0\nTeam 5V\nXaris Ketoglou,Voula Kontotoli\n");
@@ -228,7 +228,7 @@ void USART_handler(void){
                 break;
         }
     }
-    USART1_SendString(tx_buffer,GetStringSize());
+    UART1_SendString(tx_buffer,GetStringSize());
 }
 
 //-------------------Timers initialize------------------------------------------

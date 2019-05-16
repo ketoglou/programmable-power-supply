@@ -1,4 +1,4 @@
-# 1 "USART1.c"
+# 1 "UART1.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,9 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "USART1.c" 2
+# 1 "UART1.c" 2
 
-# 1 "./USART1.h" 1
+# 1 "./UART1.h" 1
 
 
 
@@ -25,11 +25,11 @@ unsigned char COMMAND;
 int COMMAND_WRITE_NUMBER;
 
 
-void USART1_Init(unsigned char baud_rate);
-unsigned char USART1_SendByte(unsigned char byte);
-unsigned char USART1_SendString(char *str,int size);
-unsigned char USART1_ReceiveCommand(void);
-# 3 "USART1.c" 2
+void UART1_Init(unsigned char baud_rate);
+unsigned char UART1_SendByte(unsigned char byte);
+unsigned char UART1_SendString(char *str,int size);
+unsigned char UART1_ReceiveCommand(void);
+# 3 "UART1.c" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -25551,9 +25551,9 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
-# 4 "USART1.c" 2
+# 4 "UART1.c" 2
 
-void USART1_Init(unsigned char baud_rate){
+void UART1_Init(unsigned char baud_rate){
 
     TRISCbits.TRISC6 = 1;
     TRISCbits.TRISC7 = 0;
@@ -25597,7 +25597,7 @@ void USART1_Init(unsigned char baud_rate){
     U1CON1bits.ON = 1;
 }
 
-unsigned char USART1_SendByte(unsigned char byte){
+unsigned char UART1_SendByte(unsigned char byte){
     if(!PIE3bits.U1TXIE){
         tx_byte = byte;
         PIE3bits.U1TXIE = 1;
@@ -25606,10 +25606,10 @@ unsigned char USART1_SendByte(unsigned char byte){
     return 0;
 }
 
-unsigned char USART1_SendString(char *str,int size){
+unsigned char UART1_SendString(char *str,int size){
     unsigned int attempts = 65000,i;
     for(i=0;i<size;i++){
-        if(!USART1_SendByte(*(str + i))){
+        if(!UART1_SendByte(*(str + i))){
             attempts --;
             i --;
         }
@@ -25618,12 +25618,12 @@ unsigned char USART1_SendString(char *str,int size){
         attempts = 65000;
     }
     attempts =65000;
-    while(!USART1_SendByte('\r') && (attempts --));
-    while(!USART1_SendByte('\n') && (attempts --));
+    while(!UART1_SendByte('\r') && (attempts --));
+    while(!UART1_SendByte('\n') && (attempts --));
     return 1;
 }
-# 84 "USART1.c"
-unsigned char USART1_ReceiveCommand(void){;
+# 84 "UART1.c"
+unsigned char UART1_ReceiveCommand(void){;
     if(rx_counter == 0)
         return 0;
     if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R'){
@@ -25645,7 +25645,7 @@ unsigned char USART1_ReceiveCommand(void){;
             rx_counter = 0;
             return 1;
         }
-    }else{
+    }else if(rx_buffer[0] == 'W'){
         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
             rx_counter = 0;
         }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){

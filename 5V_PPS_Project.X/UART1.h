@@ -14,7 +14,7 @@ unsigned char COMMAND; //Determines type of command
 int COMMAND_WRITE_NUMBER; //Determines the number for write commands
 
 
-void USART1_Init(unsigned char baud_rate);
-unsigned char USART1_SendByte(unsigned char byte);
-unsigned char USART1_SendString(char *str,int size);
-unsigned char USART1_ReceiveCommand(void);
+void UART1_Init(unsigned char baud_rate);
+unsigned char UART1_SendByte(unsigned char byte);
+unsigned char UART1_SendString(char *str,int size);
+unsigned char UART1_ReceiveCommand(void);

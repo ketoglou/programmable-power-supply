@@ -1,8 +1,8 @@
 
-#include "USART1.h"
+#include "UART1.h"
 #include <xc.h>
 
-void USART1_Init(unsigned char baud_rate){
+void UART1_Init(unsigned char baud_rate){
     //Configure RX/TX Pins
     TRISCbits.TRISC6 = 1; //RX
     TRISCbits.TRISC7 = 0; //TX
@@ -46,7 +46,7 @@ void USART1_Init(unsigned char baud_rate){
     U1CON1bits.ON = 1;
 }
 
-unsigned char USART1_SendByte(unsigned char byte){
+unsigned char UART1_SendByte(unsigned char byte){
     if(!PIE3bits.U1TXIE){ 
         tx_byte = byte;
         PIE3bits.U1TXIE = 1; //When we begin a transmission we make U1TXIE = 1,when we finish it we make U1TXIE=0(through interrupt routine)
@@ -55,10 +55,10 @@ unsigned char USART1_SendByte(unsigned char byte){
     return 0;
 }
 
-unsigned char USART1_SendString(char *str,int size){
+unsigned char UART1_SendString(char *str,int size){
     unsigned int attempts = 65000,i;
     for(i=0;i<size;i++){
-        if(!USART1_SendByte(*(str + i))){
+        if(!UART1_SendByte(*(str + i))){
             attempts --;
             i --; //send again the same byte
         }
@@ -67,8 +67,8 @@ unsigned char USART1_SendString(char *str,int size){
         attempts = 65000;
     }
     attempts =65000;
-    while(!USART1_SendByte('\r') && (attempts --)); //CR
-    while(!USART1_SendByte('\n') && (attempts --)); //LF
+    while(!UART1_SendByte('\r') && (attempts --)); //CR
+    while(!UART1_SendByte('\n') && (attempts --)); //LF
     return 1;
 }
 
@@ -81,7 +81,7 @@ unsigned char USART1_SendString(char *str,int size){
  * we receive write command.Function return -1 if does not receive something
  * properly or anything.
  */
-unsigned char USART1_ReceiveCommand(void){;
+unsigned char UART1_ReceiveCommand(void){;
     if(rx_counter == 0)
         return 0;
     if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R'){
@@ -103,7 +103,7 @@ unsigned char USART1_ReceiveCommand(void){;
             rx_counter = 0;
             return 1;
         }
-    }else{  
+    }else if(rx_buffer[0] == 'W'){  
         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
             rx_counter = 0;
         }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){

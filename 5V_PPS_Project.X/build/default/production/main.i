@@ -25723,7 +25723,7 @@ char *tempnam(const char *, const char *);
 
 #pragma config CP = OFF
 # 31 "main.c" 2
-# 1 "./USART1.h" 1
+# 1 "./UART1.h" 1
 
 
 
@@ -25740,10 +25740,10 @@ unsigned char COMMAND;
 int COMMAND_WRITE_NUMBER;
 
 
-void USART1_Init(unsigned char baud_rate);
-unsigned char USART1_SendByte(unsigned char byte);
-unsigned char USART1_SendString(char *str,int size);
-unsigned char USART1_ReceiveCommand(void);
+void UART1_Init(unsigned char baud_rate);
+unsigned char UART1_SendByte(unsigned char byte);
+unsigned char UART1_SendString(char *str,int size);
+unsigned char UART1_ReceiveCommand(void);
 # 32 "main.c" 2
 # 1 "./I2C.h" 1
 # 11 "./I2C.h"
@@ -25775,10 +25775,9 @@ void I2C_handler(int value);
 typedef enum _BOOL { FALSE = 0, TRUE = 1 } boolean;
 # 48 "main.c"
 void timer0_init(void);
-void USART_handler(void);
+void UART_handler(void);
 void ADC_Init(void);
 void ADC_Start(unsigned char pin);
-void ADC_GetResult(void);
 int GetStringSize(void);
 void memset(char *st,char x,int size);
 
@@ -25826,11 +25825,10 @@ void __attribute__((picinterrupt(("irq(27)")))) UART1_RX_ISR(void){
 void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
-    float adc_float = (float)adc_result;
     if(ADPCH == 12)
-        ADC_VOLTAGE_RESULT = adc_float * 0.012;
+        ADC_VOLTAGE_RESULT = (float)adc_result;
     else if(ADPCH == 13)
-        ADC_CURRENT_RESULT = adc_float * 0.012;
+        ADC_CURRENT_RESULT = (float)adc_result;
     PIR1bits.ADIF = 0;
 }
 
@@ -25876,7 +25874,7 @@ void main(void) {
 
 
     timer0_init();
-    USART1_Init(1);
+    UART1_Init(1);
     ADC_Init();
     I2C_Init();
 
@@ -25909,23 +25907,25 @@ void main(void) {
     unsigned char receive_command;
 
     while(1){
-        receive_command = USART1_ReceiveCommand();
+        receive_command = UART1_ReceiveCommand();
         if(receive_command)
-            USART_handler();
+            UART_handler();
     }
 }
 
 
 
-void USART_handler(void){
+void UART_handler(void){
     memset(tx_buffer,0,55);
     if(COMMAND_WR){
         switch(COMMAND){
             case 0:
-                sprintf(tx_buffer,"%f V",ADC_VOLTAGE_RESULT);
+                ADC_VOLTAGE_RESULT = ADC_VOLTAGE_RESULT * 0.00122;
+                sprintf(tx_buffer,"%f",ADC_VOLTAGE_RESULT);
                 break;
             case 1:
-                sprintf(tx_buffer,"%f A",ADC_CURRENT_RESULT);
+                ADC_CURRENT_RESULT = ADC_CURRENT_RESULT * 0.00122;
+                sprintf(tx_buffer,"%f",ADC_CURRENT_RESULT);
                 break;
             case 2:
                 sprintf(tx_buffer,"Version 1.0\nTeam 5V\nXaris Ketoglou,Voula Kontotoli\n");
@@ -25957,7 +25957,7 @@ void USART_handler(void){
                 break;
         }
     }
-    USART1_SendString(tx_buffer,GetStringSize());
+    UART1_SendString(tx_buffer,GetStringSize());
 }
 
 

@@ -4,8 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/orion/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/main.c</file>
-            <file>file:/home/orion/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/I2C.h</file>
-            <file>file:/home/orion/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/USART1.c</file>
+            <file>file:/home/orion/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/UART1.h</file>
             <file>file:/home/orion/5V-1.5A_Programmable_Power_Supply/5V_PPS_Project.X/I2C.c</file>
         </group>
     </open-files>
