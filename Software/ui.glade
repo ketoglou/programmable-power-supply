@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">view-refresh</property>
+  </object>
+  <object class="GtkWindow" id="GtkWindow">
+    <property name="width_request">400</property>
+    <property name="height_request">500</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">5V Adjustable Power Supply</property>
+    <property name="resizable">False</property>
+    <property name="icon">5v_logo.png</property>
+    <signal name="destroy" handler="on_window_destroy" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed">
+        <property name="width_request">400</property>
+        <property name="height_request">500</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkLabel" id="window_title">
+            <property name="width_request">424</property>
+            <property name="height_request">32</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">5V Adjustable Power Supply</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 20"/>
+            </attributes>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage" id="window_image">
+            <property name="width_request">250</property>
+            <property name="height_request">250</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">5v_logo.png</property>
+          </object>
+          <packing>
+            <property name="x">106</property>
+            <property name="y">31</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="window_volt_label">
+            <property name="width_request">144</property>
+            <property name="height_request">32</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Voltage : </property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 20"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="y">296</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="voltage_value_label">
+            <property name="width_request">32</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 20"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">143</property>
+            <property name="y">296</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="width_request">135</property>
+            <property name="height_request">32</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Current :</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 20"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="y">331</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="current_value_label">
+            <property name="width_request">73</property>
+            <property name="height_request">32</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 20"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">143</property>
+            <property name="y">331</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="voltage_set_label">
+            <property name="width_request">203</property>
+            <property name="height_request">32</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Set Voltage : </property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 19"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="y">366</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="voltage_input">
+            <property name="width_request">168</property>
+            <property name="height_request">34</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="placeholder_text" translatable="yes">Voltage 0V - 5V</property>
+          </object>
+          <packing>
+            <property name="x">206</property>
+            <property name="y">366</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="voltage_set_button">
+            <property name="label" translatable="yes">Set</property>
+            <property name="width_request">55</property>
+            <property name="height_request">34</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="voltage_set" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">383</property>
+            <property name="y">366</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="current_set_label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Set Current :</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 20"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="y">401</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="current_input">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="placeholder_text" translatable="yes">Current 0A - 1.5A</property>
+          </object>
+          <packing>
+            <property name="x">206</property>
+            <property name="y">401</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="current_set_button">
+            <property name="label" translatable="yes">Set</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="current_set" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">383</property>
+            <property name="y">401</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="led_label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">LED :</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 20"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="y">436</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="led_on_button">
+            <property name="label" translatable="yes">ON</property>
+            <property name="width_request">54</property>
+            <property name="height_request">34</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="led_on" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">85</property>
+            <property name="y">436</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="led_off_button">
+            <property name="label" translatable="yes">OFF</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="led_off" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">145</property>
+            <property name="y">436</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="version_label">
+            <property name="width_request">241</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Connection Information :</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 15"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">75</property>
+            <property name="y">570</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="port_label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Select port :</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 19"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="y">471</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBoxText" id="combo_box">
+            <property name="name">combo_box_widget</property>
+            <property name="width_request">201</property>
+            <property name="height_request">34</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="events">GDK_KEY_PRESS_MASK | GDK_STRUCTURE_MASK</property>
+            <property name="has_entry">True</property>
+            <signal name="changed" handler="combo_box_change" swapped="no"/>
+            <child internal-child="entry">
+              <object class="GtkEntry">
+                <property name="can_focus">False</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">180</property>
+            <property name="y">471</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="refresh_button">
+            <property name="width_request">50</property>
+            <property name="height_request">34</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="image">image1</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="refresh_ports" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">383</property>
+            <property name="y">471</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="info_label">
+            <property name="width_request">241</property>
+            <property name="height_request">150</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Choose a port.</property>
+            <property name="xalign">0</property>
+            <property name="yalign">0</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Italic 14"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">75</property>
+            <property name="y">600</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="message">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Messages :</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 20"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="y">515</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="message_label">
+            <property name="width_request">263</property>
+            <property name="height_request">30</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 14"/>
+              <attribute name="foreground" value="#efef29292929"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">172</property>
+            <property name="y">520</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
