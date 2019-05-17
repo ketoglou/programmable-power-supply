@@ -12,6 +12,7 @@ char tx_byte;
 unsigned char COMMAND_WR; //Determines if command is write(0) or read(1)
 unsigned char COMMAND; //Determines type of command
 int COMMAND_WRITE_NUMBER; //Determines the number for write commands
+char COMMAND_CURRENT_LIMIT[8];
 
 
 void UART1_Init(unsigned char baud_rate);

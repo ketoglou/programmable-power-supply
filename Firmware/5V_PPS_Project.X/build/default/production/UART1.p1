@@ -121,6 +121,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "14
 [; ;./UART1.h: 14: int COMMAND_WRITE_NUMBER;
 [v _COMMAND_WRITE_NUMBER `i ~T0 @X0 1 e ]
+"15
+[; ;./UART1.h: 15: char COMMAND_CURRENT_LIMIT[8];
+[v _COMMAND_CURRENT_LIMIT `uc ~T0 @X0 -> 8 `i e ]
 "250 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 250: __asm("STATUS_CSHAD equ 03880h");
 [; <" STATUS_CSHAD equ 03880h ;# ">
@@ -2242,85 +2245,85 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46069
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h: 46069: __asm("TOSU equ 03FFFh");
 [; <" TOSU equ 03FFFh ;# ">
-"5 UART1.c
-[; ;UART1.c: 5: void UART1_Init(unsigned char baud_rate){
+"4 UART1.c
+[; ;UART1.c: 4: void UART1_Init(unsigned char baud_rate){
 [v _UART1_Init `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _UART1_Init ]
 [v _baud_rate `uc ~T0 @X0 1 r1 ]
 [f ]
-"7
-[; ;UART1.c: 7:     TRISCbits.TRISC6 = 1;
+"6
+[; ;UART1.c: 6:     TRISCbits.TRISC6 = 1;
 [e = . . _TRISCbits 0 6 -> -> 1 `i `uc ]
-"8
-[; ;UART1.c: 8:     TRISCbits.TRISC7 = 0;
+"7
+[; ;UART1.c: 7:     TRISCbits.TRISC7 = 0;
 [e = . . _TRISCbits 0 7 -> -> 0 `i `uc ]
-"9
-[; ;UART1.c: 9:     ANSELCbits.ANSELC6 = 0;
+"8
+[; ;UART1.c: 8:     ANSELCbits.ANSELC6 = 0;
 [e = . . _ANSELCbits 0 6 -> -> 0 `i `uc ]
-"10
-[; ;UART1.c: 10:     ANSELCbits.ANSELC7 = 0;
+"9
+[; ;UART1.c: 9:     ANSELCbits.ANSELC7 = 0;
 [e = . . _ANSELCbits 0 7 -> -> 0 `i `uc ]
-"11
-[; ;UART1.c: 11:     U1RXPPS = 0x16;
+"10
+[; ;UART1.c: 10:     U1RXPPS = 0x16;
 [e = _U1RXPPS -> -> 22 `i `uc ]
-"12
-[; ;UART1.c: 12:     RC7PPS = 0x13;
+"11
+[; ;UART1.c: 11:     RC7PPS = 0x13;
 [e = _RC7PPS -> -> 19 `i `uc ]
-"15
-[; ;UART1.c: 15:     switch(baud_rate){
+"14
+[; ;UART1.c: 14:     switch(baud_rate){
 [e $U 2135  ]
 {
-"16
-[; ;UART1.c: 16:         case 1:
+"15
+[; ;UART1.c: 15:         case 1:
 [e :U 2136 ]
-"17
-[; ;UART1.c: 17:             U1BRGH = 0x03;
+"16
+[; ;UART1.c: 16:             U1BRGH = 0x03;
 [e = _U1BRGH -> -> 3 `i `uc ]
-"18
-[; ;UART1.c: 18:             U1BRGL = 0x40;
+"17
+[; ;UART1.c: 17:             U1BRGL = 0x40;
 [e = _U1BRGL -> -> 64 `i `uc ]
+"18
+[; ;UART1.c: 18:             break;
+[e $U 2134  ]
 "19
-[; ;UART1.c: 19:             break;
-[e $U 2134  ]
-"20
-[; ;UART1.c: 20:         case 2:
+[; ;UART1.c: 19:         case 2:
 [e :U 2137 ]
-"21
-[; ;UART1.c: 21:             U1BRGH = 0x01;
+"20
+[; ;UART1.c: 20:             U1BRGH = 0x01;
 [e = _U1BRGH -> -> 1 `i `uc ]
-"22
-[; ;UART1.c: 22:             U1BRGL = 0x14;
+"21
+[; ;UART1.c: 21:             U1BRGL = 0x14;
 [e = _U1BRGL -> -> 20 `i `uc ]
+"22
+[; ;UART1.c: 22:             break;
+[e $U 2134  ]
 "23
-[; ;UART1.c: 23:             break;
-[e $U 2134  ]
-"24
-[; ;UART1.c: 24:         case 3:
+[; ;UART1.c: 23:         case 3:
 [e :U 2138 ]
+"24
+[; ;UART1.c: 24:             U1BRGH = 0x00;
+[e = _U1BRGH -> -> 0 `i `uc ]
 "25
-[; ;UART1.c: 25:             U1BRGH = 0x00;
-[e = _U1BRGH -> -> 0 `i `uc ]
+[; ;UART1.c: 25:             U1BRGL = 0x89;
+[e = _U1BRGL -> -> 137 `i `uc ]
 "26
-[; ;UART1.c: 26:             U1BRGL = 0x89;
-[e = _U1BRGL -> -> 137 `i `uc ]
+[; ;UART1.c: 26:             break;
+[e $U 2134  ]
 "27
-[; ;UART1.c: 27:             break;
-[e $U 2134  ]
-"28
-[; ;UART1.c: 28:         default:
+[; ;UART1.c: 27:         default:
 [e :U 2139 ]
-"29
-[; ;UART1.c: 29:             U1BRGH = 0x00;
+"28
+[; ;UART1.c: 28:             U1BRGH = 0x00;
 [e = _U1BRGH -> -> 0 `i `uc ]
-"30
-[; ;UART1.c: 30:             U1BRGL = 0x89;
+"29
+[; ;UART1.c: 29:             U1BRGL = 0x89;
 [e = _U1BRGL -> -> 137 `i `uc ]
-"31
-[; ;UART1.c: 31:             break;
+"30
+[; ;UART1.c: 30:             break;
 [e $U 2134  ]
-"32
-[; ;UART1.c: 32:     }
+"31
+[; ;UART1.c: 31:     }
 }
 [e $U 2134  ]
 [e :U 2135 ]
@@ -2329,352 +2332,352 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 3 `i 2138
  2139 ]
 [e :U 2134 ]
-"34
-[; ;UART1.c: 34:     rx_counter = 0;
+"33
+[; ;UART1.c: 33:     rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"36
-[; ;UART1.c: 36:     U1CON0 = 0xB0;
+"35
+[; ;UART1.c: 35:     U1CON0 = 0xB0;
 [e = _U1CON0 -> -> 176 `i `uc ]
-"37
-[; ;UART1.c: 37:     U1CON1 = 0x00;
+"36
+[; ;UART1.c: 36:     U1CON1 = 0x00;
 [e = _U1CON1 -> -> 0 `i `uc ]
-"38
-[; ;UART1.c: 38:     U2CON2 = 0x80;
+"37
+[; ;UART1.c: 37:     U2CON2 = 0x80;
 [e = _U2CON2 -> -> 128 `i `uc ]
-"39
-[; ;UART1.c: 39:     U1ERRIE = 0x00;
+"38
+[; ;UART1.c: 38:     U1ERRIE = 0x00;
 [e = _U1ERRIE -> -> 0 `i `uc ]
-"40
-[; ;UART1.c: 40:     U1UIR = 0x00;
+"39
+[; ;UART1.c: 39:     U1UIR = 0x00;
 [e = _U1UIR -> -> 0 `i `uc ]
-"41
-[; ;UART1.c: 41:     PIE3bits.U1RXIE = 1;
+"40
+[; ;UART1.c: 40:     PIE3bits.U1RXIE = 1;
 [e = . . _PIE3bits 0 3 -> -> 1 `i `uc ]
-"42
-[; ;UART1.c: 42:     PIE3bits.U1TXIE =1;
+"41
+[; ;UART1.c: 41:     PIE3bits.U1TXIE =1;
 [e = . . _PIE3bits 0 4 -> -> 1 `i `uc ]
-"43
-[; ;UART1.c: 43:     IPR3bits.U1RXIP = 1;
+"42
+[; ;UART1.c: 42:     IPR3bits.U1RXIP = 1;
 [e = . . _IPR3bits 0 3 -> -> 1 `i `uc ]
-"44
-[; ;UART1.c: 44:     IPR3bits.U1TXIP = 1;
+"43
+[; ;UART1.c: 43:     IPR3bits.U1TXIP = 1;
 [e = . . _IPR3bits 0 4 -> -> 1 `i `uc ]
-"45
-[; ;UART1.c: 45:     PIR3 = 0x00;
+"44
+[; ;UART1.c: 44:     PIR3 = 0x00;
 [e = _PIR3 -> -> 0 `i `uc ]
-"46
-[; ;UART1.c: 46:     U1CON1bits.ON = 1;
+"45
+[; ;UART1.c: 45:     U1CON1bits.ON = 1;
 [e = . . _U1CON1bits 0 6 -> -> 1 `i `uc ]
-"47
-[; ;UART1.c: 47: }
+"46
+[; ;UART1.c: 46: }
 [e :UE 2133 ]
 }
-"49
-[; ;UART1.c: 49: unsigned char UART1_SendByte(unsigned char byte){
+"48
+[; ;UART1.c: 48: unsigned char UART1_SendByte(unsigned char byte){
 [v _UART1_SendByte `(uc ~T0 @X0 1 ef1`uc ]
 {
 [e :U _UART1_SendByte ]
 [v _byte `uc ~T0 @X0 1 r1 ]
 [f ]
-"50
-[; ;UART1.c: 50:     if(!PIE3bits.U1TXIE){
+"49
+[; ;UART1.c: 49:     if(!PIE3bits.U1TXIE){
 [e $ ! ! != -> . . _PIE3bits 0 4 `i -> 0 `i 2141  ]
 {
-"51
-[; ;UART1.c: 51:         tx_byte = byte;
+"50
+[; ;UART1.c: 50:         tx_byte = byte;
 [e = _tx_byte -> _byte `uc ]
-"52
-[; ;UART1.c: 52:         PIE3bits.U1TXIE = 1;
+"51
+[; ;UART1.c: 51:         PIE3bits.U1TXIE = 1;
 [e = . . _PIE3bits 0 4 -> -> 1 `i `uc ]
-"53
-[; ;UART1.c: 53:         return 1;
+"52
+[; ;UART1.c: 52:         return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 2140  ]
-"54
-[; ;UART1.c: 54:     }
+"53
+[; ;UART1.c: 53:     }
 }
 [e :U 2141 ]
-"55
-[; ;UART1.c: 55:     return 0;
+"54
+[; ;UART1.c: 54:     return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 2140  ]
-"56
-[; ;UART1.c: 56: }
+"55
+[; ;UART1.c: 55: }
 [e :UE 2140 ]
 }
-"58
-[; ;UART1.c: 58: unsigned char UART1_SendString(char *str,int size){
+"57
+[; ;UART1.c: 57: unsigned char UART1_SendString(char *str,int size){
 [v _UART1_SendString `(uc ~T0 @X0 1 ef2`*uc`i ]
 {
 [e :U _UART1_SendString ]
 [v _str `*uc ~T0 @X0 1 r1 ]
 [v _size `i ~T0 @X0 1 r2 ]
 [f ]
-"59
-[; ;UART1.c: 59:     unsigned int attempts = 65000,i;
+"58
+[; ;UART1.c: 58:     unsigned int attempts = 65000,i;
 [v _attempts `ui ~T0 @X0 1 a ]
 [e = _attempts -> -> 65000 `l `ui ]
 [v _i `ui ~T0 @X0 1 a ]
-"60
-[; ;UART1.c: 60:     for(i=0;i<size;i++){
+"59
+[; ;UART1.c: 59:     for(i=0;i<size;i++){
 {
 [e = _i -> -> 0 `i `ui ]
 [e $U 2146  ]
 [e :U 2143 ]
 {
-"61
-[; ;UART1.c: 61:         if(!UART1_SendByte(*(str + i))){
+"60
+[; ;UART1.c: 60:         if(!UART1_SendByte(*(str + i))){
 [e $ ! ! != -> ( _UART1_SendByte (1 -> *U + _str * -> _i `ux -> -> # *U _str `ui `ux `uc `i -> 0 `i 2147  ]
 {
-"62
-[; ;UART1.c: 62:             attempts --;
+"61
+[; ;UART1.c: 61:             attempts --;
 [e -- _attempts -> -> 1 `i `ui ]
-"63
-[; ;UART1.c: 63:             i --;
+"62
+[; ;UART1.c: 62:             i --;
 [e -- _i -> -> 1 `i `ui ]
-"64
-[; ;UART1.c: 64:         }
+"63
+[; ;UART1.c: 63:         }
 }
 [e :U 2147 ]
-"65
-[; ;UART1.c: 65:         if(!attempts)
+"64
+[; ;UART1.c: 64:         if(!attempts)
 [e $ ! ! != _attempts -> -> 0 `i `ui 2148  ]
-"66
-[; ;UART1.c: 66:             return 0;
+"65
+[; ;UART1.c: 65:             return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 2142  ]
 [e :U 2148 ]
-"67
-[; ;UART1.c: 67:         attempts = 65000;
+"66
+[; ;UART1.c: 66:         attempts = 65000;
 [e = _attempts -> -> 65000 `l `ui ]
-"68
-[; ;UART1.c: 68:     }
+"67
+[; ;UART1.c: 67:     }
 }
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 2146 ]
 [e $ < _i -> _size `ui 2143  ]
 [e :U 2144 ]
 }
-"69
-[; ;UART1.c: 69:     attempts =65000;
+"68
+[; ;UART1.c: 68:     attempts =65000;
 [e = _attempts -> -> 65000 `l `ui ]
-"70
-[; ;UART1.c: 70:     while(!UART1_SendByte('\r') && (attempts --));
+"69
+[; ;UART1.c: 69:     while(!UART1_SendByte('\r') && (attempts --));
 [e $U 2149  ]
 [e :U 2150 ]
 [e :U 2149 ]
 [e $ && ! != -> ( _UART1_SendByte (1 -> -> 13 `ui `uc `i -> 0 `i != -- _attempts -> -> 1 `i `ui -> -> 0 `i `ui 2150  ]
 [e :U 2151 ]
-"71
-[; ;UART1.c: 71:     while(!UART1_SendByte('\n') && (attempts --));
+"70
+[; ;UART1.c: 70:     while(!UART1_SendByte('\n') && (attempts --));
 [e $U 2152  ]
 [e :U 2153 ]
 [e :U 2152 ]
 [e $ && ! != -> ( _UART1_SendByte (1 -> -> 10 `ui `uc `i -> 0 `i != -- _attempts -> -> 1 `i `ui -> -> 0 `i `ui 2153  ]
 [e :U 2154 ]
-"72
-[; ;UART1.c: 72:     return 1;
+"71
+[; ;UART1.c: 71:     return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 2142  ]
-"73
-[; ;UART1.c: 73: }
+"72
+[; ;UART1.c: 72: }
 [e :UE 2142 ]
 }
-"84
-[; ;UART1.c: 84: unsigned char UART1_ReceiveCommand(void){;
+"83
+[; ;UART1.c: 83: unsigned char UART1_ReceiveCommand(void){;
 [v _UART1_ReceiveCommand `(uc ~T0 @X0 1 ef ]
 {
 [e :U _UART1_ReceiveCommand ]
 [f ]
-"85
-[; ;UART1.c: 85:     if(rx_counter == 0)
+"84
+[; ;UART1.c: 84:     if(rx_counter == 0)
 [e $ ! == -> _rx_counter `i -> 0 `i 2156  ]
-"86
-[; ;UART1.c: 86:         return 0;
+"85
+[; ;UART1.c: 85:         return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 2155  ]
 [e :U 2156 ]
-"87
-[; ;UART1.c: 87:     if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R'){
-[e $ ! && && == -> _rx_counter `i -> 1 `i != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 87 `ui != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 82 `ui 2157  ]
+"86
+[; ;UART1.c: 86:     if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R' && rx_buffer[0] != 'C'){
+[e $ ! && && && == -> _rx_counter `i -> 1 `i != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 87 `ui != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 82 `ui != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 67 `ui 2157  ]
 {
-"88
-[; ;UART1.c: 88:         rx_counter = 0;
+"87
+[; ;UART1.c: 87:         rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"89
-[; ;UART1.c: 89:         return 0;
+"88
+[; ;UART1.c: 88:         return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 2155  ]
-"90
-[; ;UART1.c: 90:     }
+"89
+[; ;UART1.c: 89:     }
 }
 [e :U 2157 ]
-"91
-[; ;UART1.c: 91:     if(rx_buffer[0] == 'R') {
+"90
+[; ;UART1.c: 90:     if(rx_buffer[0] == 'R') {
 [e $ ! == -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 82 `ui 2158  ]
 {
-"92
-[; ;UART1.c: 92:         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+"91
+[; ;UART1.c: 91:         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
 [e $ ! && == -> _rx_counter `i -> 2 `i || < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2159  ]
 {
-"93
-[; ;UART1.c: 93:             rx_counter = 0;
+"92
+[; ;UART1.c: 92:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"94
-[; ;UART1.c: 94:         }else if(rx_counter == 3 && rx_buffer[2] != '\r'){
+"93
+[; ;UART1.c: 93:         }else if(rx_counter == 3 && rx_buffer[2] != '\r'){
 }
 [e $U 2160  ]
 [e :U 2159 ]
 [e $ ! && == -> _rx_counter `i -> 3 `i != -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui 2161  ]
 {
-"95
-[; ;UART1.c: 95:             rx_counter = 0;
+"94
+[; ;UART1.c: 94:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"96
-[; ;UART1.c: 96:         }else if(rx_counter == 4){
+"95
+[; ;UART1.c: 95:         }else if(rx_counter == 4){
 }
 [e $U 2162  ]
 [e :U 2161 ]
 [e $ ! == -> _rx_counter `i -> 4 `i 2163  ]
 {
-"97
-[; ;UART1.c: 97:             if(rx_buffer[0] != 'R' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || rx_buffer[2] != '\r' || rx_buffer[3] != '\n'){
+"96
+[; ;UART1.c: 96:             if(rx_buffer[0] != 'R' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || rx_buffer[2] != '\r' || rx_buffer[3] != '\n'){
 [e $ ! || || || || != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 82 `ui < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i != -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui != -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 10 `ui 2164  ]
 {
-"98
-[; ;UART1.c: 98:                 rx_counter = 0;
+"97
+[; ;UART1.c: 97:                 rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"99
-[; ;UART1.c: 99:                 return 0;
+"98
+[; ;UART1.c: 98:                 return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 2155  ]
-"100
-[; ;UART1.c: 100:             }
+"99
+[; ;UART1.c: 99:             }
 }
 [e :U 2164 ]
-"101
-[; ;UART1.c: 101:             COMMAND_WR = 1;
+"100
+[; ;UART1.c: 100:             COMMAND_WR = 1;
 [e = _COMMAND_WR -> -> 1 `i `uc ]
-"102
-[; ;UART1.c: 102:             COMMAND = rx_buffer[1]-48;
+"101
+[; ;UART1.c: 101:             COMMAND = rx_buffer[1]-48;
 [e = _COMMAND -> - -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i `uc ]
-"103
-[; ;UART1.c: 103:             rx_counter = 0;
+"102
+[; ;UART1.c: 102:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"104
-[; ;UART1.c: 104:             return 1;
+"103
+[; ;UART1.c: 103:             return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 2155  ]
-"105
-[; ;UART1.c: 105:         }
+"104
+[; ;UART1.c: 104:         }
 }
 [e :U 2163 ]
 [e :U 2162 ]
 [e :U 2160 ]
-"106
-[; ;UART1.c: 106:     }else if(rx_buffer[0] == 'W'){
+"105
+[; ;UART1.c: 105:     }else if(rx_buffer[0] == 'W'){
 }
 [e $U 2165  ]
 [e :U 2158 ]
 [e $ ! == -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 87 `ui 2166  ]
 {
-"107
-[; ;UART1.c: 107:         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+"106
+[; ;UART1.c: 106:         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
 [e $ ! && == -> _rx_counter `i -> 2 `i || < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2167  ]
 {
-"108
-[; ;UART1.c: 108:             rx_counter = 0;
+"107
+[; ;UART1.c: 107:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"109
-[; ;UART1.c: 109:         }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){
+"108
+[; ;UART1.c: 108:         }else if(rx_counter == 3 && ((rx_buffer[2] < 48) || (rx_buffer[2] > 57))){
 }
 [e $U 2168  ]
 [e :U 2167 ]
 [e $ ! && == -> _rx_counter `i -> 3 `i || < -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2169  ]
 {
-"110
-[; ;UART1.c: 110:             rx_counter = 0;
+"109
+[; ;UART1.c: 109:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"111
-[; ;UART1.c: 111:         }else if(rx_counter == 4 && ((rx_buffer[3] < 48) || (rx_buffer[3] > 57))){
+"110
+[; ;UART1.c: 110:         }else if(rx_counter == 4 && ((rx_buffer[3] < 48) || (rx_buffer[3] > 57))){
 }
 [e $U 2170  ]
 [e :U 2169 ]
 [e $ ! && == -> _rx_counter `i -> 4 `i || < -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2171  ]
 {
-"112
-[; ;UART1.c: 112:             rx_counter = 0;
+"111
+[; ;UART1.c: 111:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"113
-[; ;UART1.c: 113:         }else if(rx_counter == 5 && ((rx_buffer[4] < 48) || (rx_buffer[4] > 57))){
+"112
+[; ;UART1.c: 112:         }else if(rx_counter == 5 && ((rx_buffer[4] < 48) || (rx_buffer[4] > 57))){
 }
 [e $U 2172  ]
 [e :U 2171 ]
 [e $ ! && == -> _rx_counter `i -> 5 `i || < -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2173  ]
 {
-"114
-[; ;UART1.c: 114:             rx_counter = 0;
+"113
+[; ;UART1.c: 113:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"115
-[; ;UART1.c: 115:         }else if(rx_counter == 6 && ((rx_buffer[5] < 48) || (rx_buffer[5] > 57))){
+"114
+[; ;UART1.c: 114:         }else if(rx_counter == 6 && ((rx_buffer[5] < 48) || (rx_buffer[5] > 57))){
 }
 [e $U 2174  ]
 [e :U 2173 ]
 [e $ ! && == -> _rx_counter `i -> 6 `i || < -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2175  ]
 {
-"116
-[; ;UART1.c: 116:             rx_counter = 0;
+"115
+[; ;UART1.c: 115:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"117
-[; ;UART1.c: 117:         }else if(rx_counter == 7 && rx_buffer[6] != '\r'){
+"116
+[; ;UART1.c: 116:         }else if(rx_counter == 7 && rx_buffer[6] != '\r'){
 }
 [e $U 2176  ]
 [e :U 2175 ]
 [e $ ! && == -> _rx_counter `i -> 7 `i != -> *U + &U _rx_buffer * -> -> -> 6 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui 2177  ]
 {
-"118
-[; ;UART1.c: 118:             rx_counter = 0;
+"117
+[; ;UART1.c: 117:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"119
-[; ;UART1.c: 119:         }else if(rx_counter == 8){
+"118
+[; ;UART1.c: 118:         }else if(rx_counter == 8){
 }
 [e $U 2178  ]
 [e :U 2177 ]
 [e $ ! == -> _rx_counter `i -> 8 `i 2179  ]
 {
-"120
-[; ;UART1.c: 120:             if(rx_buffer[0] != 'W' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || (rx_buffer[2] < 48) || (rx_buffer[2] > 57) || (rx_buffer[3] < 48) || (rx_buffer[3] > 57) || (rx_buffer[4] < 48) || (rx_buffer[4] > 57) || (rx_buffer[5] < 48) || (rx_buffer[5] > 57) || rx_buffer[6] != '\r' || rx_buffer[7] != '\n'){
+"119
+[; ;UART1.c: 119:             if(rx_buffer[0] != 'W' || (rx_buffer[1] < 48) || (rx_buffer[1] > 57) || (rx_buffer[2] < 48) || (rx_buffer[2] > 57) || (rx_buffer[3] < 48) || (rx_buffer[3] > 57) || (rx_buffer[4] < 48) || (rx_buffer[4] > 57) || (rx_buffer[5] < 48) || (rx_buffer[5] > 57) || rx_buffer[6] != '\r' || rx_buffer[7] != '\n'){
 [e $ ! || || || || || || || || || || || || != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 87 `ui < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i < -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i < -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i < -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i < -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i != -> *U + &U _rx_buffer * -> -> -> 6 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui != -> *U + &U _rx_buffer * -> -> -> 7 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 10 `ui 2180  ]
 {
-"121
-[; ;UART1.c: 121:                 rx_counter = 0;
+"120
+[; ;UART1.c: 120:                 rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"122
-[; ;UART1.c: 122:                 return 0;
+"121
+[; ;UART1.c: 121:                 return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 2155  ]
-"123
-[; ;UART1.c: 123:             }
+"122
+[; ;UART1.c: 122:             }
 }
 [e :U 2180 ]
-"124
-[; ;UART1.c: 124:             COMMAND_WR = 0;
+"123
+[; ;UART1.c: 123:             COMMAND_WR = 0;
 [e = _COMMAND_WR -> -> 0 `i `uc ]
-"125
-[; ;UART1.c: 125:             COMMAND = rx_buffer[1]-48;
+"124
+[; ;UART1.c: 124:             COMMAND = rx_buffer[1]-48;
 [e = _COMMAND -> - -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i `uc ]
-"126
-[; ;UART1.c: 126:             COMMAND_WRITE_NUMBER = ((rx_buffer[2]-48) * 1000) + ((rx_buffer[3]-48) * 100) + ((rx_buffer[4]-48) * 10) + (rx_buffer[5]-48);
+"125
+[; ;UART1.c: 125:             COMMAND_WRITE_NUMBER = ((rx_buffer[2]-48) * 1000) + ((rx_buffer[3]-48) * 100) + ((rx_buffer[4]-48) * 10) + (rx_buffer[5]-48);
 [e = _COMMAND_WRITE_NUMBER + + + * - -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i -> 1000 `i * - -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i -> 100 `i * - -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i -> 10 `i - -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i ]
-"127
-[; ;UART1.c: 127:             rx_counter = 0;
+"126
+[; ;UART1.c: 126:             rx_counter = 0;
 [e = _rx_counter -> -> 0 `i `uc ]
-"128
-[; ;UART1.c: 128:             return 1;
+"127
+[; ;UART1.c: 127:             return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 2155  ]
-"129
-[; ;UART1.c: 129:         }
+"128
+[; ;UART1.c: 128:         }
 }
 [e :U 2179 ]
 [e :U 2178 ]
@@ -2683,16 +2686,199 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2172 ]
 [e :U 2170 ]
 [e :U 2168 ]
-"130
-[; ;UART1.c: 130:     }
+"129
+[; ;UART1.c: 129:     }else if(rx_buffer[0] == 'C'){
 }
+[e $U 2181  ]
 [e :U 2166 ]
-[e :U 2165 ]
+[e $ ! == -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 67 `ui 2182  ]
+{
+"130
+[; ;UART1.c: 130:         if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+[e $ ! && == -> _rx_counter `i -> 2 `i || < -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2183  ]
+{
 "131
-[; ;UART1.c: 131:     return 0;
+[; ;UART1.c: 131:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"132
+[; ;UART1.c: 132:         }else if(rx_counter == 3 && rx_buffer[2] != '.'){
+}
+[e $U 2184  ]
+[e :U 2183 ]
+[e $ ! && == -> _rx_counter `i -> 3 `i != -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 46 `ui 2185  ]
+{
+"133
+[; ;UART1.c: 133:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"134
+[; ;UART1.c: 134:         }else if(rx_counter == 4 && ((rx_buffer[3] < 48) || (rx_buffer[3] > 57))){
+}
+[e $U 2186  ]
+[e :U 2185 ]
+[e $ ! && == -> _rx_counter `i -> 4 `i || < -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2187  ]
+{
+"135
+[; ;UART1.c: 135:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"136
+[; ;UART1.c: 136:         }else if(rx_counter == 5 && ((rx_buffer[4] < 48) || (rx_buffer[4] > 57))){
+}
+[e $U 2188  ]
+[e :U 2187 ]
+[e $ ! && == -> _rx_counter `i -> 5 `i || < -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 4 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2189  ]
+{
+"137
+[; ;UART1.c: 137:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"138
+[; ;UART1.c: 138:         }else if(rx_counter == 6 && ((rx_buffer[5] < 48) || (rx_buffer[5] > 57))){
+}
+[e $U 2190  ]
+[e :U 2189 ]
+[e $ ! && == -> _rx_counter `i -> 6 `i || < -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 5 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2191  ]
+{
+"139
+[; ;UART1.c: 139:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"140
+[; ;UART1.c: 140:         }else if(rx_counter == 7 && ((rx_buffer[6] < 48) || (rx_buffer[6] > 57))){
+}
+[e $U 2192  ]
+[e :U 2191 ]
+[e $ ! && == -> _rx_counter `i -> 7 `i || < -> *U + &U _rx_buffer * -> -> -> 6 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 6 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2193  ]
+{
+"141
+[; ;UART1.c: 141:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"142
+[; ;UART1.c: 142:         }else if(rx_counter == 8 && ((rx_buffer[7] < 48) || (rx_buffer[7] > 57))){
+}
+[e $U 2194  ]
+[e :U 2193 ]
+[e $ ! && == -> _rx_counter `i -> 8 `i || < -> *U + &U _rx_buffer * -> -> -> 7 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 7 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2195  ]
+{
+"143
+[; ;UART1.c: 143:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"144
+[; ;UART1.c: 144:         }else if(rx_counter == 9 && ((rx_buffer[8] < 48) || (rx_buffer[8] > 57))){
+}
+[e $U 2196  ]
+[e :U 2195 ]
+[e $ ! && == -> _rx_counter `i -> 9 `i || < -> *U + &U _rx_buffer * -> -> -> 8 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> -> -> 8 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2197  ]
+{
+"145
+[; ;UART1.c: 145:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"146
+[; ;UART1.c: 146:         }else if(rx_counter == 10 && rx_buffer[9] != '\r'){
+}
+[e $U 2198  ]
+[e :U 2197 ]
+[e $ ! && == -> _rx_counter `i -> 10 `i != -> *U + &U _rx_buffer * -> -> -> 9 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui 2199  ]
+{
+"147
+[; ;UART1.c: 147:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"148
+[; ;UART1.c: 148:         }else if(rx_counter == 11){
+}
+[e $U 2200  ]
+[e :U 2199 ]
+[e $ ! == -> _rx_counter `i -> 11 `i 2201  ]
+{
+"149
+[; ;UART1.c: 149:             for(unsigned char i = 3;i<9;i++){
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 3 `i `uc ]
+[e $ < -> _i `i -> 9 `i 2202  ]
+[e $U 2203  ]
+[e :U 2202 ]
+{
+"150
+[; ;UART1.c: 150:                 if(rx_buffer[i] < 48 || rx_buffer[i] > 57){
+[e $ ! || < -> *U + &U _rx_buffer * -> _i `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 48 `i > -> *U + &U _rx_buffer * -> _i `ux -> -> # *U &U _rx_buffer `ui `ux `i -> 57 `i 2205  ]
+{
+"151
+[; ;UART1.c: 151:                     rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"152
+[; ;UART1.c: 152:                     return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 2155  ]
-"132
-[; ;UART1.c: 132: }
+"153
+[; ;UART1.c: 153:                 }
+}
+[e :U 2205 ]
+"154
+[; ;UART1.c: 154:                 COMMAND_CURRENT_LIMIT[i-1] = rx_buffer[i];
+[e = *U + &U _COMMAND_CURRENT_LIMIT * -> -> - -> _i `i -> 1 `i `ui `ux -> -> # *U &U _COMMAND_CURRENT_LIMIT `ui `ux *U + &U _rx_buffer * -> _i `ux -> -> # *U &U _rx_buffer `ui `ux ]
+"155
+[; ;UART1.c: 155:             }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 9 `i 2202  ]
+[e :U 2203 ]
+}
+"156
+[; ;UART1.c: 156:             if(rx_buffer[0] != 'C' || rx_buffer[2] != '.' || rx_buffer[9] != '\r' || rx_buffer[10] != '\n'){
+[e $ ! || || || != -> *U + &U _rx_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 67 `ui != -> *U + &U _rx_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 46 `ui != -> *U + &U _rx_buffer * -> -> -> 9 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 13 `ui != -> *U + &U _rx_buffer * -> -> -> 10 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux `ui -> 10 `ui 2206  ]
+{
+"157
+[; ;UART1.c: 157:                 rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"158
+[; ;UART1.c: 158:                 return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2155  ]
+"159
+[; ;UART1.c: 159:             }
+}
+[e :U 2206 ]
+"160
+[; ;UART1.c: 160:             COMMAND_CURRENT_LIMIT[0] = rx_buffer[1];
+[e = *U + &U _COMMAND_CURRENT_LIMIT * -> -> -> 0 `i `ui `ux -> -> # *U &U _COMMAND_CURRENT_LIMIT `ui `ux *U + &U _rx_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _rx_buffer `ui `ux ]
+"161
+[; ;UART1.c: 161:             COMMAND_CURRENT_LIMIT[1] = '.';
+[e = *U + &U _COMMAND_CURRENT_LIMIT * -> -> -> 1 `i `ui `ux -> -> # *U &U _COMMAND_CURRENT_LIMIT `ui `ux -> -> 46 `ui `uc ]
+"162
+[; ;UART1.c: 162:             COMMAND_WR = 0;
+[e = _COMMAND_WR -> -> 0 `i `uc ]
+"163
+[; ;UART1.c: 163:             COMMAND = 2;
+[e = _COMMAND -> -> 2 `i `uc ]
+"164
+[; ;UART1.c: 164:             rx_counter = 0;
+[e = _rx_counter -> -> 0 `i `uc ]
+"165
+[; ;UART1.c: 165:             return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 2155  ]
+"166
+[; ;UART1.c: 166:         }
+}
+[e :U 2201 ]
+[e :U 2200 ]
+[e :U 2198 ]
+[e :U 2196 ]
+[e :U 2194 ]
+[e :U 2192 ]
+[e :U 2190 ]
+[e :U 2188 ]
+[e :U 2186 ]
+[e :U 2184 ]
+"167
+[; ;UART1.c: 167:     }
+}
+[e :U 2182 ]
+[e :U 2181 ]
+[e :U 2165 ]
+"168
+[; ;UART1.c: 168:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 2155  ]
+"169
+[; ;UART1.c: 169: }
 [e :UE 2155 ]
 }

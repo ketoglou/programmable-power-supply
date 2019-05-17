@@ -25615,7 +25615,7 @@ unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsig
 }
 # 89 "I2C.c"
 void I2C_handler(int value){
-    AD5272_COMMANDS[0] = (unsigned char)(AD5272_COMMANDS[0] | (value >> 8));
+    AD5272_COMMANDS[0] = (unsigned char)(0x04 | (value >> 8));
     AD5272_COMMANDS[1] = (unsigned char)value;
     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
     while(!I2C_STOP_DETECTED);

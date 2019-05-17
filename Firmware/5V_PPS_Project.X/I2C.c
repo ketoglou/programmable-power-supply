@@ -87,7 +87,7 @@ unsigned char I2C_Receive_Ready(unsigned char *results,unsigned char results_siz
 }*/
 
 void I2C_handler(int value){
-    AD5272_COMMANDS[0] = (byte)(AD5272_COMMANDS[0] | (value >> 8));
+    AD5272_COMMANDS[0] = (byte)(0x04 | (value >> 8));
     AD5272_COMMANDS[1] = (byte)value;
     I2C_Transmit(AD5272_COMMANDS,2,AD5272_VOLTAGE_ADDRESS);
     while(!I2C_STOP_DETECTED);

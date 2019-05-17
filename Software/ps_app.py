@@ -67,20 +67,16 @@ class SerialPort:
 
 	def send_serial(self,command):
 		try:
-			if self.send_status == False :
-				self.send_status = True
-				self.ser.write(str.encode(command + "\r\n"))
-				if command == "R2" :
-					respond = self.ser.readline().decode("utf-8") + self.ser.readline().decode("utf-8") + self.ser.readline().decode("utf-8")
-				else:
-					respond = self.ser.readline().decode("utf-8")
-				self.send_status = False
-				return respond
+			self.ser.write(str.encode(command + "\r\n"))
+			if command == "R2" :
+				respond = self.ser.readline().decode("utf-8") + self.ser.readline().decode("utf-8") + self.ser.readline().decode("utf-8")
 			else:
-				return None
+				respond = self.ser.readline().decode("utf-8")
+			return respond
 		except:
 			print("Cannot connect with the device.")
 			self.info_label.set_label("Cannot connect!\nTry to change the port\nor replug the device.")
+			return "!"
 
 	def __init__(self,info_label):
 		self.serialOpen = False
@@ -99,24 +95,30 @@ class UIWindow:
 			self.thread.join()
 		self.serial.close_serial()
 		Gtk.main_quit()
-	
+
+	def start_thread(self):
+		self.thread = threading.Thread(target=VoltageCurrent_thread,args=(self.serial,self.voltage_label,self.current_label))
+		self.thread.start()
+
+	def destroy_thread(self):
+		if self.thread == None:
+			pass
+		elif self.thread.isAlive() :
+			self.thread.do_run = False
+			self.thread.join()
+
 	def combo_box_change(self,widget,data=None):
 		try:
 			if widget.get_active_text() != "" and self.refresh == False:
 				print("Serial open:"+widget.get_active_text())
-				if self.thread == None:
-					pass
-				elif self.thread.isAlive() :
-					self.thread.do_run = False
-					self.thread.join()
+				self.destroy_thread()
 				self.serial.close_serial()
 				self.serial.open_serial(widget.get_active_text())
 				ver = self.serial.send_serial("R2")
 				if ver[0:7] == "Version" :
 					self.info_label.set_label(ver)
 					self.connection_status = True
-					self.thread = threading.Thread(target=VoltageCurrent_thread,args=(self.serial,self.voltage_label,self.current_label))
-					self.thread.start()
+					self.start_thread()
 				else:
 					self.info_label.set_label("Cannot connect!\nTry to change the port\nor replug the device.")
 					self.serial.close_serial()
@@ -138,20 +140,18 @@ class UIWindow:
 			self.combo_box.append_text(port)
 
 	def led_on(self,widget,data=None):
-		if self.connection_status == True :
-			tries = 10
-			while self.serial.send_serial("W00001") == None and --tries:
-				pass
-			if tries > 0 :
-				self.message_label.set_label("LED is on.")
+		self.destroy_thread()
+		respond = self.serial.send_serial("W00001")
+		self.start_thread()
+		if respond != '!' :
+			self.message_label.set_label("LED is on.")
 
 	def led_off(self,widget,data=None):
-		if self.connection_status == True :
-			tries = 10
-			while self.serial.send_serial("W00000") == None and --tries:
-				pass
-			if tries > 0 :
-				self.message_label.set_label("LED is off.")
+		self.destroy_thread()
+		respond = self.serial.send_serial("W00000")
+		self.start_thread()
+		if respond != '!' :
+			self.message_label.set_label("LED is off.")
 
 	def voltage_set(self,widget,data=None):
 		try:
@@ -160,7 +160,7 @@ class UIWindow:
 				r = voltage / 0.00005 #According to LT3081 datasheet with this method we calculate the resistor
 				ad5272_step = 100000.0 / 1023.0 #The AD5272 step
 				r = int(round(r / ad5272_step))
-				#self.serial.send_serial("W1"+str(int(round(r))))
+				self.destroy_thread()
 				if r < 10 :
 					self.serial.send_serial("W1000"+str(r))
 					print("Serial send:W1000"+str(r))
@@ -174,13 +174,27 @@ class UIWindow:
 					self.serial.send_serial("W1"+str(r))	
 					print("Serial send:W1"+str(r))
 				self.message_label.set_text("Voltage Set!")
+				self.start_thread()
 			else:
-				self.message_label.set_text("The range is from 0V-5V!")	
+				self.message_label.set_text("Voltage range 0V-5V!")	
 		except:
 			self.message_label.set_text("Use only numbers!")
 
 	def current_set(self,widget,data=None):	
-		pass
+		try:
+			Ilimit = float(self.current_set_val.get_text())
+			if Ilimit >= 0.0 and Ilimit <= 1.5 :
+				Irm = Ilimit / 5000.0  #Ilimit is the current we set as limit,Irm is the current the amplifier read,Irm is 1/5000 of Iload(Ilimit)
+				Vrm = 1000*Irm*4.9 #Vrm is the differential voltage that the mcu reads,the real is 1000*Irm,but is amplified by 4.9
+				self.destroy_thread()
+				self.serial.send_serial("C"+"{0:.6f}".format(Vrm))
+				print("Serial send:C"+"{0:.6f}".format(Vrm))
+				self.message_label.set_text("Current Set!")
+				self.start_thread()
+			else:
+				self.message_label.set_text("Current range 0A-1.5A!")
+		except:
+			self.message_label.set_text("Use only numbers!")
 
 	def __init__(self):
 		self.refresh = False

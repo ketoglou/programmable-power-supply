@@ -2599,8 +2599,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _value `i ~T0 @X0 1 r1 ]
 [f ]
 "90
-[; ;I2C.c: 90:     AD5272_COMMANDS[0] = (unsigned char)(AD5272_COMMANDS[0] | (value >> 8));
-[e = *U + &U _AD5272_COMMANDS * -> -> -> 0 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> | -> *U + &U _AD5272_COMMANDS * -> -> -> 0 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux `i >> _value -> 8 `i `uc ]
+[; ;I2C.c: 90:     AD5272_COMMANDS[0] = (unsigned char)(0x04 | (value >> 8));
+[e = *U + &U _AD5272_COMMANDS * -> -> -> 0 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> | -> 4 `i >> _value -> 8 `i `uc ]
 "91
 [; ;I2C.c: 91:     AD5272_COMMANDS[1] = (unsigned char)value;
 [e = *U + &U _AD5272_COMMANDS * -> -> -> 1 `i `ui `ux -> -> # *U &U _AD5272_COMMANDS `ui `ux -> _value `uc ]

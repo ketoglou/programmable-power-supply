@@ -15,13 +15,14 @@
  * Read Commands:
  * R0\r\n : Read voltage.A string with the value of voltage is send back.
  * R1\r\n : Read current.A string with the value of current is send back.
+ * R2\r\n : Read version information.
  * 
  * Write Commands:
- * W0yyyx : This command turn blinking LED ON OR OFF.The values of y's doesn't matter,x=1 for on and 0 for off
- * W1abcd : This command set the AD5272 variable resistor accross to the a,b,c,d
- *          numbers.This has an effect to the voltage output.
- * W2abcd : This command set the other AD5272 variable resistor accross to the 
- *          a,b,c,d numbers.This has an effect to the current limit at the output.
+ * W0yyyx\r\n : This command turn blinking LED ON OR OFF.The values of y's doesn't matter,x=1 for on and 0 for off
+ * W1abcd\r\n : This command set the AD5272 variable resistor accross to the a,b,c,d
+ *              numbers.This has an effect to the voltage output.
+ * Cx.xxxxxx\r\n : This command set the current limit,in reality the x's is the differential voltage come from the amplifier.
+ * 
  */
 
 //Includes
@@ -49,6 +50,7 @@ void timer0_init(void);
 void UART_handler(void);
 void ADC_Init(void);
 void ADC_Start(byte pin);
+float stof(char* s);
 int GetStringSize(void);
 void memset(char *st,char x,int size);
 
@@ -56,8 +58,10 @@ void memset(char *st,char x,int size);
 byte counter_timer0;
 byte led_enable;
 byte measur_vol_or_cur = 1;
-float ADC_VOLTAGE_RESULT;
-float ADC_CURRENT_RESULT;
+int ADC_VOLTAGE_RESULT;
+int ADC_CURRENT_RESULT;
+float CURRENT_LIMIT_AMPLIFIED_DVOLTAGE = 1.5;
+float CURRENT_REAL_AMPLIFIED_DVOLTAGE;
 
 //---------------------------Interrupt Routines---------------------------------
 
@@ -97,9 +101,9 @@ void __interrupt(irq(IRQ_AD)) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
     if(ADPCH == VOLTAGE_PIN)
-        ADC_VOLTAGE_RESULT = (float)adc_result; 
+        ADC_VOLTAGE_RESULT = adc_result; 
     else if(ADPCH == CURRENT_PIN)
-        ADC_CURRENT_RESULT = (float)adc_result;
+        ADC_CURRENT_RESULT = adc_result;
     PIR1bits.ADIF = 0; //Clear interrupt flag
 }
 
@@ -179,6 +183,11 @@ void main(void) {
     
     while(1){
         receive_command = UART1_ReceiveCommand();
+        CURRENT_REAL_AMPLIFIED_DVOLTAGE = ADC_CURRENT_RESULT * 0.00122;
+        if(CURRENT_LIMIT_AMPLIFIED_DVOLTAGE <= CURRENT_REAL_AMPLIFIED_DVOLTAGE)
+            LATAbits.LA1 = 1;
+        else
+            LATAbits.LA1 = 0;
         if(receive_command)
             UART_handler();
     }
@@ -191,12 +200,10 @@ void UART_handler(void){
     if(COMMAND_WR){ //READ COMMAND
         switch(COMMAND){
             case 0: //Voltage status
-                ADC_VOLTAGE_RESULT = ADC_VOLTAGE_RESULT * 0.00122;
-                sprintf(tx_buffer,"%f",ADC_VOLTAGE_RESULT);
+                sprintf(tx_buffer,"%f",((float)ADC_VOLTAGE_RESULT * 0.00122));
                 break;
             case 1:
-                ADC_CURRENT_RESULT = ADC_CURRENT_RESULT * 0.00122;
-                sprintf(tx_buffer,"%f",ADC_CURRENT_RESULT);
+                sprintf(tx_buffer,"%f",((float)ADC_CURRENT_RESULT * 0.00122));
                 break;
             case 2:
                 sprintf(tx_buffer,"Version 1.0\nTeam 5V\nXaris Ketoglou,Voula Kontotoli");
@@ -221,8 +228,7 @@ void UART_handler(void){
                 sprintf(tx_buffer,"Voltage set!");
                 break;
             case 2:
-                /*EDW PREPEI NA PAIRNW TO CURRENT APO TON USER,NA TO EXW IPOLOGISMENO KAI AN IPERVAINEI TO
-                 ORIO NA BARAW TO BUZZER KAI NA RIXNW TIN TASI STA 0V*/
+                CURRENT_LIMIT_AMPLIFIED_DVOLTAGE = stof(COMMAND_CURRENT_LIMIT);
                 sprintf(tx_buffer,"Current Limit set!");
                 break;
             default:
@@ -271,6 +277,26 @@ void ADC_Start(byte pin){
 
 
 //-----------------Help Functions-----------------------------------------------
+
+float stof(char* s){
+    float rez = 0, fact = 1;
+    if (*s == '-'){
+        s++;
+        fact = -1;
+    }
+    for (int point_seen = 0; *s; s++){
+        if (*s == '.'){
+            point_seen = 1; 
+            continue;
+        }
+        int d = *s - '0';
+        if (d >= 0 && d <= 9){
+            if (point_seen) fact /= 10.0f;
+                rez = rez * 10.0f + (float)d;
+        }
+    }
+    return rez * fact;
+}
 
 int GetStringSize(void){
     int i;

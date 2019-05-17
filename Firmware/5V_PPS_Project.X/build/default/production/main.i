@@ -7,7 +7,7 @@
 # 1 "/opt/microchip/xc8/v2.05/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 28 "main.c"
+# 29 "main.c"
 # 1 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -25529,7 +25529,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
-# 29 "main.c" 2
+# 30 "main.c" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 1 3
 # 24 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 3
 # 1 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 1 3
@@ -25666,7 +25666,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 30 "main.c" 2
+# 31 "main.c" 2
 # 1 "./config.h" 1
 
 
@@ -25722,7 +25722,7 @@ char *tempnam(const char *, const char *);
 
 
 #pragma config CP = OFF
-# 31 "main.c" 2
+# 32 "main.c" 2
 # 1 "./UART1.h" 1
 
 
@@ -25738,13 +25738,14 @@ char tx_byte;
 unsigned char COMMAND_WR;
 unsigned char COMMAND;
 int COMMAND_WRITE_NUMBER;
+char COMMAND_CURRENT_LIMIT[8];
 
 
 void UART1_Init(unsigned char baud_rate);
 unsigned char UART1_SendByte(unsigned char byte);
 unsigned char UART1_SendString(char *str,int size);
 unsigned char UART1_ReceiveCommand(void);
-# 32 "main.c" 2
+# 33 "main.c" 2
 # 1 "./I2C.h" 1
 # 11 "./I2C.h"
 unsigned char I2C_TX_COUNTER;
@@ -25767,17 +25768,18 @@ void I2C_Init(void);
 unsigned char I2C_Transmit(unsigned char *buffer,unsigned char buffer_size,unsigned char address);
 # 39 "./I2C.h"
 void I2C_handler(int value);
-# 33 "main.c" 2
+# 34 "main.c" 2
 
 
 
 
 typedef enum _BOOL { FALSE = 0, TRUE = 1 } boolean;
-# 48 "main.c"
+# 49 "main.c"
 void timer0_init(void);
 void UART_handler(void);
 void ADC_Init(void);
 void ADC_Start(unsigned char pin);
+float stof(char* s);
 int GetStringSize(void);
 void memset(char *st,char x,int size);
 
@@ -25785,8 +25787,10 @@ void memset(char *st,char x,int size);
 unsigned char counter_timer0;
 unsigned char led_enable;
 unsigned char measur_vol_or_cur = 1;
-float ADC_VOLTAGE_RESULT;
-float ADC_CURRENT_RESULT;
+int ADC_VOLTAGE_RESULT;
+int ADC_CURRENT_RESULT;
+float CURRENT_LIMIT_AMPLIFIED_DVOLTAGE = 1.5;
+float CURRENT_REAL_AMPLIFIED_DVOLTAGE;
 
 
 
@@ -25826,9 +25830,9 @@ void __attribute__((picinterrupt(("irq(10)")))) ADC_ISR(void){
     int adc_result = ADRESL;
     adc_result = adc_result | (ADRESH <<8);
     if(ADPCH == 12)
-        ADC_VOLTAGE_RESULT = (float)adc_result;
+        ADC_VOLTAGE_RESULT = adc_result;
     else if(ADPCH == 13)
-        ADC_CURRENT_RESULT = (float)adc_result;
+        ADC_CURRENT_RESULT = adc_result;
     PIR1bits.ADIF = 0;
 }
 
@@ -25908,6 +25912,11 @@ void main(void) {
 
     while(1){
         receive_command = UART1_ReceiveCommand();
+        CURRENT_REAL_AMPLIFIED_DVOLTAGE = ADC_CURRENT_RESULT * 0.00122;
+        if(CURRENT_LIMIT_AMPLIFIED_DVOLTAGE <= CURRENT_REAL_AMPLIFIED_DVOLTAGE)
+            LATAbits.LA1 = 1;
+        else
+            LATAbits.LA1 = 0;
         if(receive_command)
             UART_handler();
     }
@@ -25920,12 +25929,10 @@ void UART_handler(void){
     if(COMMAND_WR){
         switch(COMMAND){
             case 0:
-                ADC_VOLTAGE_RESULT = ADC_VOLTAGE_RESULT * 0.00122;
-                sprintf(tx_buffer,"%f",ADC_VOLTAGE_RESULT);
+                sprintf(tx_buffer,"%f",((float)ADC_VOLTAGE_RESULT * 0.00122));
                 break;
             case 1:
-                ADC_CURRENT_RESULT = ADC_CURRENT_RESULT * 0.00122;
-                sprintf(tx_buffer,"%f",ADC_CURRENT_RESULT);
+                sprintf(tx_buffer,"%f",((float)ADC_CURRENT_RESULT * 0.00122));
                 break;
             case 2:
                 sprintf(tx_buffer,"Version 1.0\nTeam 5V\nXaris Ketoglou,Voula Kontotoli");
@@ -25950,8 +25957,7 @@ void UART_handler(void){
                 sprintf(tx_buffer,"Voltage set!");
                 break;
             case 2:
-
-
+                CURRENT_LIMIT_AMPLIFIED_DVOLTAGE = stof(COMMAND_CURRENT_LIMIT);
                 sprintf(tx_buffer,"Current Limit set!");
                 break;
             default:
@@ -26000,6 +26006,26 @@ void ADC_Start(unsigned char pin){
 
 
 
+
+float stof(char* s){
+    float rez = 0, fact = 1;
+    if (*s == '-'){
+        s++;
+        fact = -1;
+    }
+    for (int point_seen = 0; *s; s++){
+        if (*s == '.'){
+            point_seen = 1;
+            continue;
+        }
+        int d = *s - '0';
+        if (d >= 0 && d <= 9){
+            if (point_seen) fact /= 10.0f;
+                rez = rez * 10.0f + (float)d;
+        }
+    }
+    return rez * fact;
+}
 
 int GetStringSize(void){
     int i;

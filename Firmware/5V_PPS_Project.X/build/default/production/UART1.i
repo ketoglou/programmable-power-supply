@@ -7,7 +7,6 @@
 # 1 "/opt/microchip/xc8/v2.05/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "UART1.c" 2
-
 # 1 "./UART1.h" 1
 
 
@@ -23,13 +22,14 @@ char tx_byte;
 unsigned char COMMAND_WR;
 unsigned char COMMAND;
 int COMMAND_WRITE_NUMBER;
+char COMMAND_CURRENT_LIMIT[8];
 
 
 void UART1_Init(unsigned char baud_rate);
 unsigned char UART1_SendByte(unsigned char byte);
 unsigned char UART1_SendString(char *str,int size);
 unsigned char UART1_ReceiveCommand(void);
-# 3 "UART1.c" 2
+# 2 "UART1.c" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -25551,7 +25551,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
-# 4 "UART1.c" 2
+# 3 "UART1.c" 2
 
 void UART1_Init(unsigned char baud_rate){
 
@@ -25622,11 +25622,11 @@ unsigned char UART1_SendString(char *str,int size){
     while(!UART1_SendByte('\n') && (attempts --));
     return 1;
 }
-# 84 "UART1.c"
+# 83 "UART1.c"
 unsigned char UART1_ReceiveCommand(void){;
     if(rx_counter == 0)
         return 0;
-    if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R'){
+    if(rx_counter == 1 && rx_buffer[0] != 'W' && rx_buffer[0] != 'R' && rx_buffer[0] != 'C'){
         rx_counter = 0;
         return 0;
     }
@@ -25666,6 +25666,44 @@ unsigned char UART1_ReceiveCommand(void){;
             COMMAND_WR = 0;
             COMMAND = rx_buffer[1]-48;
             COMMAND_WRITE_NUMBER = ((rx_buffer[2]-48) * 1000) + ((rx_buffer[3]-48) * 100) + ((rx_buffer[4]-48) * 10) + (rx_buffer[5]-48);
+            rx_counter = 0;
+            return 1;
+        }
+    }else if(rx_buffer[0] == 'C'){
+        if(rx_counter == 2 && ((rx_buffer[1] < 48) || (rx_buffer[1] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 3 && rx_buffer[2] != '.'){
+            rx_counter = 0;
+        }else if(rx_counter == 4 && ((rx_buffer[3] < 48) || (rx_buffer[3] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 5 && ((rx_buffer[4] < 48) || (rx_buffer[4] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 6 && ((rx_buffer[5] < 48) || (rx_buffer[5] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 7 && ((rx_buffer[6] < 48) || (rx_buffer[6] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 8 && ((rx_buffer[7] < 48) || (rx_buffer[7] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 9 && ((rx_buffer[8] < 48) || (rx_buffer[8] > 57))){
+            rx_counter = 0;
+        }else if(rx_counter == 10 && rx_buffer[9] != '\r'){
+            rx_counter = 0;
+        }else if(rx_counter == 11){
+            for(unsigned char i = 3;i<9;i++){
+                if(rx_buffer[i] < 48 || rx_buffer[i] > 57){
+                    rx_counter = 0;
+                    return 0;
+                }
+                COMMAND_CURRENT_LIMIT[i-1] = rx_buffer[i];
+            }
+            if(rx_buffer[0] != 'C' || rx_buffer[2] != '.' || rx_buffer[9] != '\r' || rx_buffer[10] != '\n'){
+                rx_counter = 0;
+                return 0;
+            }
+            COMMAND_CURRENT_LIMIT[0] = rx_buffer[1];
+            COMMAND_CURRENT_LIMIT[1] = '.';
+            COMMAND_WR = 0;
+            COMMAND = 2;
             rx_counter = 0;
             return 1;
         }
