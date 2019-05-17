@@ -161,19 +161,23 @@ class UIWindow:
 				ad5272_step = 100000.0 / 1023.0 #The AD5272 step
 				r = int(round(r / ad5272_step))
 				self.destroy_thread()
+				respond = '!'
 				if r < 10 :
-					self.serial.send_serial("W1000"+str(r))
+					respond = self.serial.send_serial("W1000"+str(r))
 					print("Serial send:W1000"+str(r))
 				elif r < 100:
-					self.serial.send_serial("W100"+str(r))
+					respond = self.serial.send_serial("W100"+str(r))
 					print("Serial send:W100"+str(r))
 				elif r < 1000:
-					self.serial.send_serial("W10"+str(r))
+					respond = self.serial.send_serial("W10"+str(r))
 					print("Serial send:W10"+str(r))
 				else:
-					self.serial.send_serial("W1"+str(r))	
+					respond = self.serial.send_serial("W1"+str(r))	
 					print("Serial send:W1"+str(r))
-				self.message_label.set_text("Voltage Set!")
+				if respond != '!' :
+					self.message_label.set_text("Voltage Set!")
+				else:
+					self.message_label.set_text("Connection problem")
 				self.start_thread()
 			else:
 				self.message_label.set_text("Voltage range 0V-5V!")	
@@ -187,9 +191,12 @@ class UIWindow:
 				Irm = Ilimit / 5000.0  #Ilimit is the current we set as limit,Irm is the current the amplifier read,Irm is 1/5000 of Iload(Ilimit)
 				Vrm = 1000*Irm*4.9 #Vrm is the differential voltage that the mcu reads,the real is 1000*Irm,but is amplified by 4.9
 				self.destroy_thread()
-				self.serial.send_serial("C"+"{0:.6f}".format(Vrm))
+				respond = self.serial.send_serial("C"+"{0:.6f}".format(Vrm))
 				print("Serial send:C"+"{0:.6f}".format(Vrm))
-				self.message_label.set_text("Current Set!")
+				if respond != '!' :
+					self.message_label.set_text("Current Set!")
+				else:
+					self.message_label.set_text("Connection problem")
 				self.start_thread()
 			else:
 				self.message_label.set_text("Current range 0A-1.5A!")
