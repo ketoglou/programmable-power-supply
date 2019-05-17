@@ -31,7 +31,7 @@
 
 // CONFIG3L
 #pragma config WDTCPS = WDTCPS_31// WDT Period selection bits (Divider ratio 1:65536; software control of WDTPS)
-#pragma config WDTE = OFF  //SWDTEN  // WDT enabled/disabled by SWDTEN bit
+#pragma config WDTE = SWDTEN  // WDT enabled/disabled by SWDTEN bit
 
 // CONFIG3H
 #pragma config WDTCWS = WDTCWS_7// WDT Window Select bits (window always open (100%); software control; keyed access not required)

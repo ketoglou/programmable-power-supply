@@ -95,19 +95,19 @@
 [v _DEFAULT_ISR DEFAULT_ISR `IIH(v  1 e 1 0 ]
 "131
 [v _main main `(v  1 e 1 0 ]
-"198
+"199
 [v _UART_handler UART_handler `(v  1 e 1 0 ]
-"244
+"245
 [v _timer0_init timer0_init `(v  1 e 1 0 ]
-"257
+"258
 [v _ADC_Init ADC_Init `(v  1 e 1 0 ]
-"271
+"272
 [v _ADC_Start ADC_Start `(v  1 e 1 0 ]
-"281
+"282
 [v _stof stof `(f  1 e 4 0 ]
-"301
+"302
 [v _GetStringSize GetStringSize `(i  1 e 2 0 ]
-"311
+"312
 [v _memset memset `(v  1 e 1 0 ]
 "4 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/UART1.c
 [v _UART1_Init UART1_Init `(v  1 e 1 0 ]
@@ -337,7 +337,7 @@
 [v _RB1PPS RB1PPS `VEuc  1 e 1 @14857 ]
 "7666
 [v _RC7PPS RC7PPS `VEuc  1 e 1 @14871 ]
-[s S376 . 1 `uc 1 ANSELA0 1 0 :1:0 
+[s S374 . 1 `uc 1 ANSELA0 1 0 :1:0 
 `uc 1 ANSELA1 1 0 :1:1 
 `uc 1 ANSELA2 1 0 :1:2 
 `uc 1 ANSELA3 1 0 :1:3 
@@ -347,8 +347,8 @@
 `uc 1 ANSELA7 1 0 :1:7 
 ]
 "7733
-[u S385 . 1 `S376 1 . 1 0 ]
-[v _ANSELAbits ANSELAbits `VES385  1 e 1 @14912 ]
+[u S383 . 1 `S374 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES383  1 e 1 @14912 ]
 [s S546 . 1 `uc 1 ANSELB0 1 0 :1:0 
 `uc 1 ANSELB1 1 0 :1:1 
 `uc 1 ANSELB2 1 0 :1:2 
@@ -399,11 +399,11 @@
 "8941
 [u S1438 . 1 `S1429 1 . 1 0 ]
 [v _ANSELCbits ANSELCbits `VES1438  1 e 1 @14944 ]
-[s S305 . 1 `uc 1 PPSLOCKED 1 0 :1:0 
+[s S303 . 1 `uc 1 PPSLOCKED 1 0 :1:0 
 ]
 "9751
-[u S307 . 1 `S305 1 . 1 0 ]
-[v _PPSLOCKbits PPSLOCKbits `VES307  1 e 1 @15039 ]
+[u S305 . 1 `S303 1 . 1 0 ]
+[v _PPSLOCKbits PPSLOCKbits `VES305  1 e 1 @15039 ]
 "10421
 [v _I2C1SCLPPS I2C1SCLPPS `VEuc  1 e 1 @15073 ]
 "10441
@@ -650,7 +650,7 @@
 "43845
 "43845
 [v _LATAbits LATAbits `VES83  1 e 1 @16314 ]
-[s S418 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S416 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -660,7 +660,7 @@
 `uc 1 LATB7 1 0 :1:7 
 ]
 "43957
-[s S427 . 1 `uc 1 LB0 1 0 :1:0 
+[s S425 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -670,11 +670,11 @@
 `uc 1 LB7 1 0 :1:7 
 ]
 "43957
-[u S436 . 1 `S418 1 . 1 0 `S427 1 . 1 0 ]
+[u S434 . 1 `S416 1 . 1 0 `S425 1 . 1 0 ]
 "43957
 "43957
-[v _LATBbits LATBbits `VES436  1 e 1 @16315 ]
-[s S355 . 1 `uc 1 TRISA0 1 0 :1:0 
+[v _LATBbits LATBbits `VES434  1 e 1 @16315 ]
+[s S353 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -684,11 +684,11 @@
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "44171
-[u S364 . 1 `S355 1 . 1 0 ]
+[u S362 . 1 `S353 1 . 1 0 ]
 "44171
 "44171
-[v _TRISAbits TRISAbits `VES364  1 e 1 @16322 ]
-[s S397 . 1 `uc 1 TRISB0 1 0 :1:0 
+[v _TRISAbits TRISAbits `VES362  1 e 1 @16322 ]
+[s S395 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -698,10 +698,10 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "44233
-[u S406 . 1 `S397 1 . 1 0 ]
+[u S404 . 1 `S395 1 . 1 0 ]
 "44233
 "44233
-[v _TRISBbits TRISBbits `VES406  1 e 1 @16323 ]
+[v _TRISBbits TRISBbits `VES404  1 e 1 @16323 ]
 [s S1408 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
@@ -716,7 +716,7 @@
 "44295
 "44295
 [v _TRISCbits TRISCbits `VES1417  1 e 1 @16324 ]
-[s S329 . 1 `uc 1 INT0EDG 1 0 :1:0 
+[s S327 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -725,14 +725,14 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "44640
-[s S337 . 1 `uc 1 . 1 0 :7:0 
+[s S335 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "44640
-[u S340 . 1 `S329 1 . 1 0 `S337 1 . 1 0 ]
+[u S338 . 1 `S327 1 . 1 0 `S335 1 . 1 0 ]
 "44640
 "44640
-[v _INTCON0bits INTCON0bits `VES340  1 e 1 @16338 ]
+[v _INTCON0bits INTCON0bits `VES338  1 e 1 @16338 ]
 "44716
 [v _IVTLOCK IVTLOCK `VEuc  1 e 1 @16340 ]
 "55 /opt/microchip/xc8/v2.05/pic/sources/c99/common/doprnt.c
@@ -762,31 +762,31 @@
 {
 "182
 [v main@receive_command receive_command `uc  1 a 1 84 ]
-"194
+"195
 } 0
-"244
+"245
 [v _timer0_init timer0_init `(v  1 e 1 0 ]
 {
-"254
+"255
 } 0
-"198
+"199
 [v _UART_handler UART_handler `(v  1 e 1 0 ]
 {
-"240
+"241
 } 0
-"281
+"282
 [v _stof stof `(f  1 e 4 0 ]
 {
-"292
+"293
 [v stof@d d `i  1 a 2 75 ]
-"287
+"288
 [v stof@point_seen point_seen `i  1 a 2 65 ]
-"282
+"283
 [v stof@fact fact `f  1 a 4 71 ]
 [v stof@rez rez `f  1 a 4 67 ]
-"281
+"282
 [v stof@s s `*.39uc  1 p 2 60 ]
-"299
+"300
 } 0
 "10 /opt/microchip/xc8/v2.05/pic/sources/c99/common/xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -1110,16 +1110,16 @@
 [v ___awdiv@divisor divisor `i  1 p 2 7 ]
 "41
 } 0
-"311 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/main.c
+"312 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/main.c
 [v _memset memset `(v  1 e 1 0 ]
 {
-"312
+"313
 [v memset@i i `i  1 a 2 11 ]
-"311
+"312
 [v memset@st st `*.39uc  1 p 2 5 ]
 [v memset@x x `uc  1 p 1 7 ]
 [v memset@size size `i  1 p 2 8 ]
-"315
+"316
 } 0
 "57 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/UART1.c
 [v _UART1_SendString UART1_SendString `(uc  1 e 1 0 ]
@@ -1157,12 +1157,12 @@
 [v I2C_Transmit@address address `uc  1 p 1 8 ]
 "63
 } 0
-"301 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/main.c
+"302 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/main.c
 [v _GetStringSize GetStringSize `(i  1 e 2 0 ]
 {
-"302
+"303
 [v GetStringSize@i i `i  1 a 2 7 ]
-"309
+"310
 } 0
 "83 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/UART1.c
 [v _UART1_ReceiveCommand UART1_ReceiveCommand `(uc  1 e 1 0 ]
@@ -1195,23 +1195,23 @@
 {
 "47
 } 0
-"257 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/main.c
+"258 /home/orion/5V-1.5A_Programmable_Power_Supply/Firmware/5V_PPS_Project.X/main.c
 [v _ADC_Init ADC_Init `(v  1 e 1 0 ]
 {
-"268
+"269
 } 0
 "68
 [v _TIMER0_ISR TIMER0_ISR `IIH(v  1 e 1 0 ]
 {
 "87
 } 0
-"271
+"272
 [v _ADC_Start ADC_Start `(v  1 e 1 0 ]
 {
 [v ADC_Start@pin pin `uc  1 a 1 wreg ]
 [v ADC_Start@pin pin `uc  1 a 1 wreg ]
 [v ADC_Start@pin pin `uc  1 a 1 0 ]
-"276
+"277
 } 0
 "89
 [v _UART1_TX_ISR UART1_TX_ISR `IIH(v  1 e 1 0 ]

@@ -140,10 +140,6 @@ void main(void) {
     IVTBASEL = 0x00;*/
     IVTLOCK = 0x01; //IVTBASE Registers are locked and cannot be written(IVTWAY=1)
     
-    //WatchDog Configuration,no Window 
-    WDTCON1 = 0x07; //LFINTOSC used,Windows is open at 100% of time
-    WDTCON0 = 0x3F; //32 seconds watchdog time,Enable watchdog
-    
     //PPS Configuration
     PPSLOCKbits.PPSLOCKED = 0; //PPS selections can change (this bit cannot change because of pragma PPS1WAY=1)
     
@@ -179,6 +175,10 @@ void main(void) {
     while(!I2C_STOP_DETECTED);
     AD5272_COMMANDS[0] = I2C_RDAC_WRITE;
     
+    //WatchDog Configuration,no Window 
+    WDTCON1 = 0x07; //LFINTOSC used,Windows is open at 100% of time
+    WDTCON0 = 0x1B; //8 seconds watchdog time,Enable watchdog
+    
     byte receive_command;
     
     while(1){
@@ -190,6 +190,7 @@ void main(void) {
             LATAbits.LA1 = 0;
         if(receive_command)
             UART_handler();
+        CLRWDT();
     }
 }
 

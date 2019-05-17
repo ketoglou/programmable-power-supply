@@ -25701,7 +25701,7 @@ char *tempnam(const char *, const char *);
 
 
 #pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = OFF
+#pragma config WDTE = SWDTEN
 
 
 #pragma config WDTCWS = WDTCWS_7
@@ -25870,10 +25870,6 @@ void main(void) {
     IVTLOCK = 0x01;
 
 
-    WDTCON1 = 0x07;
-    WDTCON0 = 0x3F;
-
-
     PPSLOCKbits.PPSLOCKED = 0;
 
 
@@ -25908,6 +25904,10 @@ void main(void) {
     while(!I2C_STOP_DETECTED);
     AD5272_COMMANDS[0] = 0x04;
 
+
+    WDTCON1 = 0x07;
+    WDTCON0 = 0x1B;
+
     unsigned char receive_command;
 
     while(1){
@@ -25919,6 +25919,7 @@ void main(void) {
             LATAbits.LA1 = 0;
         if(receive_command)
             UART_handler();
+        __asm(" clrwdt");
     }
 }
 
