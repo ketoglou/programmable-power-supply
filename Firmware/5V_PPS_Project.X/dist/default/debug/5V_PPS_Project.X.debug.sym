@@ -819,9 +819,9 @@ text47 4F40 4F65 CODE 4F40 0
 text41 4F68 4F75 CODE 4F68 0
 text48 4F78 4F7B CODE 4F78 0
 %locals
-dist/default/production/5V_PPS_Project.X.production.o
+dist/default/debug/5V_PPS_Project.X.debug.o
 /opt/microchip/xc8/v2.05/pic/include/pic18f27k42.h
-/tmp/xcXgdyGWx
+/tmp/xcXeBCoEm
 4873 4B90 0 CODE 0
 4875 4B90 0 CODE 0
 4878 4B90 0 CODE 0

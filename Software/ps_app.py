@@ -20,16 +20,20 @@ class VoltageCurrent_thread(threading.Thread):
 		self.run()
 
 	def run(self):
-		while getattr(self.t, "do_run", True) and self.ser != None:
-			voltage = self.ser.send_serial("R0")
-			current_voltage = self.ser.send_serial("R1")
-			if voltage != None and current_voltage != None:
-				self.voltage_label.set_label(voltage)
-				current_voltage = float(current_voltage) / 4.9 #We divide with 4.9 because thats the factor the amplifier amplifies the voltage
-				current = current_voltage / 1000.0 		#We divide the real voltage drop we measure from amplifier with the resistor
-				current = current*5000.0				#The real current at load is the current we find above in the resistor*5000 as the datasheet of LT3081 says
-				self.current_label.set_label("{0:.6f}".format(current))
-			time.sleep(1)
+		try:
+			while getattr(self.t, "do_run", True) and self.ser != None:
+				voltage = self.ser.send_serial("R0")
+				current_voltage = self.ser.send_serial("R1")
+				if voltage != None and current_voltage != None:
+					voltage = ((10000.0 + 1600.0)/ 1600.0)*float(voltage) #Vs = ((R1+R2)/R2)*Vout
+					self.voltage_label.set_label("{0:.6f} V".format(voltage))
+					current_voltage = float(current_voltage) / 4.9 #We divide with 4.9 because thats the factor the amplifier amplifies the voltage
+					current = current_voltage / 1000.0 		#We divide the real voltage drop we measure from amplifier with the resistor
+					current = current*5000.0				#The real current at load is the current we find above in the resistor*5000 as the datasheet of LT3081 says
+					self.current_label.set_label("{0:.6f} A".format(current))
+				time.sleep(1)
+		except:
+			print("Error: Cannot receive proper format values")
 
 class SerialPort:
 

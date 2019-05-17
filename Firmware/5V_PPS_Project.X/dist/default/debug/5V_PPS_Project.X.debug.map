@@ -3,12 +3,12 @@ Microchip MPLAB XC8 Compiler V2.05 ()
 Linker command line:
 
 -W-3 --edf=/opt/microchip/xc8/v2.05/pic/dat/en_msgs.txt -pivt0x8=08h -cs \
-  -h+dist/default/production/5V_PPS_Project.X.production.sym \
-  --cmf=dist/default/production/5V_PPS_Project.X.production.cmf -z \
-  -Q18F27K42 -o/tmp/xcXtbl466 --defsym=__MPLAB_BUILD=1 \
-  -Mdist/default/production/5V_PPS_Project.X.production.map -E1 -ver=XC8 \
-  --acfsm=1493 -ASTACK=01B1h-01FFFh -pstack=STACK -ACODE=00h-01FFFFh \
-  -ACONST=00h-01FFFFh -ASMALLCONST=02000h-020FFhx480 \
+  -h+dist/default/debug/5V_PPS_Project.X.debug.sym \
+  --cmf=dist/default/debug/5V_PPS_Project.X.debug.cmf -z -Q18F27K42 \
+  -o/tmp/xcXz09WbH --defsym=__MPLAB_BUILD=1 \
+  -Mdist/default/debug/5V_PPS_Project.X.debug.map -E1 -ver=XC8 --acfsm=1493 \
+  -ASTACK=01B1h-01FFFh -pstack=STACK -ACODE=00h-01FFFFh -ACONST=00h-01FFFFh \
+  -ASMALLCONST=02000h-020FFhx480 \
   -AMEDIUMCONST=02000h-0FFFFh,012000h-01FFFFh -ACOMRAM=01h-05Fh \
   -AABS1=00h-01FFFh -ABIGRAM=01h-01FFFh -ARAM=060h-0FFh,0100h-01FFhx31 \
   -ABANK0=060h-0FFh -ABANK1=0100h-01FFh -ABANK2=0200h-02FFh \
@@ -31,7 +31,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/xcX9zNbkH.o dist/default/production/5V_PPS_Project.X.production.o 
+  /tmp/xcXyWjQYZ.o dist/default/debug/5V_PPS_Project.X.debug.o 
 
 Object code version is 3.11
 
@@ -43,12 +43,12 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcX9zNbkH.o
+/tmp/xcXyWjQYZ.o
                 init                                 AE       AE        4        4       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000       10   200000       0
                 config                           300000   300000        A   300000       0
-dist/default/production/5V_PPS_Project.X.production.o
+dist/default/debug/5V_PPS_Project.X.debug.o
                 smallconst                         2000     2000       AC     1000       0
                 ivt0x8                                8        8       A6        4       0
                 text48                             4F78     4F78        2     13DE       0
