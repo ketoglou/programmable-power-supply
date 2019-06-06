@@ -20,7 +20,7 @@ from the PC software.
 Inverse polarity protection included.
 
 ### Project
-This is a university project for Microprocessors lesson which is taught from mr. V.Tenentes.
+This is a university project for Microprocessors lesson.
 
 Team name : 5V
 
