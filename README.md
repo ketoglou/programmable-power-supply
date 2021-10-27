@@ -18,11 +18,3 @@ The project include a flashing led just to know that the microprocessor operates
 from the PC software.
 
 Inverse polarity protection included.
-
-### Project
-This is a university project for Microprocessors lesson.
-
-Team name : 5V
-
-Team : Kontotoli Voula,Ketoglou Theocharis 
-
